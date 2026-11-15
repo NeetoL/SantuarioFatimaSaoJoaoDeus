@@ -1,13 +1,16 @@
 /* ===========================================================
-   Santuário — página "Sobre": ampliação das fotos
-   (menu, voltar ao topo e animações ficam em comum.js, carregado antes deste arquivo)
+   Santuário — ampliar fotos (páginas Sobre e Notícias)
+   Qualquer botão com class="foto-btn", data-foto (foto grande) e data-legenda
+   abre a foto em tela cheia; setas e teclado navegam entre todas.
    =========================================================== */
 (() => {
+  const $  = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const fotos = $$('.foto-btn');
   const modal = $('#modal');
+  if (!fotos.length || !modal) return;
   const modalBody = $('#modal-body');
   const modalCaption = $('#modal-caption');
-  if (!fotos.length || !modal) return;
   let atual = 0;
   let lastFocus = null;
 
@@ -17,7 +20,7 @@
     const img = document.createElement('img');
     img.src = foto;
     img.alt = legenda;
-    img.className = 'max-h-[78vh] w-auto rounded-2xl shadow-2xl object-contain';
+    img.className = 'max-h-[78vh] w-auto rounded-md shadow-2xl object-contain';
     modalBody.replaceChildren(img);
     modalCaption.textContent = `${legenda} (${atual + 1}/${fotos.length})`;
   }

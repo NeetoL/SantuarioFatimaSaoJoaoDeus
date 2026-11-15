@@ -355,6 +355,17 @@ document.addEventListener('click', (e) => {
   if (cp) compartilharEvento(EVENTOS[+cp.dataset.compartilhar]);
 });
 
+/* ---------- Página Missas: próximas celebrações especiais (eventos da categoria Missa) ---------- */
+function renderMissasEspeciais() {
+  const alvo = $('#missas-especiais');
+  if (!alvo) return;
+  const missas = proximosEventos().filter((ev) => ev.categoria === 'Missa').slice(0, 3);
+  if (!missas.length) { $('#bloco-missas-especiais')?.classList.add('hidden'); return; }
+  const usadas = new Set();
+  alvo.innerHTML = missas.map((ev) => cardEvento(ev, { comDescricao: true, usadas })).join('');
+}
+
 renderInicio();
 renderPaginaEventos();
+renderMissasEspeciais();
 })();
