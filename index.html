@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santuário de Fátima</title>
+  <meta name="description" content="Santuário de Nossa Senhora de Fátima — horários de missa, programação, notícias da PASCOM e doações." />
+  <meta name="theme-color" content="#0f2a4f" />
+
+  <!-- Fontes: Playfair Display (títulos) + Inter (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN + paleta sacra personalizada -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Gerador de QR Code (ilustrativo) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+
+  <!-- Estilos próprios -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-white text-slate-700 antialiased">
+
+  <!-- Link de acessibilidade: pular direto para o conteúdo -->
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold-500 focus:text-navy-950 focus:px-4 focus:py-2 focus:rounded-md font-semibold">
+    Pular para o conteúdo
+  </a>
+
+  <!-- =====================================================
+       1. CABEÇALHO / NAVBAR FIXA
+       ===================================================== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between" aria-label="Navegação principal">
+
+      <!-- Logotipo -->
+      <a href="#inicio" class="flex items-center gap-3 group" aria-label="Santuário de Fátima — página inicial">
+        <span class="grid place-items-center w-11 h-11 rounded-full border border-gold-400/70 bg-navy-900/40 text-gold-400 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+          <!-- Ícone: coroa/estrela mariana -->
+          <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden="true">
+            <path d="M12 2l1.8 4.6L18.5 5l-1.6 4.7L21.5 11l-4.6 1.3 1.6 4.7-4.7-1.6L12 20l-1.8-4.6-4.7 1.6 1.6-4.7L2.5 11l4.6-1.3L5.5 5l4.7 1.6z" opacity=".25"/>
+            <path d="M11 4h2v5h4v2h-4v9h-2v-9H7V9h4z"/>
+          </svg>
+        </span>
+        <span class="leading-tight">
+          <span class="block text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</span>
+          <span class="block font-serif text-xl font-semibold text-white">Nossa Senhora de Fátima</span>
+        </span>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="hidden lg:flex items-center gap-1 text-sm font-medium text-white/90">
+        <li><a href="#inicio" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Início</a></li>
+        <li><a href="#sobre" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Sobre</a></li>
+        <li><a href="#programacao" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Programação</a></li>
+        <li><a href="#pascom" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">PASCOM</a></li>
+        <li><a href="#contato" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Contato</a></li>
+        <li class="ml-2"><a href="#doacoes" class="px-5 py-2.5 rounded-full bg-gold-500 text-navy-950 font-semibold hover:bg-gold-400 transition-colors">Doações</a></li>
+      </ul>
+
+      <!-- Botão hambúrguer (mobile) -->
+      <button id="menu-toggle" class="burger lg:hidden grid gap-[5px] p-3 -mr-2 rounded-md text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="lg:hidden bg-navy-950/98 border-t border-white/10">
+      <ul class="px-4 py-4 space-y-1 text-white/90 font-medium">
+        <li><a href="#inicio" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Início</a></li>
+        <li><a href="#sobre" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Sobre</a></li>
+        <li><a href="#programacao" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Programação / Eventos</a></li>
+        <li><a href="#pascom" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">PASCOM</a></li>
+        <li><a href="#contato" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Contato</a></li>
+        <li class="pt-2"><a href="#doacoes" class="block text-center px-3 py-3 rounded-full bg-gold-500 text-navy-950 font-semibold">Faça sua Doação</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- =====================================================
+         2. HERO
+         ===================================================== -->
+    <section id="inicio" class="relative min-h-[100svh] flex items-center overflow-hidden img-fallback">
+      <!-- Imagem de fundo: aparece enquanto o vídeo carrega ou se ele não existir -->
+      <img src="assets/img/hero-santuario.jpg"
+           alt="" aria-hidden="true" data-fallback
+           class="absolute inset-0 w-full h-full object-cover" />
+      <!-- Vídeo de fundo do YouTube em loop (inserido via JS — veja HERO_YOUTUBE_ID em assets/js/main.js) -->
+      <div id="hero-video" class="hero-video opacity-0 transition-opacity duration-1000" aria-hidden="true"></div>
+      <!-- Overlay para legibilidade -->
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-900/60 to-navy-950/90"></div>
+
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 text-center pt-28 pb-20">
+        <p class="ornament text-xs sm:text-sm uppercase tracking-[.3em] mb-6">Ave Maria, cheia de graça</p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight">
+          Bem-vindo à Casa da <span class="italic text-gold-400">Mãe de Deus</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed">
+          Um lugar de oração, acolhida e encontro com Cristo pelas mãos de Maria.
+          Venha rezar conosco — as portas do Santuário estão sempre abertas para você e sua família.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#horarios" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gold-500 text-navy-950 font-semibold shadow-lg shadow-gold-500/20 hover:bg-gold-400 hover:-translate-y-0.5 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Horários de Missa
+          </a>
+          <a href="#doacoes" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/40 text-white font-semibold hover:bg-white hover:text-navy-900 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg>
+            Faça sua Doação
+          </a>
+        </div>
+      </div>
+
+      <!-- Indicador de rolagem -->
+      <a href="#sobre" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 hover:text-gold-400 animate-bounce" aria-label="Rolar para a próxima seção">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- =====================================================
+         SOBRE
+         ===================================================== -->
+    <section id="sobre" class="py-20 sm:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal relative">
+          <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl img-fallback">
+            <img src="assets/img/sobre-interior.jpg"
+                 alt="Interior do Santuário iluminado durante a celebração" data-fallback loading="lazy"
+                 class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-2 sm:-right-6 bg-navy-900 text-white rounded-2xl p-6 shadow-xl max-w-[15rem]">
+            <p class="font-serif text-4xl text-gold-400">13</p>
+            <p class="text-sm text-white/80 mt-1">Todo dia 13 celebramos a memória das aparições de Fátima.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">Nossa história</p>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-900 mt-3 leading-tight">Um santuário de fé, esperança e acolhida</h2>
+          <p class="mt-6 text-lg leading-relaxed">
+            Inspirado na mensagem que Nossa Senhora confiou aos três pastorinhos em Fátima, em 1917,
+            nosso Santuário é um lugar de oração, conversão e paz. Aqui, peregrinos de todas as idades
+            encontram os sacramentos, a devoção do Santo Rosário e uma comunidade viva e acolhedora.
+          </p>
+          <dl class="mt-10 grid grid-cols-3 gap-4 text-center">
+            <div class="rounded-2xl bg-navy-50 p-4 flex flex-col-reverse">
+              <dt class="text-xs sm:text-sm text-slate-500">Missas por semana</dt>
+              <dd class="font-serif text-3xl text-navy-900 mt-1">18</dd>
+            </div>
+            <div class="rounded-2xl bg-navy-50 p-4 flex flex-col-reverse">
+              <dt class="text-xs sm:text-sm text-slate-500">Pastorais ativas</dt>
+              <dd class="font-serif text-3xl text-navy-900 mt-1">25+</dd>
+            </div>
+            <div class="rounded-2xl bg-navy-50 p-4 flex flex-col-reverse">
+              <dt class="text-xs sm:text-sm text-slate-500">Famílias assistidas</dt>
+              <dd class="font-serif text-3xl text-navy-900 mt-1">300</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         3. PROGRAMAÇÃO E EVENTOS
+         ===================================================== -->
+    <section id="programacao" class="py-20 sm:py-28 bg-navy-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-2xl mx-auto reveal">
+          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">Programação</p>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-900 mt-4">Próximos eventos e celebrações</h2>
+          <p class="mt-4 text-lg">Participe das missas, novenas e festividades do Santuário. Todos são bem-vindos!</p>
+        </header>
+
+        <!-- Filtros de categoria (JS) -->
+        <div class="mt-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filtrar eventos por categoria">
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="todos" aria-pressed="true">Todos</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Missa" aria-pressed="false">Missas</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Novena" aria-pressed="false">Novenas</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Festa" aria-pressed="false">Festividades</button>
+        </div>
+
+        <!-- Cards gerados via JavaScript (veja o array EVENTOS no final do arquivo) -->
+        <div id="eventos-grid" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+
+        <!-- Horários fixos de missa -->
+        <div id="horarios" class="mt-20 scroll-mt-28 reveal">
+          <div class="rounded-3xl bg-navy-900 text-white overflow-hidden grid lg:grid-cols-[1fr_2fr]">
+            <div class="p-8 sm:p-10 bg-gradient-to-br from-navy-800 to-navy-950 flex flex-col justify-center">
+              <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <h3 class="font-serif text-3xl mt-4">Horários de Missa</h3>
+              <p class="mt-3 text-white/75">Confissões: terça a sexta, das 14h às 17h, ou mediante agendamento na secretaria.</p>
+            </div>
+            <div class="p-8 sm:p-10 grid sm:grid-cols-3 gap-8">
+              <div>
+                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Segunda a Sexta</p>
+                <ul class="mt-3 space-y-2 text-lg"><li>07h00</li><li>12h00</li><li>19h30</li></ul>
+              </div>
+              <div>
+                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Sábado</p>
+                <ul class="mt-3 space-y-2 text-lg"><li>08h00</li><li>17h00</li><li>19h00</li></ul>
+              </div>
+              <div>
+                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Domingo</p>
+                <ul class="mt-3 space-y-2 text-lg"><li>07h00</li><li>09h00</li><li>11h00</li><li>17h00</li><li>19h00</li></ul>
+              </div>
+              <p class="sm:col-span-3 text-sm text-white/70 border-t border-white/10 pt-6">
+                <strong class="text-gold-400">Todo dia 13:</strong> Missa solene às 19h30 seguida de procissão luminosa com a imagem de Nossa Senhora.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         4. PASCOM — NOTÍCIAS, RECADOS E GALERIA
+         ===================================================== -->
+    <section id="pascom" class="py-20 sm:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-2xl mx-auto reveal">
+          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">PASCOM</p>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-900 mt-4">Pastoral da Comunicação</h2>
+          <p class="mt-4 text-lg">Notícias, recados paroquiais e os momentos mais bonitos da nossa comunidade.</p>
+        </header>
+
+        <div class="mt-14 grid lg:grid-cols-3 gap-8">
+          <!-- Notícias (gerado via JS) -->
+          <div id="noticias-grid" class="lg:col-span-2 grid sm:grid-cols-2 gap-6"></div>
+
+          <!-- Recados paroquiais -->
+          <aside class="reveal rounded-3xl bg-gold-50 border border-gold-200 p-6 sm:p-8 h-fit" aria-labelledby="recados-titulo">
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-10 h-10 rounded-full bg-gold-500 text-navy-950">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8v18L3 13z"/><path d="M7 13v5a2 2 0 0 0 4 0v-4"/></svg>
+              </span>
+              <h3 id="recados-titulo" class="font-serif text-2xl text-navy-900">Recados Paroquiais</h3>
+            </div>
+            <ul class="mt-6 space-y-5 text-sm">
+              <li class="border-l-2 border-gold-500 pl-4">
+                <p class="font-semibold text-navy-900">Inscrições para o Batismo</p>
+                <p class="mt-1">Preparação para pais e padrinhos no 2º sábado do mês, às 15h. Inscreva-se na secretaria.</p>
+              </li>
+              <li class="border-l-2 border-gold-500 pl-4">
+                <p class="font-semibold text-navy-900">Campanha do Agasalho e Alimentos</p>
+                <p class="mt-1">Doações recebidas na entrada lateral do Santuário até o fim do mês.</p>
+              </li>
+              <li class="border-l-2 border-gold-500 pl-4">
+                <p class="font-semibold text-navy-900">Novos voluntários na PASCOM</p>
+                <p class="mt-1">Gosta de fotografia, redes sociais ou vídeo? Venha servir conosco!</p>
+              </li>
+              <li class="border-l-2 border-gold-500 pl-4">
+                <p class="font-semibold text-navy-900">Secretaria em horário especial</p>
+                <p class="mt-1">Nos feriados, atendimento das 8h às 12h.</p>
+              </li>
+            </ul>
+          </aside>
+        </div>
+
+        <!-- Galeria de fotos -->
+        <div class="mt-20">
+          <div class="flex items-end justify-between gap-4 reveal">
+            <h3 class="font-serif text-2xl sm:text-3xl text-navy-900">Galeria da Comunidade</h3>
+            <p class="text-sm text-slate-500 hidden sm:block">Toque em uma foto para ampliar</p>
+          </div>
+          <!-- Fotos geradas via JS (array GALERIA) -->
+          <div id="galeria-grid" class="mt-8 grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] sm:auto-rows-[200px] gap-3 sm:gap-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         5. DOAÇÕES
+         ===================================================== -->
+    <section id="doacoes" class="py-20 sm:py-28 bg-navy-900 text-white relative overflow-hidden">
+      <!-- Detalhe decorativo -->
+      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-navy-700/40 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">Ofertório e Contribuições</p>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl mt-4">Sua generosidade sustenta esta casa</h2>
+          <p class="mt-5 text-lg text-white/80 leading-relaxed">
+            "Cada um dê conforme decidiu em seu coração, não com tristeza nem por obrigação, pois Deus ama quem dá com alegria." (2Cor 9,7)
+          </p>
+        </header>
+
+        <!-- Onde sua doação é aplicada -->
+        <div class="mt-14 grid sm:grid-cols-3 gap-6 reveal">
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+            <p class="font-serif text-4xl text-gold-400">45%</p>
+            <p class="font-semibold mt-2">Manutenção do Santuário</p>
+            <p class="text-sm text-white/70 mt-1">Energia, água, conservação do templo e liturgia.</p>
+          </div>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+            <p class="font-serif text-4xl text-gold-400">35%</p>
+            <p class="font-semibold mt-2">Obras sociais</p>
+            <p class="text-sm text-white/70 mt-1">Cestas básicas, apoio a famílias e pastoral da saúde.</p>
+          </div>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+            <p class="font-serif text-4xl text-gold-400">20%</p>
+            <p class="font-semibold mt-2">Evangelização</p>
+            <p class="text-sm text-white/70 mt-1">Catequese, formação e comunicação (PASCOM).</p>
+          </div>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+          <!-- PIX -->
+          <div class="reveal rounded-3xl bg-white text-slate-700 p-6 sm:p-10 shadow-2xl">
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-[#32bcad]/15 text-[#1f9c8f]">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l4.2 4.2-2.5 2.5L12 7.5l-1.7 1.7-2.5-2.5zM6.7 7.8l2.5 2.5L7.5 12l1.7 1.7-2.5 2.5L2.5 12zm10.6 0L21.5 12l-4.2 4.2-2.5-2.5L16.5 12l-1.7-1.7zM12 16.5l1.7-1.7 2.5 2.5L12 21.5l-4.2-4.2 2.5-2.5z"/></svg>
+              </span>
+              <h3 class="font-serif text-2xl text-navy-900">Doação via PIX</h3>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-8 items-center">
+              <!-- QR Code ilustrativo: clique para ampliar -->
+              <button id="qr-open" class="group shrink-0 rounded-2xl border-2 border-dashed border-gold-400 p-3 hover:border-gold-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-200 transition-colors" aria-label="Ampliar QR Code do PIX">
+                <div id="qr-small" class="w-36 h-36 grid place-items-center" aria-hidden="true"></div>
+                <span class="block mt-2 text-xs text-slate-500 group-hover:text-gold-600">Toque para ampliar</span>
+              </button>
+
+              <div class="w-full">
+                <p class="text-sm text-slate-500">Chave PIX (CNPJ)</p>
+                <div class="mt-2 flex items-stretch rounded-xl border border-slate-200 overflow-hidden">
+                  <code id="pix-key" class="flex-1 px-4 py-3 bg-slate-50 text-navy-900 font-semibold text-sm sm:text-base break-all">00.000.000/0001-00</code>
+                  <button class="copy-btn px-4 bg-navy-900 text-white text-sm font-semibold hover:bg-navy-800 transition-colors" data-copy="#pix-key">Copiar</button>
+                </div>
+                <p class="mt-4 text-sm"><span class="text-slate-500">Favorecido:</span> <strong class="text-navy-900">Santuário Nossa Senhora de Fátima</strong></p>
+                <p class="mt-3 text-xs text-slate-400">* QR Code e chave meramente ilustrativos. Substitua pelos dados oficiais.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dados bancários -->
+          <div class="reveal rounded-3xl bg-white/5 border border-white/15 p-6 sm:p-10">
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-gold-500/15 text-gold-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18"/></svg>
+              </span>
+              <h3 class="font-serif text-2xl">Transferência bancária</h3>
+            </div>
+            <dl class="mt-8 divide-y divide-white/10">
+              <div class="flex justify-between gap-4 py-3"><dt class="text-white/60">Banco</dt><dd class="font-semibold text-right">Banco Exemplo (000)</dd></div>
+              <div class="flex justify-between gap-4 py-3"><dt class="text-white/60">Agência</dt><dd class="font-semibold">0000</dd></div>
+              <div class="flex justify-between gap-4 py-3 items-center">
+                <dt class="text-white/60">Conta corrente</dt>
+                <dd class="flex items-center gap-3"><span id="conta" class="font-semibold">00000-0</span>
+                  <button class="copy-btn text-xs px-3 py-1 rounded-full border border-gold-400 text-gold-400 hover:bg-gold-500 hover:text-navy-950 transition-colors" data-copy="#conta">Copiar</button></dd>
+              </div>
+              <div class="flex justify-between gap-4 py-3"><dt class="text-white/60">CNPJ</dt><dd class="font-semibold">00.000.000/0001-00</dd></div>
+              <div class="flex justify-between gap-4 py-3"><dt class="text-white/60">Titular</dt><dd class="font-semibold text-right">Mitra / Santuário N. S. de Fátima</dd></div>
+            </dl>
+            <p class="mt-6 text-sm text-white/70">
+              Deseja se tornar <strong class="text-gold-400">dizimista</strong>? Procure a secretaria paroquial e faça seu cadastro.
+              A transparência é um compromisso: a prestação de contas é afixada mensalmente no mural do Santuário.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       6. RODAPÉ / CONTATO
+       ===================================================== -->
+  <footer id="contato" class="bg-navy-950 text-white/75">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <p class="text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</p>
+        <p class="font-serif text-2xl text-white">Nossa Senhora de Fátima</p>
+        <p class="mt-4 text-sm leading-relaxed">"Por fim, o meu Imaculado Coração triunfará."</p>
+        <!-- Redes sociais -->
+        <div class="mt-6 flex gap-3">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="Canal do Santuário no YouTube" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.7 3.1z"/></svg>
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-3.3 0-4 2.4-4 4v3H7v4h3v11h4V12h3.4l.6-4z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Endereço</h2>
+        <address class="not-italic mt-4 text-sm leading-relaxed">
+          Rua Nossa Senhora de Fátima, 000<br />
+          Bairro Exemplo — Cidade / UF<br />
+          CEP 00000-000
+        </address>
+        <a href="https://maps.google.com/?q=Santuario+Nossa+Senhora+de+Fatima" target="_blank" rel="noopener" class="inline-block mt-3 text-sm text-gold-400 hover:underline">Ver no mapa →</a>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Secretaria Paroquial</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>Terça a sexta: 8h às 12h e 13h às 18h</li>
+          <li>Sábado: 8h às 12h</li>
+          <li>Domingo e segunda: fechada</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Contato</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="tel:+550000000000" class="hover:text-gold-400">(00) 0000-0000</a></li>
+          <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="hover:text-gold-400">WhatsApp: (00) 00000-0000</a></li>
+          <li><a href="mailto:secretaria@fatimasantuario.com.br" class="hover:text-gold-400 break-all">secretaria@fatimasantuario.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row gap-2 justify-between text-xs text-white/50">
+        <p>© <span id="ano"></span> Santuário Nossa Senhora de Fátima. Todos os direitos reservados.</p>
+        <p>Desenvolvido com fé pela PASCOM.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão voltar ao topo -->
+  <a href="#inicio" id="to-top" class="fixed bottom-5 right-5 z-40 grid place-items-center w-12 h-12 rounded-full bg-gold-500 text-navy-950 shadow-lg opacity-0 pointer-events-none transition-opacity" aria-label="Voltar ao topo">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+  </a>
+
+  <!-- Toast de feedback (ex.: "Copiado!") -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] px-5 py-3 rounded-full bg-navy-900 text-white text-sm shadow-xl opacity-0 pointer-events-none transition-opacity" role="status" aria-live="polite"></div>
+
+  <!-- =====================================================
+       MODAL (galeria e QR Code PIX)
+       ===================================================== -->
+  <div id="modal" class="modal fixed inset-0 z-[60] bg-navy-950/90 backdrop-blur-sm p-4 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="modal-caption" hidden>
+    <button id="modal-close" class="absolute top-4 right-4 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Fechar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button id="modal-prev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Foto anterior">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button id="modal-next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Próxima foto">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <figure class="max-w-5xl w-full flex flex-col items-center">
+      <div id="modal-body" class="w-full flex justify-center"></div>
+      <figcaption id="modal-caption" class="mt-4 text-center text-white/85 font-serif text-lg px-12"></figcaption>
+    </figure>
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT (dados e interações em assets/js/main.js)
+       ===================================================== -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

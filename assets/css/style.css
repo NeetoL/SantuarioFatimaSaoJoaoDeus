@@ -1,0 +1,49 @@
+/* ===========================================================
+   Santuário de Fátima — estilos complementares ao Tailwind
+   =========================================================== */
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+/* Ornamento dourado sob os títulos de seção */
+.ornament { display: flex; align-items: center; justify-content: center; gap: .75rem; color: #c9a227; }
+.ornament::before, .ornament::after { content: ''; height: 1px; width: 3rem; background: currentColor; opacity: .6; }
+
+/* Navbar: transparente sobre o hero, sólida ao rolar */
+#navbar.scrolled { background: rgba(15, 42, 79, .96); box-shadow: 0 6px 24px rgba(0,0,0,.18); backdrop-filter: blur(8px); }
+
+/* Menu mobile: animação de abertura */
+#mobile-menu { transition: max-height .35s ease, opacity .25s ease; max-height: 0; opacity: 0; overflow: hidden; }
+#mobile-menu.open { max-height: 28rem; opacity: 1; }
+
+/* Ícone hambúrguer -> X */
+.burger span { transition: transform .3s ease, opacity .2s ease; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Reveal suave ao rolar a página */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Fallback elegante quando alguma imagem externa não carregar */
+.img-fallback { background: linear-gradient(135deg, #163a6b 0%, #0f2a4f 55%, #a8801f 140%); }
+
+/* Modal */
+.modal { transition: opacity .25s ease; }
+.modal[hidden] { display: none; }
+
+/* Acessibilidade: respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Vídeo de fundo do hero: o iframe 16:9 cobre toda a área (como object-fit: cover),
+   usando o tamanho real do hero (container query) e não só o da tela */
+.hero-video { position: absolute; inset: 0; overflow: hidden; pointer-events: none; container-type: size; }
+.hero-video iframe {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: max(100cqw, 177.78cqh);
+  height: max(100cqh, 56.25cqw);
+  border: 0; pointer-events: none;
+}
