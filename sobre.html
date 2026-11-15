@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — Santuário de Fátima</title>
+  <meta name="description" content="Conheça a história do Santuário Arquidiocesano Nossa Senhora de Fátima e São João de Deus, em Jardim Novo, Realengo: da pequena capela ao Santuário da Saúde e da Paz." />
+  <meta name="theme-color" content="#0f2a4f" />
+
+  <!-- Ícones (brasão do Santuário) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <!-- Fontes: Playfair Display (títulos) + Inter (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN + paleta sacra personalizada -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Estilos próprios -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-white text-slate-700 antialiased">
+
+  <!-- Link de acessibilidade: pular direto para o conteúdo -->
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold-500 focus:text-navy-950 focus:px-4 focus:py-2 focus:rounded-md font-semibold">
+    Pular para o conteúdo
+  </a>
+
+  <!-- =====================================================
+       CABEÇALHO / NAVBAR FIXA (igual ao da página inicial)
+       ===================================================== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between" aria-label="Navegação principal">
+
+      <!-- Logotipo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Santuário de Fátima — página inicial">
+        <img src="assets/img/logo-santuario-sm.png" alt="" width="131" height="240"
+             class="h-14 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,.35)] group-hover:scale-105 transition-transform" />
+        <span class="leading-tight">
+          <span class="block text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</span>
+          <span class="block font-serif text-xl font-semibold text-white">Nossa Senhora de Fátima</span>
+        </span>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="hidden lg:flex items-center gap-1 text-sm font-medium text-white/90">
+        <li><a href="index.html" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Início</a></li>
+        <li><a href="sobre.html" aria-current="page" class="nav-link px-3 py-2 rounded-md text-gold-400 transition-colors">Sobre</a></li>
+        <li><a href="index.html#programacao" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Programação</a></li>
+        <li><a href="index.html#pascom" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">PASCOM</a></li>
+        <li><a href="#contato" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Contato</a></li>
+        <li class="ml-2"><a href="index.html#doacoes" class="px-5 py-2.5 rounded-full bg-gold-500 text-navy-950 font-semibold hover:bg-gold-400 transition-colors">Doações</a></li>
+      </ul>
+
+      <!-- Botão hambúrguer (mobile) -->
+      <button id="menu-toggle" class="burger lg:hidden grid gap-[5px] p-3 -mr-2 rounded-md text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="lg:hidden bg-navy-950/98 border-t border-white/10">
+      <ul class="px-4 py-4 space-y-1 text-white/90 font-medium">
+        <li><a href="index.html" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Início</a></li>
+        <li><a href="sobre.html" aria-current="page" class="block px-3 py-3 rounded-md bg-white/5 text-gold-400">Sobre</a></li>
+        <li><a href="index.html#programacao" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Programação / Eventos</a></li>
+        <li><a href="index.html#pascom" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">PASCOM</a></li>
+        <li><a href="#contato" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Contato</a></li>
+        <li class="pt-2"><a href="index.html#doacoes" class="block text-center px-3 py-3 rounded-full bg-gold-500 text-navy-950 font-semibold">Faça sua Doação</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- =====================================================
+         1. TOPO DA PÁGINA
+         ===================================================== -->
+    <section id="topo" class="relative min-h-[72svh] flex items-end overflow-hidden img-fallback">
+      <img src="assets/img/sobre/fachada.jpg" alt="" aria-hidden="true" data-fallback
+           class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-900/55 to-navy-950/95"></div>
+
+      <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-16 sm:pb-20 text-center">
+        <p class="ornament text-xs sm:text-sm uppercase tracking-[.3em] mb-5">Sobre nós</p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold text-white leading-tight">
+          Conheça o <span class="italic text-gold-400">Santuário</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-white/85 max-w-3xl mx-auto leading-relaxed">
+          Da pequena capela em Jardim Novo ao Santuário dedicado à Oração pela Paz e ao cuidado dos Enfermos
+        </p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         2. ORIGENS
+         ===================================================== -->
+    <section id="origens" class="py-20 sm:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-start">
+        <div class="reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">Nossa história</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-900 mt-3 leading-tight">Uma comunidade que nasceu da fé de um povo</h2>
+          <div class="mt-8 space-y-5 text-lg leading-relaxed">
+            <p>A história do atual Santuário Arquidiocesano Nossa Senhora de Fátima e São João de Deus confunde-se com a própria história do bairro Jardim Novo, em Realengo. Antes de existir como paróquia e muito antes de tornar-se santuário, existiu uma comunidade que nasceu da fé simples de um povo que decidiu construir um lugar onde Deus pudesse habitar no meio das famílias.</p>
+            <p>Nos anos 1960, Jardim Novo ainda era uma região em desenvolvimento. O bairro crescia, novas famílias chegavam e os desafios urbanos eram muitos. Havia carência de infraestrutura, dificuldades de transporte e poucos espaços comunitários. Foi nesse contexto que alguns católicos começaram a reunir-se e decidiram construir uma pequena capela dedicada a Nossa Senhora de Fátima.</p>
+            <p>Aos poucos, aquela capela tornou-se ponto de encontro espiritual e humano da comunidade. O terreno, anteriormente ocupado por eucaliptos, começou a transformar-se em espaço de oração, convivência e evangelização.</p>
+            <p>As primeiras celebrações aconteciam com o auxílio de sacerdotes vindos de outras comunidades. Entre os nomes recordados pela memória institucional está o Padre João de Deus, então pároco da Paróquia Divino Espírito Santo do Barata, reconhecido como importante incentivador da organização da comunidade e do caminho que levaria à criação paroquial.</p>
+            <p>Após os encaminhamentos junto à Arquidiocese e a doação dos terrenos à Mitra Arquiepiscopal, foi lançada a pedra fundamental por Dom Jaime Câmara. Em 24 de junho de 1971, a antiga Capela de Nossa Senhora de Fátima foi oficialmente elevada à condição de Paróquia Nossa Senhora de Fátima e São João de Deus, sendo sua instalação celebrada em 8 de julho de 1971.</p>
+          </div>
+        </div>
+
+        <!-- Datas marcantes -->
+        <aside class="reveal lg:sticky lg:top-28">
+          <div class="rounded-3xl overflow-hidden shadow-2xl img-fallback aspect-[4/3]">
+            <img src="assets/img/sobre/entrada-p.jpg" alt="Entrada principal do Santuário" data-fallback loading="lazy"
+                 class="w-full h-full object-cover" />
+          </div>
+          <div class="mt-6 rounded-3xl bg-navy-900 text-white p-7 sm:p-8">
+            <h3 class="font-serif text-xl text-gold-400">Datas marcantes</h3>
+            <dl class="mt-5 space-y-4">
+              <div class="flex gap-4"><dt class="font-serif text-gold-400 w-24 shrink-0">Anos 1960</dt><dd class="text-white/85">Construção da capela de Nossa Senhora de Fátima</dd></div>
+              <div class="flex gap-4"><dt class="font-serif text-gold-400 w-24 shrink-0">24/06/1971</dt><dd class="text-white/85">Elevação a Paróquia Nossa Senhora de Fátima e São João de Deus</dd></div>
+              <div class="flex gap-4"><dt class="font-serif text-gold-400 w-24 shrink-0">23/09/2025</dt><dd class="text-white/85">Dedicação da Igreja e do Altar</dd></div>
+              <div class="flex gap-4"><dt class="font-serif text-gold-400 w-24 shrink-0">19/02/2026</dt><dd class="text-white/85">Elevação a Santuário Arquidiocesano</dd></div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         3. LINHA DO TEMPO
+         ===================================================== -->
+    <section id="caminhada" class="py-20 sm:py-28 bg-navy-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-2xl mx-auto reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">Nossa caminhada</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-900 mt-3">Décadas de fé, serviço e comunidade</h2>
+        </header>
+
+        <ol class="mt-14 relative border-l-2 border-gold-500/40 ml-3 sm:ml-4 space-y-12">
+          <li class="relative pl-8 sm:pl-12 reveal">
+            <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gold-500 ring-4 ring-navy-50" aria-hidden="true"></span>
+            <p class="font-serif text-gold-600 text-lg">Anos 1970</p>
+            <h3 class="font-serif text-2xl text-navy-900 mt-1">Os primeiros anos: consolidar uma comunidade</h3>
+            <p class="mt-4 leading-relaxed">A década de 1970 foi marcada pela implantação da nova realidade paroquial e pela consolidação da identidade da comunidade. Passaram pela paróquia os primeiros sacerdotes responsáveis por estruturar a vida pastoral: Padre João de Deus, Padre João Sales, Padre Carlos Barcelar e Frei Leôn. Foi um tempo de implantação das pastorais, fortalecimento da liturgia e construção de uma comunidade mais participativa, em sintonia com as orientações do Concílio Vaticano II. Mais do que erguer paredes, tratava-se de formar um povo.</p>
+          </li>
+
+          <li class="relative pl-8 sm:pl-12 reveal">
+            <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gold-500 ring-4 ring-navy-50" aria-hidden="true"></span>
+            <p class="font-serif text-gold-600 text-lg">Anos 1980</p>
+            <h3 class="font-serif text-2xl text-navy-900 mt-1">Expansão da comunidade</h3>
+            <p class="mt-4 leading-relaxed">Em 1980 inicia-se o longo período de serviço de Frei José Cafasso Videira. Sua atuação marcou profundamente a história paroquial. Inspirado pela renovação pastoral da Igreja, incentivou a formação das Comunidades Eclesiais de Base, ampliou a presença comunitária e fortaleceu a participação dos leigos. Ao final da década, diversas comunidades estavam espalhadas pelo território paroquial. Esse movimento ultrapassou os limites religiosos e ajudou também no fortalecimento da vida comunitária do bairro, incentivando participação social e melhoria das condições locais.</p>
+          </li>
+
+          <li class="relative pl-8 sm:pl-12 reveal">
+            <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gold-500 ring-4 ring-navy-50" aria-hidden="true"></span>
+            <p class="font-serif text-gold-600 text-lg">Anos 1990</p>
+            <h3 class="font-serif text-2xl text-navy-900 mt-1">Crescimento e novas expressões de evangelização</h3>
+            <p class="mt-4 leading-relaxed">Em 1994 assumiu a paróquia o Padre José de Araújo Lucena. Seu período foi marcado pelo fortalecimento das pastorais e pelo crescimento de novas iniciativas evangelizadoras. Nesse período expandiram-se a Catequese Infantil, a Pastoral da Crisma e consolidou-se o Encontro de Casais com Cristo (ECC), que trouxe novas famílias para a vida comunitária. Também se fortaleceram os Ministros Extraordinários da Comunhão Eucarística, os Vicentinos, a Pastoral da Criança e diversos serviços pastorais.</p>
+          </li>
+
+          <li class="relative pl-8 sm:pl-12 reveal">
+            <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gold-500 ring-4 ring-navy-50" aria-hidden="true"></span>
+            <p class="font-serif text-gold-600 text-lg">2002 – 2008</p>
+            <h3 class="font-serif text-2xl text-navy-900 mt-1">Novo século: renovação, reorganização e amadurecimento</h3>
+            <p class="mt-4 leading-relaxed">Em maio de 2002 chegou à paróquia o Padre José Carlos Passos. Seu ministério foi marcado pela reorganização comunitária, renovação litúrgica, fortalecimento da Pastoral Familiar e do Dízimo, criação de novas equipes e expansão da presença pastoral. Nesse período também surgiu a Capela de Nossa Senhora do Rosário e São Benedito.</p>
+            <p class="mt-4 leading-relaxed">Em 2008 iniciou-se nova etapa com a chegada do Cônego Luiz Carlos Vital de Oliveira. Seu período foi marcado pela valorização da participação dos fiéis, reorganização da iniciação cristã, fortalecimento da juventude e retomada da formação pastoral. Foi iniciada a restauração do templo e consolidaram-se diversas frentes missionárias e sociais.</p>
+          </li>
+
+          <li class="relative pl-8 sm:pl-12 reveal">
+            <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gold-500 ring-4 ring-navy-50" aria-hidden="true"></span>
+            <p class="font-serif text-gold-600 text-lg">Um novo tempo</p>
+            <h3 class="font-serif text-2xl text-navy-900 mt-1">Da renovação pastoral ao nascimento do Santuário</h3>
+            <p class="mt-4 leading-relaxed">Após o longo período de consolidação vivido sob a condução do Cônego Luiz Carlos Vital de Oliveira, a comunidade iniciou uma nova etapa de sua caminhada pastoral.</p>
+            <p class="mt-4 leading-relaxed">Assumiu então a paróquia o Padre Flávio, que deu continuidade ao trabalho evangelizador desenvolvido ao longo das décadas anteriores, preservando o espírito comunitário construído desde os tempos da capela e fortalecendo a missão da paróquia em meio às transformações da realidade local.</p>
+            <p class="mt-4 leading-relaxed">Em seguida, a comunidade foi confiada ao cuidado pastoral do Padre Renan Feres, período marcado pela continuidade da vida litúrgica, pela manutenção das atividades pastorais e pelo amadurecimento do caminho percorrido pela comunidade rumo a uma identidade cada vez mais forte como lugar de acolhida, oração e evangelização.</p>
+            <p class="mt-4 leading-relaxed">Posteriormente, iniciou-se uma nova fase com a chegada do Padre Ygor Gomes, atual pároco e reitor. Sob sua condução pastoral, a comunidade passou a viver um período particularmente significativo de aprofundamento espiritual, valorização da identidade litúrgica e fortalecimento da vocação do templo como lugar de oração e peregrinação.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         4. DEDICAÇÃO DA IGREJA E DO ALTAR (2025)
+         ===================================================== -->
+    <section id="dedicacao" class="py-20 sm:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">23 de setembro de 2025</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-900 mt-3 leading-tight">Dedicação da Igreja e do Altar</h2>
+          <div class="mt-6 space-y-5 text-lg leading-relaxed">
+            <p>Entre os acontecimentos mais marcantes dessa etapa está a celebração da Dedicação da Igreja e do Altar, realizada em 23 de setembro de 2025 e presidida pelo Cardeal Orani João Tempesta. A dedicação de uma igreja ocupa lugar especial na tradição católica. Mais do que uma celebração comemorativa, trata-se do ato litúrgico pelo qual um templo é reservado de modo permanente ao culto divino e o altar é solenemente consagrado como centro da vida sacramental da comunidade.</p>
+            <p>Naquele dia, o povo reunido não apenas celebrou um rito, mas reconheceu, diante de Deus, toda uma história construída por gerações: a fé dos primeiros moradores que ergueram a capela, o trabalho dos sacerdotes que conduziram a comunidade e a dedicação silenciosa de tantos leigos que ajudaram a transformar aquele espaço em verdadeira casa de oração. Esse momento tornou-se também sinal de preparação para um novo passo na história da comunidade.</p>
+          </div>
+        </div>
+
+        <div class="reveal grid grid-cols-2 gap-3 sm:gap-4">
+          <button type="button" data-foto="assets/img/sobre/dedicacao-uncao.jpg" data-legenda="Dedicação da Igreja e do Altar — unção do altar"
+                  class="foto-btn group col-span-2 aspect-[16/9] overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/dedicacao-uncao-p.jpg" alt="Dedicação da Igreja e do Altar — unção do altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/dedicacao-altar.jpg" data-legenda="Dedicação da Igreja e do Altar"
+                  class="foto-btn group aspect-square overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/dedicacao-altar-p.jpg" alt="Dedicação da Igreja e do Altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/dedicacao-reliquias.jpg" data-legenda="Relíquias depositadas no altar"
+                  class="foto-btn group aspect-square overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/dedicacao-reliquias-p.jpg" alt="Relíquias depositadas no altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         5. ELEVAÇÃO A SANTUÁRIO (2026)
+         ===================================================== -->
+    <section id="santuario" class="py-20 sm:py-28 bg-navy-900 text-white relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+        <img src="assets/img/logo-santuario-sm.png" alt="" width="131" height="240" loading="lazy" class="mx-auto h-28 w-auto mb-8" />
+        <p class="text-gold-400 font-semibold uppercase tracking-[.2em] text-sm">19 de fevereiro de 2026</p>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl mt-3 leading-tight">Santuário Arquidiocesano</h2>
+        <div class="mt-8 space-y-5 text-lg leading-relaxed text-white/85 text-left sm:text-center">
+          <p>Poucos meses depois, em 19 de fevereiro de 2026, em celebração presidida pelo Cardeal Orani João Tempesta, a então Paróquia Nossa Senhora de Fátima e São João de Deus foi oficialmente elevada à condição de Santuário Arquidiocesano. Ao receber esse título, o templo recebeu também uma missão própria dentro da Arquidiocese: tornar-se lugar especialmente dedicado à oração pela paz e ao cuidado dos enfermos.</p>
+          <p>A elevação a Santuário não representou ruptura com a história paroquial, mas o reconhecimento oficial de uma vocação que já vinha sendo vivida ao longo dos anos: ser casa aberta aos peregrinos, espaço de escuta, refúgio espiritual para os que sofrem e sinal concreto da presença misericordiosa de Deus.</p>
+        </div>
+        <ul class="mt-10 flex flex-wrap justify-center gap-3 text-sm font-semibold">
+          <li class="px-5 py-2.5 rounded-full border border-gold-400/60 text-gold-400">Oração pela paz</li>
+          <li class="px-5 py-2.5 rounded-full border border-gold-400/60 text-gold-400">Cuidado dos enfermos</li>
+          <li class="px-5 py-2.5 rounded-full border border-gold-400/60 text-gold-400">Casa aberta aos peregrinos</li>
+        </ul>
+        <blockquote class="mt-12 font-serif italic text-xl sm:text-2xl text-white leading-relaxed">
+          Assim, aquilo que começou como uma pequena capela erguida pela fé de um povo em Jardim Novo tornou-se, ao longo das décadas, um Santuário Arquidiocesano — lugar onde permanece viva a missão de acolher, evangelizar, rezar pela paz e cuidar daqueles que procuram consolo e esperança.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         6. UM POUCO DA HISTÓRIA EM FOTOS
+         ===================================================== -->
+    <section id="fotos" class="py-20 sm:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">Galeria</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-900 mt-3">Um pouco da história em fotos</h2>
+          <p class="mt-5 text-lg leading-relaxed">Mais do que paredes e pedras, este lugar guarda histórias de fé, oração e encontro com Deus.</p>
+        </header>
+
+        <!-- Para trocar/adicionar fotos: copie um <button> e ajuste data-foto (foto grande), o src (miniatura) e a legenda -->
+        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[200px] gap-3 sm:gap-4 reveal">
+          <button type="button" data-foto="assets/img/sobre/fachada.jpg" data-legenda="Fachada e torre do Santuário" class="foto-btn group relative col-span-2 row-span-2 overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/fachada-p.jpg" alt="Fachada e torre do Santuário" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/vista-rua.jpg" data-legenda="O Santuário visto da rua" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/vista-rua-p.jpg" alt="O Santuário visto da rua" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/placa.jpg" data-legenda="Placa em bronze na parede do Santuário" class="foto-btn group relative row-span-2 overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/placa-p.jpg" alt="Placa em bronze na parede do Santuário" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/fogos-torre.jpg" data-legenda="Noite de festa na torre do Santuário" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/fogos-torre-p.jpg" alt="Noite de festa na torre do Santuário" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/comunidade.jpg" data-legenda="Clero e comunidade reunidos no Santuário" class="foto-btn group relative col-span-2 row-span-2 overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/comunidade-p.jpg" alt="Clero e comunidade reunidos no Santuário" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/celebracao-altar.jpg" data-legenda="Celebração solene ao altar" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/celebracao-altar-p.jpg" alt="Celebração solene ao altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/celebracao-mitra.jpg" data-legenda="Detalhe da celebração" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/celebracao-mitra-p.jpg" alt="Detalhe da celebração" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/dedicacao-oracao.jpg" data-legenda="Dedicação da Igreja e do Altar" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/dedicacao-oracao-p.jpg" alt="Dedicação da Igreja e do Altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/dedicacao-bencao.jpg" data-legenda="Dedicação da Igreja e do Altar" class="foto-btn group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/dedicacao-bencao-p.jpg" alt="Dedicação da Igreja e do Altar" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/encenacao-paixao.jpg" data-legenda="Encenação da Paixão de Cristo" class="foto-btn group relative col-span-2 overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/encenacao-paixao-p.jpg" alt="Encenação da Paixão de Cristo" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+          <button type="button" data-foto="assets/img/sobre/entrada.jpg" data-legenda="Entrada principal do Santuário" class="foto-btn group relative col-span-2 overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400">
+            <img src="assets/img/sobre/entrada-p.jpg" alt="Entrada principal do Santuário" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </button>
+        </div>
+
+        <div class="mt-12 max-w-3xl mx-auto text-center space-y-5 text-lg leading-relaxed reveal">
+          <p>Da simplicidade da antiga capela erguida pelos primeiros moradores de Jardim Novo ao reconhecimento como Santuário Arquidiocesano, cada etapa desta caminhada foi construída pela dedicação de sacerdotes, famílias e peregrinos que fizeram deste espaço uma verdadeira casa de acolhida.</p>
+          <p>Hoje, o Santuário Nossa Senhora de Fátima e São João de Deus permanece como sinal de esperança — lugar de oração pela paz, cuidado dos enfermos e renovação da fé.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         7. NOSSA LOCALIZAÇÃO
+         ===================================================== -->
+    <section id="localizacao" class="py-20 sm:py-28 bg-navy-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <p class="text-gold-600 font-semibold uppercase tracking-[.2em] text-sm">Venha peregrinar</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-900 mt-3 leading-tight">Nossa localização</h2>
+          <div class="mt-6 space-y-5 text-lg leading-relaxed">
+            <p>No coração de Jardim Novo, em Realengo, este lugar nasceu da fé de uma comunidade e tornou-se casa de oração, acolhida e esperança para todos que chegam.</p>
+            <p>Venha peregrinar, rezar pela paz, apresentar suas intenções e encontrar, sob o olhar materno de Nossa Senhora de Fátima e a proteção de São João de Deus, um espaço de encontro com Deus e renovação da vida.</p>
+          </div>
+
+          <div class="mt-8 rounded-3xl bg-white p-7 shadow-sm">
+            <p class="font-serif text-xl text-navy-900">Santuário Nossa Senhora de Fátima e São João de Deus</p>
+            <p class="text-gold-600 font-semibold mt-1">Santuário da Saúde e da Paz</p>
+            <ul class="mt-5 space-y-3">
+              <li class="flex gap-3">
+                <svg class="w-5 h-5 mt-0.5 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                <address class="not-italic">Estrada Manuel Nogueira de Sá, 1421 — Realengo, Rio de Janeiro / RJ</address>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-5 h-5 mt-0.5 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+                <a href="tel:+5521964322134" class="hover:text-gold-600">(21) 96432-2134</a>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-5 h-5 mt-0.5 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                <a href="mailto:fatimaejoaodedeus@arqrio.org.br" class="hover:text-gold-600 break-all">fatimaejoaodedeus@arqrio.org.br</a>
+              </li>
+            </ul>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=-22.892126,-43.417065" target="_blank" rel="noopener"
+               class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-500 text-navy-950 font-semibold hover:bg-gold-400 transition-colors">
+              Como chegar
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal rounded-3xl overflow-hidden shadow-2xl bg-navy-100 aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
+          <iframe src="https://maps.google.com/maps?q=-22.892126,-43.417065&amp;hl=pt-BR&amp;z=17&amp;output=embed"
+                  title="Mapa: localização do Santuário em Realengo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  class="w-full h-full border-0"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       RODAPÉ / CONTATO (igual ao da página inicial)
+       ===================================================== -->
+  <footer id="contato" class="bg-navy-950 text-white/75">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src="assets/img/logo-santuario-sm.png" alt="Brasão do Santuário" width="131" height="240" loading="lazy"
+             class="h-24 w-auto mb-5" />
+        <p class="text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</p>
+        <p class="font-serif text-2xl text-white">Nossa Senhora de Fátima</p>
+        <p class="mt-4 text-sm leading-relaxed">"Por fim, o meu Imaculado Coração triunfará."</p>
+        <!-- Redes sociais -->
+        <div class="mt-6 flex gap-3">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="Canal do Santuário no YouTube" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.7 3.1z"/></svg>
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-3.3 0-4 2.4-4 4v3H7v4h3v11h4V12h3.4l.6-4z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Endereço</h2>
+        <address class="not-italic mt-4 text-sm leading-relaxed">
+          Rua Nossa Senhora de Fátima, 000<br />
+          Bairro Exemplo — Cidade / UF<br />
+          CEP 00000-000
+        </address>
+        <a href="https://maps.google.com/?q=Santuario+Nossa+Senhora+de+Fatima" target="_blank" rel="noopener" class="inline-block mt-3 text-sm text-gold-400 hover:underline">Ver no mapa →</a>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Secretaria Paroquial</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>Terça a sexta: 8h às 12h e 13h às 18h</li>
+          <li>Sábado: 8h às 12h</li>
+          <li>Domingo e segunda: fechada</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-lg text-white">Contato</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="tel:+550000000000" class="hover:text-gold-400">(00) 0000-0000</a></li>
+          <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="hover:text-gold-400">WhatsApp: (00) 00000-0000</a></li>
+          <li><a href="mailto:secretaria@fatimasantuario.com.br" class="hover:text-gold-400 break-all">secretaria@fatimasantuario.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row gap-2 justify-between text-xs text-white/50">
+        <p>© <span id="ano"></span> Santuário Nossa Senhora de Fátima. Todos os direitos reservados.</p>
+        <p>Desenvolvido com fé pela PASCOM.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão voltar ao topo -->
+  <a href="#topo" id="to-top" class="fixed bottom-5 right-5 z-40 grid place-items-center w-12 h-12 rounded-full bg-gold-500 text-navy-950 shadow-lg opacity-0 pointer-events-none transition-opacity" aria-label="Voltar ao topo">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+  </a>
+
+  <!-- =====================================================
+       MODAL (ampliar fotos)
+       ===================================================== -->
+  <div id="modal" class="modal fixed inset-0 z-[60] bg-navy-950/90 backdrop-blur-sm p-4 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="modal-caption" hidden>
+    <button id="modal-close" class="absolute top-4 right-4 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Fechar">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button id="modal-prev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Foto anterior">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button id="modal-next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 grid place-items-center w-12 h-12 rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Próxima foto">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <figure class="max-w-5xl w-full flex flex-col items-center">
+      <div id="modal-body" class="w-full flex justify-center"></div>
+      <figcaption id="modal-caption" class="mt-4 text-center text-white/85 font-serif text-lg px-12"></figcaption>
+    </figure>
+  </div>
+
+  <script src="assets/js/sobre.js"></script>
+</body>
+</html>

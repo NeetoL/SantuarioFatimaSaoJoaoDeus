@@ -20,17 +20,15 @@ const NOTICIAS = [
 ];
 
 const GALERIA = [
-  { src: 'assets/img/hero-santuario.jpg', legenda: 'Fachada do Santuário ao entardecer', classe: 'col-span-2 row-span-2' },
-  { src: 'assets/img/galeria-nave.jpg', legenda: 'Nave central durante a celebração' },
+  { src: 'assets/img/galeria-nave.jpg', legenda: 'Nave central durante a celebração', classe: 'col-span-2 row-span-2' },
   { src: 'assets/img/galeria-velas.jpg', legenda: 'Velas acesas pelas intenções dos fiéis' },
-  { src: 'assets/img/galeria-arquitetura.jpg', legenda: 'Detalhes da arquitetura do templo', classe: 'row-span-2' },
+  { src: 'assets/img/galeria-arquitetura.jpg', legenda: 'Detalhes da arquitetura do templo' },
   { src: 'assets/img/galeria-oracao.jpg', legenda: 'Momento de oração da comunidade' },
-  { src: 'assets/img/sobre-interior.jpg', legenda: 'Altar preparado para a Santa Missa', classe: 'col-span-2 md:col-span-1' },
+  { src: 'assets/img/sobre-interior.jpg', legenda: 'Altar preparado para a Santa Missa' },
 ];
 
-// Vídeo de fundo da página inicial (ID do YouTube: o que vem depois de "watch?v=").
-// Deixe vazio ('') para usar só a imagem.
-const HERO_YOUTUBE_ID = 'nwSWcDJKsHY'; // "Seja bem-vindo ao Santuario" — canal oficial do Santuário
+// Vídeo de fundo da página inicial: arquivos em assets/video/ ("Seja bem-vindo ao Santuário",
+// canal oficial do Santuário). Para trocar, substitua hero-paisagem.mp4 e hero-retrato.mp4.
 
 const PIX_CHAVE = '00.000.000/0001-00'; // chave ilustrativa
 
@@ -265,45 +263,44 @@ $$('.copy-btn').forEach((btn) => btn.addEventListener('click', async () => {
    ------------------------------------------------------------ */
 $$('img[data-fallback]').forEach(attachFallback);
 
-// Vídeo do hero (YouTube, sem som, em loop). A imagem fica por baixo e aparece
-// enquanto o vídeo carrega. Quem prefere menos movimento vê só a imagem estática.
+// Vídeo do topo + tela de carregamento.
+// O site abre quando o vídeo começa a tocar. Se demorar mais de 10 s (internet lenta), o script
+// no <head> abre o site mesmo assim, com a imagem (poster) no lugar, e o vídeo entra quando carregar.
 const heroVideo = $('#hero-video');
-// Aberto direto do computador (file://) o YouTube recusa o player (erro 153), então nesse caso fica só a imagem.
-const podeUsarYouTube = location.protocol.startsWith('http');
-if (heroVideo && HERO_YOUTUBE_ID && podeUsarYouTube && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  // Desliga as legendas (inclusive as automáticas, que o parâmetro cc_load_policy não bloqueia)
-  const tirarLegenda = (player) => {
-    try { player.unloadModule('captions'); player.unloadModule('cc'); player.setOption('captions', 'track', {}); } catch {}
-  };
+const abrirSite = () => document.documentElement.classList.remove('carregando');
 
-  // Usa a API oficial do YouTube para controlar o player
-  window.onYouTubeIframeAPIReady = () => {
-    new YT.Player(heroVideo.appendChild(document.createElement('div')), {
-      host: 'https://www.youtube-nocookie.com',
-      videoId: HERO_YOUTUBE_ID,
-      playerVars: {
-        autoplay: 1, mute: 1, loop: 1, playlist: HERO_YOUTUBE_ID, // "playlist" com o próprio ID é o que faz o loop funcionar
-        controls: 0, disablekb: 1, cc_load_policy: 0, fs: 0, rel: 0, iv_load_policy: 3, playsinline: 1,
-      },
-      events: {
-        onReady: (e) => {
-          const iframe = e.target.getIframe();
-          iframe.title = 'Vídeo de fundo do Santuário';
-          iframe.tabIndex = -1;
-          e.target.mute();
-          e.target.playVideo();
-          tirarLegenda(e.target);
-        },
-        onStateChange: (e) => {
-          if (e.data !== YT.PlayerState.PLAYING) return;
-          tirarLegenda(e.target); // repete a cada início/loop, pois o YouTube pode reativá-las
-          // Mostra o vídeo só depois que o YouTube esconde o título e os botões iniciais
-          setTimeout(() => heroVideo.classList.remove('opacity-0'), 3500);
-        },
-      },
+if (!heroVideo) {
+  abrirSite();
+} else {
+  const tocar = () => heroVideo.play();
+  heroVideo.muted = true; // navegadores só tocam sozinhos vídeo sem som
+  heroVideo.addEventListener('playing', abrirSite, { once: true });
+  // Erro ao baixar o vídeo (o erro acontece no <source> e não sobe: por isso a captura)
+  heroVideo.addEventListener('error', abrirSite, true);
+
+  // Já está tocando (ex.: vídeo em cache)? Abre na hora. Senão, pede para tocar.
+  if (!heroVideo.paused && heroVideo.readyState >= 3) {
+    abrirSite();
+  } else {
+    tocar().catch(() => {
+      // O aparelho bloqueou o vídeo automático (ex.: iPhone em modo de economia de bateria).
+      // Abre o site com a imagem e tenta de novo no primeiro toque, clique, rolagem ou tecla.
+      abrirSite();
+      const retomar = () => tocar().catch(() => {});
+      ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach((ev) =>
+        window.addEventListener(ev, retomar, { once: true, passive: true }));
     });
-  };
-  document.head.appendChild(Object.assign(document.createElement('script'), { src: 'https://www.youtube.com/iframe_api', async: true }));
+  }
+
+  // Economiza bateria/dados: pausa quando o topo sai da tela e retoma quando volta
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) tocar().catch(() => {});
+    else heroVideo.pause();
+  }).observe(heroVideo);
+  // Alguns celulares pausam o vídeo ao trocar de aba/app: retoma ao voltar
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && heroVideo.getBoundingClientRect().bottom > 0) tocar().catch(() => {});
+  });
 }
 
 // Animação de entrada dos blocos

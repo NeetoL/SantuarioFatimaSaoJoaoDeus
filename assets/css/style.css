@@ -38,12 +38,22 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   .reveal { opacity: 1; transform: none; }
 }
 
-/* Vídeo de fundo do hero: o iframe 16:9 cobre toda a área (como object-fit: cover),
-   usando o tamanho real do hero (container query) e não só o da tela */
-.hero-video { position: absolute; inset: 0; overflow: hidden; pointer-events: none; container-type: size; }
-.hero-video iframe {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: max(100cqw, 177.78cqh);
-  height: max(100cqh, 56.25cqw);
-  border: 0; pointer-events: none;
+/* Vídeo de fundo do hero */
+#hero-video { pointer-events: none; }
+
+/* Tela de carregamento: visível só enquanto <html> tem a classe "carregando".
+   CSS puro (e não Tailwind) para já aparecer pronta no primeiro instante. */
+#preloader {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  background: radial-gradient(ellipse at center, #0f2a4f 0%, #081a33 70%);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .7s ease, visibility 0s linear .7s;
 }
+html.carregando { overflow: hidden; }
+html.carregando #preloader { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
+.preloader-logo { height: 7.5rem; width: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.45)); animation: preloader-pulsar 2.2s ease-in-out infinite; }
+.preloader-bar { width: 9rem; height: 2px; border-radius: 9999px; background: rgba(255,255,255,.12); overflow: hidden; }
+.preloader-bar span { display: block; width: 40%; height: 100%; border-radius: inherit; background: #d9b95a; animation: preloader-barra 1.3s ease-in-out infinite; }
+@keyframes preloader-pulsar { 0%, 100% { opacity: .8; transform: scale(.97); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes preloader-barra { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
