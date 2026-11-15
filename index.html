@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Santuário de Fátima</title>
-  <meta name="description" content="Santuário de Nossa Senhora de Fátima — horários de missa, programação, notícias da PASCOM e doações." />
+  <title>Santuário Nossa Senhora de Fátima e São João de Deus</title>
+  <meta name="description" content="Santuário Arquidiocesano Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ) — horários de missa, programação, notícias da PASCOM e doações." />
   <meta name="theme-color" content="#0f2a4f" />
 
   <!-- Ícones (brasão do Santuário) -->
@@ -12,10 +12,10 @@
   <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png" />
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 
-  <!-- Fontes: Playfair Display (títulos) + Inter (texto) -->
+  <!-- Fontes: Cormorant Garamond (títulos), Cinzel (rótulos), EB Garamond (textos longos), Inter (menus) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS via CDN + paleta sacra personalizada -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -56,24 +56,25 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between" aria-label="Navegação principal">
 
       <!-- Logotipo -->
-      <a href="#inicio" class="flex items-center gap-3 group" aria-label="Santuário de Fátima — página inicial">
+      <a href="#inicio" class="flex items-center gap-3 group" aria-label="Santuário Nossa Senhora de Fátima e São João de Deus — página inicial">
         <!-- Brasão do Santuário -->
         <img src="assets/img/logo-santuario-sm.png" alt="" width="131" height="240"
              class="h-14 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,.35)] group-hover:scale-105 transition-transform" />
-        <span class="leading-tight">
-          <span class="block text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</span>
-          <span class="block font-serif text-xl font-semibold text-white">Nossa Senhora de Fátima</span>
+        <span class="leading-none">
+          <span class="block font-caps text-[9px] sm:text-[9.5px] font-semibold tracking-[.28em] text-gold-400">Santuário Arquidiocesano</span>
+          <span class="block font-serif text-[1.2rem] sm:text-[1.35rem] font-semibold text-white mt-1">Nossa Senhora de Fátima</span>
+          <span class="block font-serif italic text-[.9rem] sm:text-[.95rem] text-white/75 mt-0.5">e São João de Deus</span>
         </span>
       </a>
 
       <!-- Links desktop -->
-      <ul class="hidden lg:flex items-center gap-1 text-sm font-medium text-white/90">
-        <li><a href="#inicio" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Início</a></li>
-        <li><a href="sobre.html" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Sobre</a></li>
-        <li><a href="#programacao" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Programação</a></li>
-        <li><a href="#pascom" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">PASCOM</a></li>
-        <li><a href="#contato" class="nav-link px-3 py-2 rounded-md hover:text-gold-400 transition-colors">Contato</a></li>
-        <li class="ml-2"><a href="#doacoes" class="px-5 py-2.5 rounded-full bg-gold-500 text-navy-950 font-semibold hover:bg-gold-400 transition-colors">Doações</a></li>
+      <ul class="hidden lg:flex items-center gap-1 text-[11.5px] font-semibold uppercase tracking-[.16em] text-white/90">
+        <li><a href="#inicio" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Início</a></li>
+        <li><a href="sobre.html" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Sobre</a></li>
+        <li><a href="#programacao" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Programação</a></li>
+        <li><a href="#pascom" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">PASCOM</a></li>
+        <li><a href="#contato" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Contato</a></li>
+        <li class="ml-3"><a href="#doacoes" class="btn btn-ouro btn-sm">Doações</a></li>
       </ul>
 
       <!-- Botão hambúrguer (mobile) -->
@@ -87,13 +88,13 @@
 
     <!-- Menu mobile -->
     <div id="mobile-menu" class="lg:hidden bg-navy-950/98 border-t border-white/10">
-      <ul class="px-4 py-4 space-y-1 text-white/90 font-medium">
-        <li><a href="#inicio" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Início</a></li>
-        <li><a href="sobre.html" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Sobre</a></li>
-        <li><a href="#programacao" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Programação / Eventos</a></li>
-        <li><a href="#pascom" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">PASCOM</a></li>
-        <li><a href="#contato" class="block px-3 py-3 rounded-md hover:bg-white/5 hover:text-gold-400">Contato</a></li>
-        <li class="pt-2"><a href="#doacoes" class="block text-center px-3 py-3 rounded-full bg-gold-500 text-navy-950 font-semibold">Faça sua Doação</a></li>
+      <ul class="px-4 py-4 space-y-1 text-white/90 text-[13px] font-semibold uppercase tracking-[.16em]">
+        <li><a href="#inicio" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Início</a></li>
+        <li><a href="sobre.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Sobre</a></li>
+        <li><a href="#programacao" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Programação / Eventos</a></li>
+        <li><a href="#pascom" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">PASCOM</a></li>
+        <li><a href="#contato" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Contato</a></li>
+        <li class="pt-4"><a href="#doacoes" class="btn btn-ouro w-full">Faça sua Doação</a></li>
       </ul>
     </div>
   </header>
@@ -120,15 +121,16 @@
 
       <!-- Pouco texto, embaixo, para o vídeo aparecer -->
       <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 text-center pb-24 sm:pb-28">
-        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,.6)]">
-          Bem-vindo à Casa da <span class="italic text-gold-400">Mãe de Deus</span>
+        <h1 class="font-serif font-semibold text-[2.75rem] sm:text-6xl lg:text-7xl text-white leading-[1.02] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(0,0,0,.55)]">
+          Bem-vindo à Casa da <span class="italic font-medium text-gold-400">Mãe de Deus</span>
         </h1>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-          <a href="#horarios" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gold-500 text-navy-950 font-semibold shadow-lg shadow-black/30 hover:bg-gold-400 hover:-translate-y-0.5 transition-all">
+        <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+        <div class="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <a href="#horarios" class="btn btn-ouro">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             Horários de Missa
           </a>
-          <a href="#doacoes" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/50 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white hover:text-navy-900 transition-all">
+          <a href="#doacoes" class="btn btn-vidro">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg>
             Faça sua Doação
           </a>
@@ -144,20 +146,21 @@
     <!-- =====================================================
          3. PROGRAMAÇÃO E EVENTOS
          ===================================================== -->
-    <section id="programacao" class="py-20 sm:py-28 bg-navy-50">
+    <section id="programacao" class="py-20 sm:py-28 bg-ivory-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header class="text-center max-w-2xl mx-auto reveal">
-          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">Programação</p>
-          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-900 mt-4">Próximos eventos e celebrações</h2>
-          <p class="mt-4 text-lg">Participe das missas, novenas e festividades do Santuário. Todos são bem-vindos!</p>
+          <p class="eyebrow">Programação</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Próximos eventos e celebrações</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Participe das missas, novenas e festividades do Santuário. Todos são bem-vindos!</p>
         </header>
 
         <!-- Filtros de categoria (JS) -->
         <div class="mt-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filtrar eventos por categoria">
-          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="todos" aria-pressed="true">Todos</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Missa" aria-pressed="false">Missas</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Novena" aria-pressed="false">Novenas</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors" data-filter="Festa" aria-pressed="false">Festividades</button>
+          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="todos" aria-pressed="true">Todos</button>
+          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Missa" aria-pressed="false">Missas</button>
+          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Novena" aria-pressed="false">Novenas</button>
+          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Festa" aria-pressed="false">Festividades</button>
         </div>
 
         <!-- Cards gerados via JavaScript (veja o array EVENTOS no final do arquivo) -->
@@ -165,24 +168,24 @@
 
         <!-- Horários fixos de missa -->
         <div id="horarios" class="mt-20 scroll-mt-28 reveal">
-          <div class="rounded-3xl bg-navy-900 text-white overflow-hidden grid lg:grid-cols-[1fr_2fr]">
-            <div class="p-8 sm:p-10 bg-gradient-to-br from-navy-800 to-navy-950 flex flex-col justify-center">
+          <div class="rounded-md secao-escura text-white overflow-hidden grid lg:grid-cols-[1fr_2fr] ring-1 ring-gold-500/20 shadow-2xl shadow-navy-950/20">
+            <div class="p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-gold-500/20 flex flex-col justify-center">
               <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              <h3 class="font-serif text-3xl mt-4">Horários de Missa</h3>
+              <h3 class="font-serif font-semibold text-4xl mt-4">Horários de Missa</h3>
               <p class="mt-3 text-white/75">Confissões: terça a sexta, das 14h às 17h, ou mediante agendamento na secretaria.</p>
             </div>
             <div class="p-8 sm:p-10 grid sm:grid-cols-3 gap-8">
               <div>
-                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Segunda a Sexta</p>
-                <ul class="mt-3 space-y-2 text-lg"><li>07h00</li><li>12h00</li><li>19h30</li></ul>
+                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Segunda a Sexta</p>
+                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>07h00</li><li>12h00</li><li>19h30</li></ul>
               </div>
               <div>
-                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Sábado</p>
-                <ul class="mt-3 space-y-2 text-lg"><li>08h00</li><li>17h00</li><li>19h00</li></ul>
+                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Sábado</p>
+                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>08h00</li><li>17h00</li><li>19h00</li></ul>
               </div>
               <div>
-                <p class="text-gold-400 text-sm font-semibold uppercase tracking-wider">Domingo</p>
-                <ul class="mt-3 space-y-2 text-lg"><li>07h00</li><li>09h00</li><li>11h00</li><li>17h00</li><li>19h00</li></ul>
+                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Domingo</p>
+                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>07h00</li><li>09h00</li><li>11h00</li><li>17h00</li><li>19h00</li></ul>
               </div>
               <p class="sm:col-span-3 text-sm text-white/70 border-t border-white/10 pt-6">
                 <strong class="text-gold-400">Todo dia 13:</strong> Missa solene às 19h30 seguida de procissão luminosa com a imagem de Nossa Senhora.
@@ -199,9 +202,10 @@
     <section id="pascom" class="py-20 sm:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header class="text-center max-w-2xl mx-auto reveal">
-          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">PASCOM</p>
-          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-900 mt-4">Pastoral da Comunicação</h2>
-          <p class="mt-4 text-lg">Notícias, recados paroquiais e os momentos mais bonitos da nossa comunidade.</p>
+          <p class="eyebrow">PASCOM</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Pastoral da Comunicação</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Notícias, recados paroquiais e os momentos mais bonitos da nossa comunidade.</p>
         </header>
 
         <div class="mt-14 grid lg:grid-cols-3 gap-8">
@@ -209,12 +213,12 @@
           <div id="noticias-grid" class="lg:col-span-2 grid sm:grid-cols-2 gap-6"></div>
 
           <!-- Recados paroquiais -->
-          <aside class="reveal rounded-3xl bg-gold-50 border border-gold-200 p-6 sm:p-8 h-fit" aria-labelledby="recados-titulo">
+          <aside class="reveal rounded-md bg-ivory-100 border border-ivory-200 p-6 sm:p-8 h-fit" aria-labelledby="recados-titulo">
             <div class="flex items-center gap-3">
               <span class="grid place-items-center w-10 h-10 rounded-full bg-gold-500 text-navy-950">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8v18L3 13z"/><path d="M7 13v5a2 2 0 0 0 4 0v-4"/></svg>
               </span>
-              <h3 id="recados-titulo" class="font-serif text-2xl text-navy-900">Recados Paroquiais</h3>
+              <h3 id="recados-titulo" class="font-serif font-semibold text-3xl text-navy-900">Recados Paroquiais</h3>
             </div>
             <ul class="mt-6 space-y-5 text-sm">
               <li class="border-l-2 border-gold-500 pl-4">
@@ -240,7 +244,7 @@
         <!-- Galeria de fotos -->
         <div class="mt-20">
           <div class="flex items-end justify-between gap-4 reveal">
-            <h3 class="font-serif text-2xl sm:text-3xl text-navy-900">Galeria da Comunidade</h3>
+            <h3 class="font-serif font-semibold text-3xl sm:text-4xl text-navy-900">Galeria da Comunidade</h3>
             <p class="text-sm text-slate-500 hidden sm:block">Toque em uma foto para ampliar</p>
           </div>
           <!-- Fotos geradas via JS (array GALERIA) -->
@@ -252,34 +256,31 @@
     <!-- =====================================================
          5. DOAÇÕES
          ===================================================== -->
-    <section id="doacoes" class="py-20 sm:py-28 bg-navy-900 text-white relative overflow-hidden">
-      <!-- Detalhe decorativo -->
-      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl" aria-hidden="true"></div>
-      <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-navy-700/40 blur-3xl" aria-hidden="true"></div>
-
+    <section id="doacoes" class="py-20 sm:py-28 secao-escura text-white relative overflow-hidden">
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header class="text-center max-w-3xl mx-auto reveal">
-          <p class="ornament text-sm uppercase tracking-[.2em] font-semibold">Ofertório e Contribuições</p>
-          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl mt-4">Sua generosidade sustenta esta casa</h2>
-          <p class="mt-5 text-lg text-white/80 leading-relaxed">
+          <p class="eyebrow claro">Ofertório e Contribuições</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-white mt-4 leading-[1.05]">Sua generosidade sustenta esta casa</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 citacao text-2xl sm:text-[1.7rem] text-white/85 leading-snug">
             "Cada um dê conforme decidiu em seu coração, não com tristeza nem por obrigação, pois Deus ama quem dá com alegria." (2Cor 9,7)
           </p>
         </header>
 
         <!-- Onde sua doação é aplicada -->
         <div class="mt-14 grid sm:grid-cols-3 gap-6 reveal">
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
-            <p class="font-serif text-4xl text-gold-400">45%</p>
+          <div class="rounded-md bg-white/[.04] border border-gold-500/20 p-7">
+            <p class="font-serif font-semibold text-5xl text-gold-400">45%</p>
             <p class="font-semibold mt-2">Manutenção do Santuário</p>
             <p class="text-sm text-white/70 mt-1">Energia, água, conservação do templo e liturgia.</p>
           </div>
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
-            <p class="font-serif text-4xl text-gold-400">35%</p>
+          <div class="rounded-md bg-white/[.04] border border-gold-500/20 p-7">
+            <p class="font-serif font-semibold text-5xl text-gold-400">35%</p>
             <p class="font-semibold mt-2">Obras sociais</p>
             <p class="text-sm text-white/70 mt-1">Cestas básicas, apoio a famílias e pastoral da saúde.</p>
           </div>
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
-            <p class="font-serif text-4xl text-gold-400">20%</p>
+          <div class="rounded-md bg-white/[.04] border border-gold-500/20 p-7">
+            <p class="font-serif font-semibold text-5xl text-gold-400">20%</p>
             <p class="font-semibold mt-2">Evangelização</p>
             <p class="text-sm text-white/70 mt-1">Catequese, formação e comunicação (PASCOM).</p>
           </div>
@@ -287,12 +288,12 @@
 
         <div class="mt-10 grid lg:grid-cols-2 gap-6">
           <!-- PIX -->
-          <div class="reveal rounded-3xl bg-white text-slate-700 p-6 sm:p-10 shadow-2xl">
+          <div class="reveal rounded-md bg-ivory-50 text-slate-700 p-6 sm:p-10 shadow-2xl">
             <div class="flex items-center gap-3">
               <span class="grid place-items-center w-11 h-11 rounded-xl bg-[#32bcad]/15 text-[#1f9c8f]">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l4.2 4.2-2.5 2.5L12 7.5l-1.7 1.7-2.5-2.5zM6.7 7.8l2.5 2.5L7.5 12l1.7 1.7-2.5 2.5L2.5 12zm10.6 0L21.5 12l-4.2 4.2-2.5-2.5L16.5 12l-1.7-1.7zM12 16.5l1.7-1.7 2.5 2.5L12 21.5l-4.2-4.2 2.5-2.5z"/></svg>
               </span>
-              <h3 class="font-serif text-2xl text-navy-900">Doação via PIX</h3>
+              <h3 class="font-serif font-semibold text-3xl text-navy-900">Doação via PIX</h3>
             </div>
 
             <div class="mt-8 flex flex-col sm:flex-row gap-8 items-center">
@@ -315,12 +316,12 @@
           </div>
 
           <!-- Dados bancários -->
-          <div class="reveal rounded-3xl bg-white/5 border border-white/15 p-6 sm:p-10">
+          <div class="reveal rounded-md bg-white/[.04] border border-gold-500/20 p-6 sm:p-10">
             <div class="flex items-center gap-3">
               <span class="grid place-items-center w-11 h-11 rounded-xl bg-gold-500/15 text-gold-400">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18"/></svg>
               </span>
-              <h3 class="font-serif text-2xl">Transferência bancária</h3>
+              <h3 class="font-serif font-semibold text-3xl">Transferência bancária</h3>
             </div>
             <dl class="mt-8 divide-y divide-white/10">
               <div class="flex justify-between gap-4 py-3"><dt class="text-white/60">Banco</dt><dd class="font-semibold text-right">Banco Exemplo (000)</dd></div>
@@ -346,14 +347,14 @@
   <!-- =====================================================
        6. RODAPÉ / CONTATO
        ===================================================== -->
-  <footer id="contato" class="bg-navy-950 text-white/75">
+  <footer id="contato" class="bg-navy-950 text-white/75 border-t border-gold-500/25">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div class="lg:col-span-1">
         <img src="assets/img/logo-santuario-sm.png" alt="Brasão do Santuário" width="131" height="240" loading="lazy"
              class="h-24 w-auto mb-5" />
-        <p class="text-[11px] uppercase tracking-[.25em] text-gold-400">Santuário de</p>
-        <p class="font-serif text-2xl text-white">Nossa Senhora de Fátima</p>
-        <p class="mt-4 text-sm leading-relaxed">"Por fim, o meu Imaculado Coração triunfará."</p>
+        <p class="font-caps text-[10px] font-semibold tracking-[.28em] text-gold-400">Santuário Arquidiocesano</p>
+        <p class="font-serif font-semibold text-[1.7rem] leading-tight text-white mt-1.5">Nossa Senhora de Fátima <span class="block italic font-medium text-white/75 text-xl">e São João de Deus</span></p>
+        <p class="mt-5 citacao text-lg text-white/80">"Por fim, o meu Imaculado Coração triunfará."</p>
         <!-- Redes sociais -->
         <div class="mt-6 flex gap-3">
           <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
@@ -369,7 +370,7 @@
       </div>
 
       <div>
-        <h2 class="font-serif text-lg text-white">Endereço</h2>
+        <h2 class="font-caps text-[11px] font-semibold tracking-[.24em] text-gold-400">Endereço</h2>
         <address class="not-italic mt-4 text-sm leading-relaxed">
           Estrada Manuel Nogueira de Sá, 1421<br />
           Realengo — Rio de Janeiro / RJ
@@ -378,7 +379,7 @@
       </div>
 
       <div>
-        <h2 class="font-serif text-lg text-white">Secretaria Paroquial</h2>
+        <h2 class="font-caps text-[11px] font-semibold tracking-[.24em] text-gold-400">Secretaria Paroquial</h2>
         <ul class="mt-4 space-y-2 text-sm">
           <li>Terça a sexta: 8h às 12h e 13h às 18h</li>
           <li>Sábado: 8h às 12h</li>
@@ -387,7 +388,7 @@
       </div>
 
       <div>
-        <h2 class="font-serif text-lg text-white">Contato</h2>
+        <h2 class="font-caps text-[11px] font-semibold tracking-[.24em] text-gold-400">Contato</h2>
         <ul class="mt-4 space-y-2 text-sm">
           <li><a href="tel:+5521964322134" class="hover:text-gold-400">(21) 96432-2134</a></li>
           <li><a href="mailto:fatimaejoaodedeus@arqrio.org.br" class="hover:text-gold-400 break-all">fatimaejoaodedeus@arqrio.org.br</a></li>
@@ -397,7 +398,7 @@
 
     <div class="border-t border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row gap-2 justify-between text-xs text-white/50">
-        <p>© <span id="ano"></span> Santuário Nossa Senhora de Fátima. Todos os direitos reservados.</p>
+        <p>© <span id="ano"></span> Santuário Nossa Senhora de Fátima e São João de Deus. Todos os direitos reservados.</p>
         <p>Desenvolvido com fé pela PASCOM.</p>
       </div>
     </div>

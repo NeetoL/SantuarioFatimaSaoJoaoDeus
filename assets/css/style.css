@@ -1,18 +1,105 @@
 /* ===========================================================
-   Santuário de Fátima — estilos complementares ao Tailwind
+   Santuário N. Sra. de Fátima e S. João de Deus
+   Identidade visual — complementa o Tailwind
+   Fontes: Cormorant Garamond (títulos) · Cinzel (rótulos/datas)
+           EB Garamond (textos longos) · Inter (menus/botões)
+   Cores:  azul-marinho, ouro e vinho do brasão + marfim
    =========================================================== */
-body { font-family: 'Inter', system-ui, sans-serif; }
 
-/* Ornamento dourado sob os títulos de seção */
-.ornament { display: flex; align-items: center; justify-content: center; gap: .75rem; color: #c9a227; }
-.ornament::before, .ornament::after { content: ''; height: 1px; width: 3rem; background: currentColor; opacity: .6; }
+/* ---------- Base ---------- */
+body { font-family: 'Inter', system-ui, sans-serif; color: #3a3f4b; font-feature-settings: "kern"; }
+h1, h2, h3 { text-wrap: balance; font-feature-settings: "kern", "liga"; }
+p { text-wrap: pretty; }
+::selection { background: #e6cf8f; color: #081a33; }
+:focus-visible { outline: 2px solid #c9a227; outline-offset: 3px; }
 
-/* Navbar: transparente sobre o hero, sólida ao rolar */
-#navbar.scrolled { background: rgba(15, 42, 79, .96); box-shadow: 0 6px 24px rgba(0,0,0,.18); backdrop-filter: blur(8px); }
+/* Números: nos títulos e horários, algarismos alinhados (mais fáceis de ler);
+   nos anos decorativos, algarismos em estilo antigo (classe .algarismos-antigos) */
+.font-serif { font-variant-numeric: lining-nums; }
+.font-serif.algarismos-antigos { font-variant-numeric: oldstyle-nums; }
+
+/* ---------- Rótulo em letras de inscrição (Cinzel) ---------- */
+.eyebrow {
+  font-family: 'Cinzel', Georgia, serif; font-weight: 600;
+  font-size: .76rem; letter-spacing: .3em; text-transform: uppercase;
+  color: #8a6a18;
+}
+.eyebrow.claro { color: #d9b95a; }
+
+/* Filetes dos dois lados do rótulo */
+.ornament { display: flex; align-items: center; justify-content: center; gap: .9rem; }
+.ornament::before, .ornament::after { content: ''; height: 1px; width: 2.5rem; background: currentColor; opacity: .55; }
+
+/* ---------- Divisor com a cruz do brasão ---------- */
+.divisor { display: flex; align-items: center; justify-content: center; gap: .85rem; color: #c9a227; }
+.divisor::before, .divisor::after { content: ''; height: 1px; width: min(5.5rem, 22vw); }
+.divisor::before { background: linear-gradient(90deg, transparent, currentColor); }
+.divisor::after  { background: linear-gradient(90deg, currentColor, transparent); }
+.divisor svg { width: 11px; height: 18px; fill: currentColor; flex: none; }
+.divisor.esquerda { justify-content: flex-start; }
+.divisor.esquerda::before { display: none; }
+
+/* ---------- Botões (retos, letras espaçadas: sóbrio e institucional) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: 1rem 1.8rem; border: 1px solid transparent; border-radius: 2px;
+  font-family: 'Inter', system-ui, sans-serif; font-weight: 600; font-size: .76rem;
+  letter-spacing: .16em; text-transform: uppercase; line-height: 1;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.btn svg { width: 1.05rem; height: 1.05rem; flex: none; }
+.btn-ouro   { background: #c9a227; color: #081a33; box-shadow: 0 12px 28px -14px rgba(201,162,39,.8); }
+.btn-ouro:hover { background: #d9b95a; transform: translateY(-1px); }
+.btn-vidro  { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.btn-vidro:hover { background: #fff; color: #081a33; border-color: #fff; }
+.btn-escuro { background: #0f2a4f; color: #fff; }
+.btn-escuro:hover { background: #081a33; transform: translateY(-1px); }
+.btn-linha  { border-color: #0f2a4f; color: #0f2a4f; }
+.btn-linha:hover { background: #0f2a4f; color: #fff; }
+.btn-sm { padding: .72rem 1.15rem; font-size: .7rem; }
+
+/* ---------- Texto corrido (leitura longa) ---------- */
+.texto-corrido { font-family: 'EB Garamond', Georgia, serif; font-size: 1.2rem; line-height: 1.75; color: #2b2f38; }
+.texto-corrido p + p { margin-top: 1.1em; }
+.texto-corrido.claro { color: rgba(255,255,255,.86); }
+@media (min-width: 640px) { .texto-corrido { font-size: 1.3rem; } }
+
+/* Capitular: primeira letra grande, em vinho */
+.capitular::first-letter {
+  float: left; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;
+  font-size: 4.4em; line-height: .78; margin: .06em .1em 0 -.02em; color: #6b1f24;
+}
+
+/* Citação em itálico */
+.citacao { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
+
+/* Moldura: filete dourado deslocado atrás da foto */
+.moldura { position: relative; isolation: isolate; }
+.moldura::before { content: ''; position: absolute; inset: 1.1rem -1.1rem -1.1rem 1.1rem; border: 1px solid #c9a227; z-index: -1; }
+
+/* Rolagem lateral sem barra visível (sumário da página Sobre no celular) */
+.sem-barra { scrollbar-width: none; }
+.sem-barra::-webkit-scrollbar { display: none; }
+
+/* Fundo escuro com luz suave vindo do alto */
+.secao-escura { background: radial-gradient(120% 80% at 50% 0%, #163a6b 0%, #0f2a4f 38%, #081a33 100%); }
+
+/* ---------- Navbar: transparente sobre o topo, sólida ao rolar ---------- */
+#navbar.scrolled {
+  background: rgba(8, 26, 51, .95);
+  box-shadow: 0 1px 0 rgba(201,162,39,.28), 0 10px 30px rgba(0,0,0,.22);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ''; position: absolute; left: .75rem; right: .75rem; bottom: .2rem; height: 1px;
+  background: #d9b95a; transform: scaleX(0); transition: transform .3s ease;
+}
+.nav-link:hover::after, .nav-link[aria-current]::after { transform: scaleX(1); }
 
 /* Menu mobile: animação de abertura */
 #mobile-menu { transition: max-height .35s ease, opacity .25s ease; max-height: 0; opacity: 0; overflow: hidden; }
-#mobile-menu.open { max-height: 28rem; opacity: 1; }
+#mobile-menu.open { max-height: 32rem; opacity: 1; }
 
 /* Ícone hambúrguer -> X */
 .burger span { transition: transform .3s ease, opacity .2s ease; }
@@ -21,10 +108,10 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Reveal suave ao rolar a página */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* Fallback elegante quando alguma imagem externa não carregar */
+/* Fallback elegante quando alguma imagem não carregar */
 .img-fallback { background: linear-gradient(135deg, #163a6b 0%, #0f2a4f 55%, #a8801f 140%); }
 
 /* Modal */
@@ -53,7 +140,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 html.carregando { overflow: hidden; }
 html.carregando #preloader { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
 .preloader-logo { height: 7.5rem; width: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.45)); animation: preloader-pulsar 2.2s ease-in-out infinite; }
-.preloader-bar { width: 9rem; height: 2px; border-radius: 9999px; background: rgba(255,255,255,.12); overflow: hidden; }
-.preloader-bar span { display: block; width: 40%; height: 100%; border-radius: inherit; background: #d9b95a; animation: preloader-barra 1.3s ease-in-out infinite; }
+.preloader-bar { width: 9rem; height: 1px; background: rgba(255,255,255,.14); overflow: hidden; }
+.preloader-bar span { display: block; width: 40%; height: 100%; background: #d9b95a; animation: preloader-barra 1.3s ease-in-out infinite; }
 @keyframes preloader-pulsar { 0%, 100% { opacity: .8; transform: scale(.97); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes preloader-barra { from { transform: translateX(-100%); } to { transform: translateX(250%); } }

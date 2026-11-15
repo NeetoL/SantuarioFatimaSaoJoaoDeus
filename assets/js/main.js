@@ -100,7 +100,7 @@ $$('main section[id], footer[id]').forEach((s) => sectionObserver.observe(s));
    ------------------------------------------------------------ */
 const MESES = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
 const DIAS  = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-const COR_CATEGORIA = { Missa: 'bg-navy-100 text-navy-800', Novena: 'bg-gold-50 text-gold-600', Festa: 'bg-rose-50 text-rose-700' };
+const COR_CATEGORIA = { Missa: 'bg-navy-100 text-navy-800', Novena: 'bg-gold-50 text-gold-700', Festa: 'bg-[#f6e9ea] text-wine-700' };
 
 function renderEventos(filtro = 'todos') {
   const lista = EVENTOS
@@ -110,14 +110,14 @@ function renderEventos(filtro = 'todos') {
   $('#eventos-grid').innerHTML = lista.map((ev) => {
     const d = new Date(ev.data + 'T12:00:00');
     return `
-      <article class="group bg-white rounded-3xl p-6 shadow-sm ring-1 ring-slate-200/70 hover:shadow-xl hover:-translate-y-1 transition-all flex gap-5">
-        <div class="shrink-0 w-16 text-center rounded-2xl bg-navy-900 text-white py-3 h-fit group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
-          <p class="font-serif text-3xl leading-none">${String(d.getDate()).padStart(2, '0')}</p>
-          <p class="text-xs font-semibold tracking-wider mt-1">${MESES[d.getMonth()]}</p>
+      <article class="group bg-white rounded-md p-6 ring-1 ring-ivory-200 hover:shadow-xl hover:shadow-navy-950/10 hover:-translate-y-1 transition-all flex gap-5">
+        <div class="shrink-0 w-16 text-center rounded-sm bg-navy-900 text-white py-3 h-fit border-b-2 border-gold-500 group-hover:bg-wine-700 transition-colors">
+          <p class="font-serif font-semibold text-4xl leading-none">${String(d.getDate()).padStart(2, '0')}</p>
+          <p class="font-caps text-[10px] font-semibold tracking-[.2em] mt-1.5 text-gold-300">${MESES[d.getMonth()]}</p>
         </div>
         <div class="min-w-0">
-          <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full ${COR_CATEGORIA[ev.categoria] || ''}">${esc(ev.categoria)}</span>
-          <h3 class="font-serif text-xl text-navy-900 mt-2 leading-snug">${esc(ev.titulo)}</h3>
+          <span class="inline-block font-caps text-[10px] font-semibold tracking-[.16em] px-2 py-1 rounded-sm ${COR_CATEGORIA[ev.categoria] || ''}">${esc(ev.categoria)}</span>
+          <h3 class="font-serif font-semibold text-2xl text-navy-900 mt-2 leading-tight">${esc(ev.titulo)}</h3>
           <ul class="mt-3 space-y-1 text-sm text-slate-500">
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${DIAS[d.getDay()]}, ${esc(ev.hora)}</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${esc(ev.local)}</li>
@@ -132,8 +132,8 @@ function setFiltro(filtro) {
   $$('.filter-btn').forEach((b) => {
     const ativo = b.dataset.filter === filtro;
     b.setAttribute('aria-pressed', String(ativo));
-    b.className = 'filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-colors ' +
-      (ativo ? 'bg-navy-900 text-white border-navy-900' : 'bg-white text-navy-900 border-slate-200 hover:border-gold-500');
+    b.className = 'filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors ' +
+      (ativo ? 'bg-navy-900 text-white border-navy-900' : 'bg-transparent text-navy-900 border-ivory-300 hover:border-gold-500');
   });
   renderEventos(filtro);
 }
@@ -144,13 +144,13 @@ setFiltro('todos');
    PASCOM: notícias e galeria
    ------------------------------------------------------------ */
 $('#noticias-grid').innerHTML = NOTICIAS.map((n) => `
-  <article class="reveal group rounded-3xl overflow-hidden bg-white ring-1 ring-slate-200/70 shadow-sm hover:shadow-xl transition-shadow flex flex-col">
+  <article class="reveal group rounded-md overflow-hidden bg-white ring-1 ring-ivory-200 hover:shadow-xl hover:shadow-navy-950/10 transition-shadow flex flex-col">
     <div class="aspect-[16/10] overflow-hidden img-fallback">
       <img src="${n.img}" alt="" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
     </div>
     <div class="p-6 flex flex-col flex-1">
-      <p class="text-xs text-slate-500"><span class="font-semibold text-gold-600 uppercase tracking-wider">${esc(n.tag)}</span> · ${esc(n.data)}</p>
-      <h3 class="font-serif text-xl text-navy-900 mt-2 leading-snug">${esc(n.titulo)}</h3>
+      <p class="text-xs text-slate-500"><span class="font-caps font-semibold text-gold-700 tracking-[.16em]">${esc(n.tag)}</span> · ${esc(n.data)}</p>
+      <h3 class="font-serif font-semibold text-2xl text-navy-900 mt-2 leading-tight">${esc(n.titulo)}</h3>
       <p class="mt-3 text-sm leading-relaxed flex-1">${esc(n.resumo)}</p>
       <a href="#pascom" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-gold-600">
         Leia mais <span class="sr-only">sobre: ${esc(n.titulo)}</span>
@@ -160,7 +160,7 @@ $('#noticias-grid').innerHTML = NOTICIAS.map((n) => `
   </article>`).join('');
 
 $('#galeria-grid').innerHTML = GALERIA.map((g, i) => `
-  <button class="gal-item group relative overflow-hidden rounded-2xl img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400 ${g.classe || ''}" data-index="${i}" aria-label="Ampliar foto: ${esc(g.legenda)}">
+  <button class="gal-item group relative overflow-hidden rounded-md img-fallback focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-400 ${g.classe || ''}" data-index="${i}" aria-label="Ampliar foto: ${esc(g.legenda)}">
     <img src="${g.src}" alt="${esc(g.legenda)}" loading="lazy" data-fallback class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
     <span class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"></span>
     <span class="absolute bottom-0 inset-x-0 p-4 text-left text-white text-sm font-medium translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">${esc(g.legenda)}</span>
