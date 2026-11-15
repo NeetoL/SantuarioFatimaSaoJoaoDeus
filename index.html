@@ -172,24 +172,51 @@
             <div class="p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-gold-500/20 flex flex-col justify-center">
               <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
               <h3 class="font-serif font-semibold text-4xl mt-4">Horários de Missa</h3>
-              <p class="mt-3 text-white/75">Confissões: terça a sexta, das 14h às 17h, ou mediante agendamento na secretaria.</p>
+              <p class="mt-3 text-white/75">Celebrações fixas do Santuário, todas as semanas.</p>
             </div>
-            <div class="p-8 sm:p-10 grid sm:grid-cols-3 gap-8">
-              <div>
-                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Segunda a Sexta</p>
-                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>07h00</li><li>12h00</li><li>19h30</li></ul>
-              </div>
-              <div>
-                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Sábado</p>
-                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>08h00</li><li>17h00</li><li>19h00</li></ul>
-              </div>
-              <div>
-                <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Domingo</p>
-                <ul class="mt-4 space-y-1.5 font-serif text-2xl font-medium"><li>07h00</li><li>09h00</li><li>11h00</li><li>17h00</li><li>19h00</li></ul>
-              </div>
-              <p class="sm:col-span-3 text-sm text-white/70 border-t border-white/10 pt-6">
-                <strong class="text-gold-400">Todo dia 13:</strong> Missa solene às 19h30 seguida de procissão luminosa com a imagem de Nossa Senhora.
-              </p>
+
+            <!-- Para alterar um horário, edite a linha do dia abaixo -->
+            <div class="p-8 sm:p-10">
+              <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Toda semana</p>
+              <dl class="mt-3 divide-y divide-white/10">
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">Domingo</dt>
+                  <dd class="font-serif text-2xl text-gold-300">7h, 10h e 18h</dd>
+                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa dominical</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">Segunda</dt>
+                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
+                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa da Luz · Missa pelos falecidos</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl text-white/60">Terça</dt>
+                  <dd class="sm:col-span-2 font-serif italic text-xl text-white/55">Igreja fechada</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">Quarta</dt>
+                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">Quinta</dt>
+                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
+                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa e Adoração ao Santíssimo</dd>
+                </div>
+              </dl>
+
+              <p class="mt-8 font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Todo mês</p>
+              <dl class="mt-3 divide-y divide-white/10">
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">1ª sexta</dt>
+                  <dd class="font-serif text-2xl text-gold-300">8h</dd>
+                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa votiva ao Sagrado Coração de Jesus</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
+                  <dt class="font-serif font-semibold text-xl">1º sábado</dt>
+                  <dd class="font-serif text-2xl text-gold-300">8h</dd>
+                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa votiva à Nossa Senhora</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
