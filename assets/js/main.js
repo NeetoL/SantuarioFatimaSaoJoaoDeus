@@ -311,3 +311,7 @@ $$('.reveal').forEach((el) => revealObserver.observe(el));
 
 $('#ano').textContent = new Date().getFullYear();
 onScroll();
+
+// Voltou pelo botão "voltar" e o navegador mostrou uma cópia guardada da página?
+// Recarrega para garantir a versão mais nova do site.
+window.addEventListener('pageshow', (e) => { if (e.persisted) location.reload(); });
