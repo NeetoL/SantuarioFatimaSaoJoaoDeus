@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Santuário Nossa Senhora de Fátima e São João de Deus</title>
-  <meta name="description" content="Santuário Arquidiocesano Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ) — horários de missa, programação, notícias da PASCOM e doações." />
+  <meta name="description" content="Santuário Arquidiocesano Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ) — horários de missa, programação, notícias, comunicados e doações." />
   <meta name="theme-color" content="#0f2a4f" />
 
   <!-- Ícones (brasão do Santuário) -->
@@ -71,8 +71,9 @@
       <ul class="hidden lg:flex items-center gap-1 text-[11.5px] font-semibold uppercase tracking-[.16em] text-white/90">
         <li><a href="#inicio" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Início</a></li>
         <li><a href="sobre.html" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Sobre</a></li>
-        <li><a href="#programacao" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Programação</a></li>
-        <li><a href="#pascom" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">PASCOM</a></li>
+        <li><a href="eventos.html" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Eventos</a></li>
+        <li><a href="#horarios" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Missas</a></li>
+        <li><a href="#noticias" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Notícias</a></li>
         <li><a href="#contato" class="nav-link px-3 py-2 hover:text-gold-400 transition-colors">Contato</a></li>
         <li class="ml-3"><a href="#doacoes" class="btn btn-ouro btn-sm">Doações</a></li>
       </ul>
@@ -91,8 +92,9 @@
       <ul class="px-4 py-4 space-y-1 text-white/90 text-[13px] font-semibold uppercase tracking-[.16em]">
         <li><a href="#inicio" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Início</a></li>
         <li><a href="sobre.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Sobre</a></li>
-        <li><a href="#programacao" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Programação / Eventos</a></li>
-        <li><a href="#pascom" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">PASCOM</a></li>
+        <li><a href="eventos.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Eventos</a></li>
+        <li><a href="#horarios" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Horários de Missa</a></li>
+        <li><a href="#noticias" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Notícias</a></li>
         <li><a href="#contato" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Contato</a></li>
         <li class="pt-4"><a href="#doacoes" class="btn btn-ouro w-full">Faça sua Doação</a></li>
       </ul>
@@ -121,6 +123,14 @@
 
       <!-- Pouco texto, embaixo, para o vídeo aparecer -->
       <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 text-center pb-24 sm:pb-28">
+        <!-- Aviso do próximo evento (aparece sozinho quando há evento nos próximos 7 dias — veja EVENTOS em assets/js/eventos.js) -->
+        <a id="aviso-hero" href="#avisos"
+           class="hidden group max-w-full items-center gap-3 mb-7 rounded-2xl sm:rounded-full bg-navy-950/60 pl-4 pr-3.5 py-2 ring-1 ring-gold-400/50 backdrop-blur-md hover:ring-gold-400 hover:bg-navy-950/75 transition">
+          <span class="relative flex w-2 h-2 shrink-0"><span class="absolute inset-0 rounded-full bg-gold-400 opacity-75 animate-ping"></span><span class="relative w-2 h-2 rounded-full bg-gold-400"></span></span>
+          <span data-quando class="shrink-0 font-caps text-[10px] sm:text-[11px] font-semibold tracking-[.22em] text-gold-300"></span>
+          <span data-titulo class="min-w-0 text-left leading-snug sm:truncate font-serif text-base sm:text-lg text-white"></span>
+          <svg class="w-4 h-4 shrink-0 text-gold-300 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
         <h1 class="font-serif font-semibold text-[2.75rem] sm:text-6xl lg:text-7xl text-white leading-[1.02] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(0,0,0,.55)]">
           Bem-vindo à Casa da <span class="italic font-medium text-gold-400">Mãe de Deus</span>
         </h1>
@@ -138,101 +148,154 @@
       </div>
 
       <!-- Indicador de rolagem -->
-      <a href="#programacao" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 hover:text-gold-400 animate-bounce" aria-label="Rolar para a próxima seção">
+      <a href="#avisos" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 hover:text-gold-400 animate-bounce" aria-label="Rolar para a próxima seção">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </a>
     </section>
 
     <!-- =====================================================
-         3. PROGRAMAÇÃO E EVENTOS
+         AVISOS — "ACONTECE NO SANTUÁRIO"
+         Os cards são montados sozinhos a partir da lista EVENTOS (assets/js/eventos.js).
+         Sem eventos futuros, a seção some.
          ===================================================== -->
-    <section id="programacao" class="py-20 sm:py-28 bg-ivory-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header class="text-center max-w-2xl mx-auto reveal">
-          <p class="eyebrow">Programação</p>
-          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Próximos eventos e celebrações</h2>
-          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
-          <p class="mt-6 text-lg text-slate-600">Participe das missas, novenas e festividades do Santuário. Todos são bem-vindos!</p>
+    <section id="avisos" class="relative scroll-mt-20 pt-14 pb-20 sm:pt-16 sm:pb-28 bg-navy-950 overflow-hidden">
+      <!-- brilho suave dourado atrás dos cards -->
+      <div class="pointer-events-none absolute inset-x-0 top-1/3 h-[28rem] bg-[radial-gradient(ellipse_at_center,rgba(201,162,39,.10),transparent_65%)]" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+          <div>
+            <p class="eyebrow claro">Avisos da comunidade</p>
+            <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-white mt-3 leading-[1.05]">Acontece no Santuário</h2>
+          </div>
+          <a href="eventos.html" class="group inline-flex items-center gap-2 text-[11.5px] font-semibold uppercase tracking-[.16em] text-gold-300 hover:text-gold-200">
+            Ver todos os eventos
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </header>
 
-        <!-- Filtros de categoria (JS) -->
-        <div class="mt-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filtrar eventos por categoria">
-          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="todos" aria-pressed="true">Todos</button>
-          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Missa" aria-pressed="false">Missas</button>
-          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Novena" aria-pressed="false">Novenas</button>
-          <button class="filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors" data-filter="Festa" aria-pressed="false">Festividades</button>
+        <div id="aviso-destaque" class="mt-10"></div>
+        <div id="avisos-proximos" class="mt-10 grid gap-x-7 gap-y-9 md:grid-cols-3"></div>
+
+        <div class="mt-14 text-center">
+          <a href="eventos.html" class="btn btn-ouro">
+            Ver todos os eventos
+            <span class="inline-grid place-items-center min-w-[1.6rem] h-[1.6rem] px-1.5 rounded-full bg-navy-950 text-gold-300 text-[11px] tracking-normal" data-total-eventos aria-label="eventos agendados"></span>
+          </a>
         </div>
+      </div>
+    </section>
 
-        <!-- Cards gerados via JavaScript (veja o array EVENTOS no final do arquivo) -->
-        <div id="eventos-grid" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    <!-- =====================================================
+         3. HORÁRIOS DE MISSA
+         (a agenda completa de eventos fica na página eventos.html)
+         ===================================================== -->
+    <section id="horarios" class="scroll-mt-20 py-20 sm:py-28 bg-ivory-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-2xl mx-auto reveal">
+          <p class="eyebrow">Calendário semanal</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Horários de Missa</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Celebrações fixas do Santuário, todas as semanas.</p>
+        </header>
 
-        <!-- Horários fixos de missa -->
-        <div id="horarios" class="mt-20 scroll-mt-28 reveal">
-          <div class="rounded-md secao-escura text-white overflow-hidden grid lg:grid-cols-[1fr_2fr] ring-1 ring-gold-500/20 shadow-2xl shadow-navy-950/20">
-            <div class="p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-gold-500/20 flex flex-col justify-center">
-              <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              <h3 class="font-serif font-semibold text-4xl mt-4">Horários de Missa</h3>
-              <p class="mt-3 text-white/75">Celebrações fixas do Santuário, todas as semanas.</p>
-            </div>
-
-            <!-- Para alterar um horário, edite a linha do dia abaixo -->
-            <div class="p-8 sm:p-10">
-              <p class="font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Toda semana</p>
-              <dl class="mt-3 divide-y divide-white/10">
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">Domingo</dt>
-                  <dd class="font-serif text-2xl text-gold-300">7h, 10h e 18h</dd>
-                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa dominical</dd>
-                </div>
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">Segunda</dt>
-                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
-                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa da Luz · Missa pelos falecidos</dd>
-                </div>
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl text-white/60">Terça</dt>
-                  <dd class="sm:col-span-2 font-serif italic text-xl text-white/55">Igreja fechada</dd>
-                </div>
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">Quarta</dt>
-                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
-                </div>
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">Quinta</dt>
-                  <dd class="font-serif text-2xl text-gold-300">19h</dd>
-                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa e Adoração ao Santíssimo</dd>
-                </div>
-              </dl>
-
-              <p class="mt-8 font-caps text-gold-400 text-xs font-semibold tracking-[.22em]">Todo mês</p>
-              <dl class="mt-3 divide-y divide-white/10">
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">1ª sexta</dt>
-                  <dd class="font-serif text-2xl text-gold-300">8h</dd>
-                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa votiva ao Sagrado Coração de Jesus</dd>
-                </div>
-                <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_10.5rem_1fr] gap-x-4 gap-y-0.5 py-3.5 items-baseline">
-                  <dt class="font-serif font-semibold text-xl">1º sábado</dt>
-                  <dd class="font-serif text-2xl text-gold-300">8h</dd>
-                  <dd class="col-start-2 sm:col-start-auto text-sm text-white/65">Missa votiva à Nossa Senhora</dd>
-                </div>
-              </dl>
-            </div>
+        <!-- CALENDÁRIO DE MISSAS
+             Para mudar um horário, edite o dia abaixo (data-dia: 0 = domingo … 6 = sábado).
+             O dia de hoje ganha destaque sozinho (assets/js/main.js). -->
+        <div class="mt-12 rounded-md secao-escura text-white ring-1 ring-gold-500/20 shadow-2xl shadow-navy-950/25 p-3 sm:p-5 reveal">
+          <ol class="calendario grid gap-2.5 sm:gap-3 lg:grid-cols-7" aria-label="Missas de domingo a sábado">
+            <li data-dia="0" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Dom</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Domingo</p>
+              </div>
+              <div class="dia-corpo">
+                <ul class="horas"><li>7h</li><li>10h</li><li>18h</li></ul>
+                <p class="nota">Missa dominical</p>
+              </div>
+            </li>
+            <li data-dia="1" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Seg</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Segunda</p>
+              </div>
+              <div class="dia-corpo">
+                <ul class="horas"><li>19h</li></ul>
+                <p class="nota">Missa da Luz · Missa pelos falecidos</p>
+              </div>
+            </li>
+            <li data-dia="2" class="dia fechado">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Ter</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Terça</p>
+              </div>
+              <div class="dia-corpo">
+                <svg class="w-6 h-6 text-white/35" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                <p class="font-serif italic text-xl text-white/55 mt-1">Igreja fechada</p>
+              </div>
+            </li>
+            <li data-dia="3" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Qua</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Quarta</p>
+              </div>
+              <div class="dia-corpo">
+                <ul class="horas"><li>19h</li></ul>
+                <p class="nota">Santa Missa</p>
+              </div>
+            </li>
+            <li data-dia="4" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Qui</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Quinta</p>
+              </div>
+              <div class="dia-corpo">
+                <ul class="horas"><li>19h</li></ul>
+                <p class="nota">Missa e Adoração ao Santíssimo</p>
+              </div>
+            </li>
+            <li data-dia="5" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Sex</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Sexta</p>
+              </div>
+              <div class="dia-corpo">
+                <span class="mensal">1ª sexta do mês</span>
+                <ul class="horas"><li>8h</li></ul>
+                <p class="nota">Missa votiva ao Sagrado Coração de Jesus</p>
+              </div>
+            </li>
+            <li data-dia="6" class="dia">
+              <div class="dia-topo">
+                <p class="font-caps text-[10px] font-semibold tracking-[.26em] text-gold-400">Sáb</p>
+                <p class="font-serif font-semibold text-xl lg:text-[1.6rem] leading-none mt-1.5">Sábado</p>
+              </div>
+              <div class="dia-corpo">
+                <span class="mensal">1º sábado do mês</span>
+                <ul class="horas"><li>8h</li></ul>
+                <p class="nota">Missa votiva à Nossa Senhora</p>
+              </div>
+            </li>
+          </ol>
+          <div class="flex flex-wrap justify-center gap-x-7 gap-y-2 px-3 pt-5 pb-1 text-xs text-white/60">
+            <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-gold-500"></span>Hoje</span>
+            <span class="inline-flex items-center gap-2"><span class="mensal !mb-0">1º</span>Uma vez por mês</span>
+            <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded-sm dia-fechado-amostra"></span>Igreja fechada</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =====================================================
-         4. PASCOM — NOTÍCIAS, RECADOS E GALERIA
+         4. NOTÍCIAS E COMUNICADOS — notícias, recados e galeria
          ===================================================== -->
-    <section id="pascom" class="py-20 sm:py-28 bg-white">
+    <section id="noticias" class="scroll-mt-20 py-20 sm:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header class="text-center max-w-2xl mx-auto reveal">
-          <p class="eyebrow">PASCOM</p>
-          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Pastoral da Comunicação</h2>
+          <p class="eyebrow">Mural do Santuário</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Notícias e Comunicados</h2>
           <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
-          <p class="mt-6 text-lg text-slate-600">Notícias, recados paroquiais e os momentos mais bonitos da nossa comunidade.</p>
+          <p class="mt-6 text-lg text-slate-600">O que o Santuário tem a anunciar: notícias, comunicados e recados para toda a comunidade.</p>
         </header>
 
         <div class="mt-14 grid lg:grid-cols-3 gap-8">
@@ -459,8 +522,9 @@
   </div>
 
   <!-- =====================================================
-       JAVASCRIPT (dados e interações em assets/js/main.js)
+       JAVASCRIPT (eventos em assets/js/eventos.js; o resto em assets/js/main.js)
        ===================================================== -->
+  <script src="assets/js/eventos.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

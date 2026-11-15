@@ -77,6 +77,68 @@ p { text-wrap: pretty; }
 .moldura { position: relative; isolation: isolate; }
 .moldura::before { content: ''; position: absolute; inset: 1.1rem -1.1rem -1.1rem 1.1rem; border: 1px solid #c9a227; z-index: -1; }
 
+/* Placa da data dos eventos: fundo azul com moldura dupla dourada (como uma placa de bronze) */
+.placa-data {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  color: #fff; background: linear-gradient(160deg, #163a6b 0%, #0f2a4f 45%, #081a33 100%);
+  border: 1px solid rgba(217,185,90,.7);
+  outline: 1px solid rgba(217,185,90,.35); outline-offset: -6px;
+  font-variant-numeric: lining-nums;
+}
+
+/* ---------- Calendário semanal de missas (Dom–Sáb) ----------
+   Celular: um dia por linha (dia à esquerda, horários à direita).
+   Computador (lg): sete colunas, como um calendário. */
+.calendario .dia {
+  position: relative; display: grid; grid-template-columns: 5.9rem 1fr;
+  border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.03); border-radius: 3px;
+  transition: background-color .3s ease, border-color .3s ease, transform .3s ease;
+}
+.calendario .dia:hover { border-color: rgba(217,185,90,.35); }
+.calendario .dia-topo {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1rem .95rem; border-right: 1px solid rgba(201,162,39,.22);
+}
+.calendario .dia-corpo { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 1rem 1.15rem; }
+.calendario .horas {
+  display: flex; flex-wrap: wrap; gap: .1rem 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.95rem; line-height: 1.05;
+  color: #e6cf8f; font-variant-numeric: lining-nums;
+}
+.calendario .nota { margin-top: .35rem; font-size: .8rem; line-height: 1.4; color: rgba(255,255,255,.62); }
+.calendario .mensal, .mensal {
+  display: inline-block; margin-bottom: .5rem; padding: .2rem .45rem;
+  font-family: 'Cinzel', Georgia, serif; font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: #d9b95a; border: 1px solid rgba(217,185,90,.5); border-radius: 2px;
+}
+/* Dia fechado: listras discretas */
+.calendario .dia.fechado, .dia-fechado-amostra {
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 5px, transparent 5px 11px);
+}
+.calendario .dia.fechado .dia-topo { opacity: .55; }
+.dia-fechado-amostra { border: 1px solid rgba(255,255,255,.2); }
+/* Hoje: dourado */
+.calendario .dia.hoje {
+  background: linear-gradient(180deg, rgba(201,162,39,.2), rgba(201,162,39,.06));
+  border-color: rgba(217,185,90,.75);
+  box-shadow: 0 0 0 1px rgba(217,185,90,.3), 0 20px 44px -20px rgba(201,162,39,.6);
+}
+.calendario .dia.hoje.fechado { background: repeating-linear-gradient(135deg, rgba(201,162,39,.12) 0 5px, transparent 5px 11px); }
+.calendario .selo-hoje {
+  position: absolute; top: -.6rem; right: .7rem; z-index: 1; padding: .22rem .5rem; border-radius: 2px;
+  font-family: 'Cinzel', Georgia, serif; font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  background: #c9a227; color: #081a33; box-shadow: 0 6px 14px -6px rgba(0,0,0,.5);
+}
+@media (min-width: 1024px) {
+  .calendario .dia { grid-template-columns: 1fr; grid-template-rows: auto 1fr; min-height: 17rem; }
+  .calendario .dia:hover { transform: translateY(-2px); }
+  .calendario .dia-topo { text-align: center; border-right: 0; border-bottom: 1px solid rgba(201,162,39,.22); padding: 1.15rem .75rem 1rem; }
+  .calendario .dia-corpo { align-items: center; justify-content: flex-start; text-align: center; padding: 1.25rem .85rem 1.1rem; }
+  .calendario .horas { flex-direction: column; align-items: center; gap: .3rem; font-size: 2.15rem; }
+  .calendario .nota { margin-top: auto; padding-top: 1rem; }
+  .calendario .dia.fechado .dia-corpo { justify-content: center; }
+}
+
 /* Rolagem lateral sem barra visível (sumário da página Sobre no celular) */
 .sem-barra { scrollbar-width: none; }
 .sem-barra::-webkit-scrollbar { display: none; }

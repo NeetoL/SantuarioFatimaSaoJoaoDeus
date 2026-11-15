@@ -5,14 +5,7 @@
 /* ------------------------------------------------------------
    DADOS EDITÁVEIS — altere aqui eventos, notícias e fotos
    ------------------------------------------------------------ */
-const EVENTOS = [
-  { categoria: 'Missa',  titulo: 'Missa Mensal de Fátima',        data: '2026-12-13', hora: '19h30', local: 'Igreja Matriz',      descricao: 'Missa solene em memória das aparições, seguida de procissão luminosa.' },
-  { categoria: 'Novena', titulo: 'Novena de Natal em Família',    data: '2026-12-16', hora: '20h00', local: 'Casas da comunidade', descricao: 'Nove encontros de oração nas casas, preparando o coração para o Natal.' },
-  { categoria: 'Missa',  titulo: 'Missa da Noite de Natal',        data: '2026-12-24', hora: '22h00', local: 'Igreja Matriz',      descricao: 'Celebração do nascimento do Senhor com o coral do Santuário.' },
-  { categoria: 'Missa',  titulo: 'Solenidade de Santa Maria, Mãe de Deus', data: '2027-01-01', hora: '09h00', local: 'Igreja Matriz', descricao: 'Iniciamos o ano sob a proteção de Maria. Missa pela paz mundial.' },
-  { categoria: 'Novena', titulo: 'Terço dos Homens',               data: '2026-11-19', hora: '20h00', local: 'Capela do Santíssimo', descricao: 'Toda quinta-feira os homens se reúnem para rezar o Santo Terço.' },
-  { categoria: 'Festa',  titulo: 'Quermesse Beneficente',          data: '2026-11-28', hora: '18h00', local: 'Pátio do Santuário', descricao: 'Barracas, música e comidas típicas. Renda revertida às obras sociais.' },
-];
+// Eventos e avisos: ficam em assets/js/eventos.js
 
 const NOTICIAS = [
   { img: 'assets/img/noticia-campanha.jpg', tag: 'Comunidade', data: '10 nov 2026', titulo: 'Campanha solidária arrecada mais de 2 toneladas de alimentos', resumo: 'A generosidade dos fiéis garantiu cestas básicas para famílias atendidas pela pastoral social.' },
@@ -96,52 +89,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 $$('main section[id], footer[id]').forEach((s) => sectionObserver.observe(s));
 
 /* ------------------------------------------------------------
-   Eventos: renderização + filtros
-   ------------------------------------------------------------ */
-const MESES = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-const DIAS  = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-const COR_CATEGORIA = { Missa: 'bg-navy-100 text-navy-800', Novena: 'bg-gold-50 text-gold-700', Festa: 'bg-[#f6e9ea] text-wine-700' };
-
-function renderEventos(filtro = 'todos') {
-  const lista = EVENTOS
-    .filter((ev) => filtro === 'todos' || ev.categoria === filtro)
-    .sort((a, b) => a.data.localeCompare(b.data));
-
-  $('#eventos-grid').innerHTML = lista.map((ev) => {
-    const d = new Date(ev.data + 'T12:00:00');
-    return `
-      <article class="group bg-white rounded-md p-6 ring-1 ring-ivory-200 hover:shadow-xl hover:shadow-navy-950/10 hover:-translate-y-1 transition-all flex gap-5">
-        <div class="shrink-0 w-16 text-center rounded-sm bg-navy-900 text-white py-3 h-fit border-b-2 border-gold-500 group-hover:bg-wine-700 transition-colors">
-          <p class="font-serif font-semibold text-4xl leading-none">${String(d.getDate()).padStart(2, '0')}</p>
-          <p class="font-caps text-[10px] font-semibold tracking-[.2em] mt-1.5 text-gold-300">${MESES[d.getMonth()]}</p>
-        </div>
-        <div class="min-w-0">
-          <span class="inline-block font-caps text-[10px] font-semibold tracking-[.16em] px-2 py-1 rounded-sm ${COR_CATEGORIA[ev.categoria] || ''}">${esc(ev.categoria)}</span>
-          <h3 class="font-serif font-semibold text-2xl text-navy-900 mt-2 leading-tight">${esc(ev.titulo)}</h3>
-          <ul class="mt-3 space-y-1 text-sm text-slate-500">
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${DIAS[d.getDay()]}, ${esc(ev.hora)}</li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${esc(ev.local)}</li>
-          </ul>
-          <p class="mt-3 text-sm leading-relaxed">${esc(ev.descricao)}</p>
-        </div>
-      </article>`;
-  }).join('') || '<p class="col-span-full text-center text-slate-500">Nenhum evento nesta categoria no momento.</p>';
-}
-
-function setFiltro(filtro) {
-  $$('.filter-btn').forEach((b) => {
-    const ativo = b.dataset.filter === filtro;
-    b.setAttribute('aria-pressed', String(ativo));
-    b.className = 'filter-btn px-4 py-2.5 rounded-sm text-[11.5px] font-semibold uppercase tracking-[.14em] border transition-colors ' +
-      (ativo ? 'bg-navy-900 text-white border-navy-900' : 'bg-transparent text-navy-900 border-ivory-300 hover:border-gold-500');
-  });
-  renderEventos(filtro);
-}
-$$('.filter-btn').forEach((b) => b.addEventListener('click', () => setFiltro(b.dataset.filter)));
-setFiltro('todos');
-
-/* ------------------------------------------------------------
-   PASCOM: notícias e galeria
+   Notícias e comunicados: notícias e galeria
    ------------------------------------------------------------ */
 $('#noticias-grid').innerHTML = NOTICIAS.map((n) => `
   <article class="reveal group rounded-md overflow-hidden bg-white ring-1 ring-ivory-200 hover:shadow-xl hover:shadow-navy-950/10 transition-shadow flex flex-col">
@@ -152,7 +100,7 @@ $('#noticias-grid').innerHTML = NOTICIAS.map((n) => `
       <p class="text-xs text-slate-500"><span class="font-caps font-semibold text-gold-700 tracking-[.16em]">${esc(n.tag)}</span> · ${esc(n.data)}</p>
       <h3 class="font-serif font-semibold text-2xl text-navy-900 mt-2 leading-tight">${esc(n.titulo)}</h3>
       <p class="mt-3 text-sm leading-relaxed flex-1">${esc(n.resumo)}</p>
-      <a href="#pascom" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-gold-600">
+      <a href="#noticias" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-gold-600">
         Leia mais <span class="sr-only">sobre: ${esc(n.titulo)}</span>
         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -311,6 +259,14 @@ $$('.reveal').forEach((el) => revealObserver.observe(el));
 
 $('#ano').textContent = new Date().getFullYear();
 onScroll();
+
+// Calendário de missas: destaca o dia da semana de hoje
+const diaDeHoje = $(`.calendario [data-dia="${new Date().getDay()}"]`);
+if (diaDeHoje) {
+  diaDeHoje.classList.add('hoje');
+  diaDeHoje.setAttribute('aria-current', 'date');
+  diaDeHoje.insertAdjacentHTML('afterbegin', '<span class="selo-hoje">Hoje</span>');
+}
 
 // Voltou pelo botão "voltar" e o navegador mostrou uma cópia guardada da página?
 // Recarrega para garantir a versão mais nova do site.
