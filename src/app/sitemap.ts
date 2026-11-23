@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { caminho: '/missas', frequencia: 'weekly', prioridade: 0.9 },
     { caminho: '/eventos', frequencia: 'daily', prioridade: 0.9 },
     { caminho: '/noticias', frequencia: 'daily', prioridade: 0.8 },
+    { caminho: '/galeria', frequencia: 'weekly', prioridade: 0.7 },
     { caminho: '/sobre', frequencia: 'monthly', prioridade: 0.7 },
     { caminho: '/contato', frequencia: 'monthly', prioridade: 0.6 },
     { caminho: '/doacoes', frequencia: 'monthly', prioridade: 0.6 },

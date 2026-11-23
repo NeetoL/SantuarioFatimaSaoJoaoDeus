@@ -46,12 +46,16 @@ function Cartao({
   hoje: number;
 }) {
   return (
-    <article className="reveal flex flex-col rounded-md bg-white ring-1 ring-ivory-200 p-7 sm:p-8 hover:shadow-xl hover:shadow-navy-950/10 transition-shadow">
-      <span className="grid place-items-center w-12 h-12 rounded-full bg-navy-900 text-gold-300 ring-4 ring-gold-500/15">
-        {ICONES[icone]}
-      </span>
-      <p className="mt-5 font-caps text-[.875rem] font-semibold tracking-[.22em] text-gold-700">{eyebrow}</p>
-      <h3 className="mt-1.5 font-serif font-semibold text-3xl text-navy-900 leading-tight">{titulo}</h3>
+    <article className="cartao-horario flex flex-col">
+      <div className="flex items-center gap-4">
+        <span className="grid shrink-0 place-items-center w-12 h-12 rounded-md bg-navy-900 text-gold-300">
+          {ICONES[icone]}
+        </span>
+        <div className="min-w-0">
+          <p className="font-caps text-[.75rem] font-semibold tracking-[.2em] text-[#7a5c12]">{eyebrow}</p>
+          <h3 className="mt-0.5 font-serif font-semibold text-[1.75rem] text-navy-900 leading-tight">{titulo}</h3>
+        </div>
+      </div>
       <ul className="lista-horarios mt-5">
         {linhas.map((l) => {
           const ehHoje = l.dias.includes(hoje);

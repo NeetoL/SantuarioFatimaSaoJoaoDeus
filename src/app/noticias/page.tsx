@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { CardNoticia } from '@/components/comunicados/CardNoticia';
 import { ItemRecado } from '@/components/comunicados/ItemRecado';
 import { NoticiaDestaque, SemNoticias } from '@/components/comunicados/NoticiaDestaque';
-import { AmpliadorDeFotos } from '@/components/galeria/AmpliadorDeFotos';
-import { BotaoFoto } from '@/components/galeria/BotaoFoto';
 import { casosDeUso } from '@/config/container';
 
 export const metadata: Metadata = {
@@ -16,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default async function PaginaNoticias() {
-  const [pagina, recados, fotos] = await Promise.all([
+  const [pagina, recados, albuns] = await Promise.all([
     casosDeUso.comunicados.noticiasDaPagina(),
     casosDeUso.comunicados.listarRecados(),
-    casosDeUso.galeria.listar(),
+    casosDeUso.galeria.listarAlbuns(),
   ]);
 
   return (
@@ -114,32 +112,47 @@ export default async function PaginaNoticias() {
           </div>
         </div>
       </section>
-      {/* Galeria da comunidade (fotos em src/mocks/comunicados.ts) */}
+      {/* Galeria da comunidade: os álbuns ficam na página Galeria; aqui, um convite com o mais recente */}
       <section id="galeria" className="scroll-mt-20 py-20 sm:py-24 bg-ivory-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <header className="text-center max-w-3xl mx-auto reveal">
-            <p className="eyebrow">Memória</p>
-            <h2 className="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">
-              Galeria da comunidade
-            </h2>
-            <div className="divisor mt-6" aria-hidden="true">
-              <svg viewBox="0 0 12 20">
-                <path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"></path>
-              </svg>
-            </div>
-            <p className="mt-6 text-lg text-slate-600">Toque em uma foto para ampliar.</p>
-          </header>
-          <div
-            id="galeria-noticias"
-            className="mt-12 grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] sm:auto-rows-[210px] gap-3 sm:gap-4"
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/galeria"
+            className="group grid overflow-hidden rounded-lg bg-navy-950 text-white sm:grid-cols-[1.1fr_1fr] ring-1 ring-black/5 shadow-[0_30px_70px_-40px_rgba(8,26,51,.6)]"
           >
-            {fotos.map((foto) => (
-              <BotaoFoto key={foto.id} foto={foto} />
-            ))}
-          </div>
+            <span className="relative block min-h-[14rem] sm:min-h-[18rem] img-fallback">
+              {albuns[0] && (
+                <Image
+                  src={albuns[0].fotoDeCapa.foto}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              )}
+            </span>
+            <span className="flex flex-col justify-center gap-3 p-7 sm:p-10">
+              <span className="eyebrow claro">Memória</span>
+              <span className="font-serif font-semibold text-3xl sm:text-4xl leading-tight">Galeria da comunidade</span>
+              <span className="text-lg text-white/80">
+                {albuns.length} {albuns.length === 1 ? 'álbum' : 'álbuns'} com as fotos das celebrações e dos eventos.
+              </span>
+              <span className="mt-2 inline-flex items-center gap-2 font-semibold text-gold-300 group-hover:text-gold-200">
+                Ver a galeria
+                <svg
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+              </span>
+            </span>
+          </Link>
         </div>
       </section>
-      <AmpliadorDeFotos />
     </>
   );
 }

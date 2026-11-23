@@ -76,7 +76,7 @@ export function Cabecalho({ telefone, mapa }: { telefone: string; mapa: string }
             preload
             className="h-[56px] w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,.35)] group-hover:scale-105 transition-transform"
           />
-          <span className="leading-none">
+          <span className="leading-none lg:hidden xl:block">
             <span className="block font-caps text-[10px] sm:text-[10.5px] font-semibold tracking-[.26em] text-gold-400">
               Santuário Arquidiocesano
             </span>

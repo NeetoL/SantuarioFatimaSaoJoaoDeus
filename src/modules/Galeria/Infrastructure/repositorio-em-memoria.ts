@@ -1,10 +1,10 @@
-import { FOTOS_DA_GALERIA } from '@/mocks/galeria';
-import { type FotoDaGaleria, type RepositorioDeFotos } from '../Domain/foto';
+import { ALBUNS } from '@/mocks/galeria';
+import { type Album, type RepositorioDeAlbuns } from '../Domain/album';
 
-export class RepositorioDeFotosEmMemoria implements RepositorioDeFotos {
-  constructor(private readonly fonte: readonly FotoDaGaleria[] = FOTOS_DA_GALERIA) {}
+export class RepositorioDeAlbunsEmMemoria implements RepositorioDeAlbuns {
+  constructor(private readonly fonte: readonly Album[] = ALBUNS) {}
 
-  async listar(): Promise<FotoDaGaleria[]> {
+  async listar(): Promise<Album[]> {
     return structuredClone([...this.fonte]);
   }
 }

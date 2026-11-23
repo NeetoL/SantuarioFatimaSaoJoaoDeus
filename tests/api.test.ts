@@ -56,7 +56,10 @@ describe('API pública', () => {
     expect(h.data.resumoDaSecretaria).toContain('Sábado: 8h às 12h');
     expect((await (await noticias.GET(req('/api/noticias'), vazio)).json()).data.length).toBeGreaterThan(0);
     expect((await (await recados.GET(req('/api/recados?limite=3'), vazio)).json()).data).toHaveLength(3);
-    expect((await (await galeria.GET(req('/api/galeria'), vazio)).json()).data[0].miniatura).toMatch(/\.jpg$/);
+    const g = await (await galeria.GET(req('/api/galeria?porPagina=2'), vazio)).json();
+    expect(g.data).toHaveLength(2);
+    expect(g.data[0].fotoDeCapa.foto).toMatch(/\.jpg$/);
+    expect(g.meta.total).toBeGreaterThan(2);
     const d = await (await doacoes.GET(req('/api/doacoes'), vazio)).json();
     expect(d.message).toContain('EXEMPLO');
     const i = await (await institucional.GET(req('/api/institucional'), vazio)).json();

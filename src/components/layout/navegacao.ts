@@ -17,7 +17,20 @@ export const PAGINAS = [
     descricao: 'Comunicados e recados',
     numero: 'V',
   },
-  { href: '/contato', rotulo: 'Contato', noMenuDoCelular: 'Contato', descricao: 'Fale com a secretaria', numero: 'VI' },
+  {
+    href: '/galeria',
+    rotulo: 'Galeria',
+    noMenuDoCelular: 'Galeria',
+    descricao: 'Álbuns de fotos dos eventos',
+    numero: 'VI',
+  },
+  {
+    href: '/contato',
+    rotulo: 'Contato',
+    noMenuDoCelular: 'Contato',
+    descricao: 'Fale com a secretaria',
+    numero: 'VII',
+  },
 ] as const;
 
 /** Na página inicial, "Início" rola até o topo (#inicio); nas outras, leva à página inicial. */

@@ -14,7 +14,7 @@ import { criarCasosDeUsoDeEventos } from '@/modules/Eventos/Application/casos-de
 import { RepositorioDeEventosEmMemoria } from '@/modules/Eventos/Infrastructure/repositorio-em-memoria';
 import { criarControladorDeEventos } from '@/modules/Eventos/Presentation/controlador';
 import { criarCasosDeUsoDaGaleria } from '@/modules/Galeria/Application/casos-de-uso';
-import { RepositorioDeFotosEmMemoria } from '@/modules/Galeria/Infrastructure/repositorio-em-memoria';
+import { RepositorioDeAlbunsEmMemoria } from '@/modules/Galeria/Infrastructure/repositorio-em-memoria';
 import { criarControladorDaGaleria } from '@/modules/Galeria/Presentation/controlador';
 import { criarCasosDeUsoDeHorarios } from '@/modules/Horarios/Application/casos-de-uso';
 import { RepositorioDeHorariosEmMemoria } from '@/modules/Horarios/Infrastructure/repositorio-em-memoria';
@@ -38,7 +38,7 @@ export const casosDeUso = {
   }),
   horarios: criarCasosDeUsoDeHorarios(new RepositorioDeHorariosEmMemoria()),
   comunicados: criarCasosDeUsoDeComunicados(new RepositorioDeNoticiasEmMemoria(), new RepositorioDeRecadosEmMemoria()),
-  galeria: criarCasosDeUsoDaGaleria(new RepositorioDeFotosEmMemoria()),
+  galeria: criarCasosDeUsoDaGaleria(new RepositorioDeAlbunsEmMemoria()),
   doacoes: criarCasosDeUsoDeDoacoes({ repositorio: new RepositorioDeDoacoesEmMemoria(), gerarQrCodeSvg }),
 };
 

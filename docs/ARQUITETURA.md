@@ -72,7 +72,7 @@ legado/                     Site estático anterior (não publicado)
 | **Eventos** | Agenda e avisos. Regra: o evento sai do site 2 h depois de começar; selo "Começa em…/Acontecendo agora/Amanhã/Em N dias"; fotos automáticas sem repetir; arquivo .ics | `resumoDaPaginaInicial`, `agendaCompleta`, `missasEspeciais`, `listarProximos`, `buscar`, `arquivoDeAgenda` | `GET /api/eventos`, `GET /api/eventos/:id`, `GET /api/eventos/:id/agenda` |
 | **Horarios** | Missas da semana, missas mensais, confissões, terços, adoração, igreja aberta e secretaria; "Hoje no Santuário"; resumo da secretaria | `obterQuadro`, `resumoDaSecretaria` | `GET /api/horarios` |
 | **Comunicados** | Notícias (mais recente primeiro, links só https) e recados paroquiais (os marcados `importante` vêm primeiro, com destaque) | `noticiasDaPagina`, `ultimasNoticias`, `listarNoticias`, `listarRecados` | `GET /api/noticias`, `GET /api/recados` |
-| **Galeria** | Fotos da comunidade (miniatura + foto grande) | `listar` | `GET /api/galeria` |
+| **Galeria** | Álbuns de fotos, um por evento (título, data opcional, capa e fotos com legenda); mais recentes primeiro, os sem data depois | `listarAlbuns`, `listarAlbunsPaginados`, `buscarAlbum` | `GET /api/galeria` |
 | **Doacoes** | PIX, dados bancários, destino das ofertas (percentuais somam 100%), QR Code | `obter`, `qrCodeDoPix` | `GET /api/doacoes`, `GET /api/doacoes/qrcode-pix` |
 | **Institucional** | Endereço, coordenadas, telefone, e-mail, redes sociais e a apresentação "Conheça o Santuário" (fonte única do rodapé, menus, contato e página inicial) | `obter`, `enderecoCompleto` | `GET /api/institucional` |
 | **Contato** | Esquema da mensagem (Zod) e montagem do e-mail. **Não há envio pelo servidor**: o formulário abre o aplicativo de e-mail da pessoa (como no site antigo) | — (só Domain) | — |
@@ -99,7 +99,8 @@ Criar esses módulos agora seria inventar funcionalidade ou simular segurança (
 `src/app/page.tsx` busca tudo pelos casos de uso, nesta ordem: abertura com vídeo (com botão de pausa),
 "Acontece no Santuário" (eventos; o título de cada evento leva a `/eventos#id`), horários de missa,
 notícias e recados (o título da notícia leva a `/noticias#id`; recado com `importante: true` aparece primeiro),
-galeria (as 5 primeiras fotos de `mocks/galeria.ts`, que ampliam ao tocar), "Conheça o Santuário"
+galeria (os 3 álbuns mais recentes de `mocks/galeria.ts`; cada álbum abre um visualizador com setas, miniaturas,
+teclado e deslizar do dedo; todos os álbuns ficam na página `/galeria`, com link direto `/galeria#id-do-album`), "Conheça o Santuário"
 (`institucional.apresentacao`) e doações. Contato e endereço ficam no rodapé, em todas as páginas.
 
 ## 5. API
@@ -119,7 +120,7 @@ Formato padrão de todas as respostas:
 | `GET /api/horarios` | — | 200 (inclui `resumoDaSecretaria`) |
 | `GET /api/noticias` | `categoria`, `pagina`, `porPagina` | 200, 400 |
 | `GET /api/recados` | `limite` (1–50) | 200, 400 |
-| `GET /api/galeria` | — | 200 |
+| `GET /api/galeria` | `pagina`, `porPagina` | 200 (álbuns com `fotoDeCapa` e `total`), 400 |
 | `GET /api/doacoes` | — | 200 |
 | `GET /api/doacoes/qrcode-pix` | — | 200 `image/svg+xml` |
 | `GET /api/institucional` | — | 200 |
@@ -168,7 +169,7 @@ Nada de banco foi instalado agora. O caminho previsto:
    Ambos usam consultas parametrizadas, o que previne SQL Injection.
 2. **Variável de ambiente** `DATABASE_URL` (só no servidor; validar em `src/config/ambiente.ts`; nunca `NEXT_PUBLIC_`).
    Na Vercel, use um Postgres com *pooling* (ex.: Neon ou Supabase) por causa das funções serverless.
-3. **Tabelas iniciais** (espelham os tipos do Domain): `eventos`, `noticias`, `recados`, `fotos_galeria`,
+3. **Tabelas iniciais** (espelham os tipos do Domain): `eventos`, `noticias`, `recados`, `albuns` e `fotos_album`,
    `horarios` (ou tabelas por tipo: `missas_semana`, `confissoes`, `tercos`…), `dados_institucionais`, `dados_doacao`.
    Relacionamentos futuros: `eventos.categoria_id → categorias`, `noticias.autor_id → usuarios`.
 4. **Migrations** versionadas no repositório (`prisma migrate` / `drizzle-kit`), aplicadas no deploy.

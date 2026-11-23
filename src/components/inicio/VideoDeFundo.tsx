@@ -41,6 +41,7 @@ export function VideoDeFundo() {
     const pausar = !pausadoRef.current;
     pausadoRef.current = pausar;
     setPausado(pausar);
+    document.documentElement.classList.toggle('movimento-pausado', pausar); // para também as animações da abertura
     if (pausar) video.pause();
     else void video.play().catch(() => {});
     try {
@@ -69,9 +70,13 @@ export function VideoDeFundo() {
     if (comecaPausado()) {
       pausadoRef.current = true;
       setPausado(true); // eslint-disable-line react-hooks/set-state-in-effect -- preferência só existe no navegador
+      document.documentElement.classList.add('movimento-pausado');
       video.pause();
       abrirSite();
-      return () => abrirSite();
+      return () => {
+        document.documentElement.classList.remove('movimento-pausado');
+        abrirSite();
+      };
     }
     video.addEventListener('playing', abrirSite, { once: true });
     video.addEventListener('error', abrirSite, true); // erro no <source> não sobe: por isso a captura
@@ -102,6 +107,7 @@ export function VideoDeFundo() {
       observador.disconnect();
       document.removeEventListener('visibilitychange', aoVoltar);
       INTERACOES.forEach((ev) => window.removeEventListener(ev, retomar));
+      document.documentElement.classList.remove('movimento-pausado');
       abrirSite();
     };
   }, []);
@@ -112,9 +118,9 @@ export function VideoDeFundo() {
       <button
         type="button"
         onClick={alternar}
-        className="absolute z-10 right-3 sm:right-6 top-[5.25rem] sm:top-24 grid place-items-center w-11 h-11 rounded-full bg-navy-950/50 text-white ring-1 ring-white/35 backdrop-blur-sm hover:bg-navy-950/75 hover:ring-gold-400 transition"
-        aria-label={pausado ? 'Tocar o vídeo de fundo' : 'Pausar o vídeo de fundo'}
-        title={pausado ? 'Tocar o vídeo' : 'Pausar o vídeo'}
+        className="absolute z-10 right-3 sm:right-6 top-[5.25rem] sm:top-24 grid place-items-center w-11 h-11 rounded-md bg-navy-950/50 text-white ring-1 ring-white/35 backdrop-blur-sm hover:bg-navy-950/75 hover:ring-gold-400 transition"
+        aria-label={pausado ? 'Retomar o vídeo e as animações' : 'Pausar o vídeo e as animações'}
+        title={pausado ? 'Retomar o vídeo e as animações' : 'Pausar o vídeo e as animações'}
       >
         {pausado ? (
           <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

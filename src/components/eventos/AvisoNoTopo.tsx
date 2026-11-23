@@ -23,7 +23,7 @@ export function AvisoNoTopo({
         <span className="absolute inset-0 rounded-full bg-gold-400 opacity-75 animate-ping"></span>
         <span className="relative w-2 h-2 rounded-full bg-gold-400"></span>
       </span>
-      <span className="shrink-0 font-caps text-[.8rem] sm:text-[.875rem] font-semibold tracking-[.22em] text-gold-300">
+      <span className="sm:shrink-0 text-left font-caps text-[.8rem] sm:text-[.875rem] font-semibold tracking-[.22em] text-gold-300">
         {rotulo}
       </span>
       <span className="min-w-0 text-left leading-snug sm:truncate font-serif text-base sm:text-lg text-white">
