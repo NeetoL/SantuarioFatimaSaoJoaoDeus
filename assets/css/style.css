@@ -139,6 +139,64 @@ p { text-wrap: pretty; }
   .calendario .dia.fechado .dia-corpo { justify-content: center; }
 }
 
+/* ---------- Hoje no Santuário (programação do dia) ---------- */
+.programacao .item-dia {
+  display: grid; grid-template-columns: 5.6rem 1fr auto; gap: 1rem; align-items: center;
+  padding: 1rem 0; border-bottom: 1px solid #ece3d0; transition: opacity .3s ease;
+}
+.programacao .item-dia:last-child { border-bottom: 0; }
+.programacao .hora {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.9rem; line-height: 1;
+  color: #8a6a18; font-variant-numeric: lining-nums;
+}
+.programacao .hora small { display: block; margin-top: .3rem; font-family: 'Inter', system-ui, sans-serif; font-size: .7rem; font-weight: 500; color: #64748b; }
+.programacao .item-dia.encerrado { opacity: .45; }
+.programacao .item-dia.agora .hora { color: #6b1f24; }
+.agora-tag {
+  display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .5rem; border-radius: 2px;
+  font-family: 'Cinzel', Georgia, serif; font-size: .55rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  background: #6b1f24; color: #fff;
+}
+.agora-tag::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: #e6cf8f; animation: pulsar 1.6s ease-in-out infinite; }
+@keyframes pulsar { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .agora-tag::before { animation: none; } }
+
+/* Versão curta (página inicial): fichas com hora + nome */
+.chip-dia {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem; border-radius: 2px;
+  background: #f8f3e9; border: 1px solid #ece3d0; font-size: .85rem; color: #23262f;
+}
+.chip-dia strong { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.15rem; line-height: 1; color: #8a6a18; font-variant-numeric: lining-nums; }
+.chip-dia.encerrado { opacity: .5; }
+.chip-dia.agora { border-color: #6b1f24; }
+.chip-dia .agora-tag { padding: .15rem .4rem; }
+
+/* ---------- Listas de horários com pontilhado (confissões, terços, igreja, secretaria) ---------- */
+.lista-horarios li {
+  display: flex; align-items: baseline; gap: .6rem;
+  padding: .75rem 0; border-bottom: 1px solid #ece3d0;
+}
+.lista-horarios li:last-child { border-bottom: 0; }
+.lista-horarios .rotulo { min-width: 0; font-weight: 500; color: #163a6b; }
+.lista-horarios .rotulo small { display: block; margin-top: .1rem; font-size: .78rem; font-weight: 400; color: #64748b; }
+.lista-horarios .pontos { flex: 1; min-width: 1rem; border-bottom: 1px dotted rgba(138,106,24,.5); transform: translateY(-.3rem); }
+.lista-horarios .hora {
+  text-align: right; white-space: nowrap;
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.4rem; line-height: 1.15;
+  color: #8a6a18; font-variant-numeric: lining-nums;
+}
+.lista-horarios li.fechada .rotulo { color: #94a3b8; }
+.lista-horarios li.fechada .hora { font-style: italic; font-weight: 500; font-size: 1.2rem; color: #94a3b8; }
+.lista-horarios li.e-hoje {
+  margin: 0 -.85rem; padding-left: .85rem; padding-right: .85rem; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(201,162,39,.16), rgba(201,162,39,.04));
+}
+.tag-hoje {
+  display: inline-block; margin-left: .5rem; padding: .12rem .4rem; border-radius: 2px; vertical-align: .15em;
+  font-family: 'Cinzel', Georgia, serif; font-size: .52rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  background: #c9a227; color: #081a33;
+}
+
 /* Rolagem lateral sem barra visível (sumário da página Sobre no celular) */
 .sem-barra { scrollbar-width: none; }
 .sem-barra::-webkit-scrollbar { display: none; }

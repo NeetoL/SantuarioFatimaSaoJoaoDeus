@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Horários de Missa — Santuário Nossa Senhora de Fátima e São João de Deus</title>
-  <meta name="description" content="Horários de missa do Santuário Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ): calendário de domingo a sábado, missas votivas e celebrações especiais." />
+  <title>Horários — Santuário Nossa Senhora de Fátima e São João de Deus</title>
+  <meta name="description" content="Horários do Santuário Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ): missas de domingo a sábado, missas votivas, confissões, terços, adoração ao Santíssimo, igreja aberta e secretaria." />
   <meta name="theme-color" content="#0f2a4f" />
 
   <!-- Ícones (brasão do Santuário) -->
@@ -75,7 +75,7 @@
         <li><a href="index.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Início</a></li>
         <li><a href="sobre.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Sobre</a></li>
         <li><a href="eventos.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Eventos</a></li>
-        <li><a href="missas.html" aria-current="page" class="block px-3 py-3 border-b border-white/5 text-gold-400">Horários de Missa</a></li>
+        <li><a href="missas.html" aria-current="page" class="block px-3 py-3 border-b border-white/5 text-gold-400">Missas e Horários</a></li>
         <li><a href="noticias.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Notícias</a></li>
         <li><a href="contato.html" class="block px-3 py-3 border-b border-white/5 hover:text-gold-400">Contato</a></li>
         <li class="pt-4"><a href="doacoes.html" class="btn btn-ouro w-full">Faça sua Doação</a></li>
@@ -94,18 +94,30 @@
       <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-950/80 to-transparent"></div>
       <div class="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent"></div>
 
-      <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-16 sm:pb-20 text-center">
-        <p class="eyebrow claro">Celebrações do Santuário</p>
-        <h1 class="font-serif font-semibold text-white text-[3.2rem] sm:text-7xl leading-none mt-5 tracking-[-0.01em]">Horários de Missa</h1>
+      <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-24 sm:pb-28 text-center">
+        <p class="eyebrow claro">Celebrações e atendimento</p>
+        <h1 class="font-serif font-semibold text-white text-[3.2rem] sm:text-7xl leading-none mt-5 tracking-[-0.01em]">Horários do Santuário</h1>
         <div class="divisor mt-7" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
         <p class="mt-7 font-texto italic text-xl sm:text-2xl text-white/85 max-w-2xl mx-auto leading-relaxed">
-          A Eucaristia é o coração do Santuário. Venha celebrar conosco.
+          Missas, confissões, orações e atendimento da secretaria, semana a semana.
         </p>
+        <nav aria-label="Nesta página" class="mt-9 flex flex-wrap justify-center gap-2">
+          <a href="#calendario" class="btn btn-vidro btn-sm">Missas</a>
+          <a href="#confissoes" class="btn btn-vidro btn-sm">Confissões e orações</a>
+          <a href="#secretaria" class="btn btn-vidro btn-sm">Igreja e secretaria</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Hoje no Santuário: programação do dia, montada por assets/js/missas.js -->
+    <section id="hoje" class="relative z-10 bg-ivory-100" aria-label="Hoje no Santuário">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 sm:-mt-16">
+        <div class="rounded-md bg-white ring-1 ring-ivory-200 shadow-2xl shadow-navy-950/25 overflow-hidden" data-hoje-santuario></div>
       </div>
     </section>
 
     <!-- Calendário semanal (horários em assets/js/missas.js) -->
-    <section id="calendario" class="scroll-mt-20 py-20 sm:py-24 bg-ivory-100">
+    <section id="calendario" class="scroll-mt-20 pt-16 sm:pt-20 pb-20 sm:pb-24 bg-ivory-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header class="text-center max-w-3xl mx-auto reveal">
           <p class="eyebrow">Calendário semanal</p>
@@ -131,9 +143,58 @@
           <p class="eyebrow">Uma vez por mês</p>
           <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Missas votivas</h2>
           <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
-          <p class="mt-6 text-lg text-slate-600">Na primeira sexta-feira e no primeiro sábado de cada mês, às 8h.</p>
+          <p class="mt-6 text-lg text-slate-600">Na primeira sexta-feira (às 8h e às 19h) e no primeiro sábado (às 8h) de cada mês.</p>
         </header>
         <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-5xl mx-auto" data-proximas-mensais></div>
+      </div>
+    </section>
+
+    <!-- Confissões, terços e adoração (horários em assets/js/missas.js) -->
+    <section id="confissoes" class="scroll-mt-20 py-20 sm:py-24 bg-ivory-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Sacramentos e devoções</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Confissões, terços e adoração</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Momentos de reconciliação e de oração ao longo da semana.</p>
+        </header>
+        <div class="mt-12 grid gap-6 lg:grid-cols-3" data-devocoes></div>
+      </div>
+    </section>
+
+    <!-- Igreja aberta e secretaria (horários em assets/js/missas.js) -->
+    <section id="secretaria" class="scroll-mt-20 py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Funcionamento</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Igreja aberta e secretaria</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">A igreja fica aberta para visitas e oração pessoal. A secretaria atende pedidos de sacramentos, documentos e intenções de missa.</p>
+        </header>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-5xl mx-auto items-start">
+          <article class="reveal rounded-md bg-ivory-50 ring-1 ring-ivory-200 p-7 sm:p-8">
+            <span class="grid place-items-center w-12 h-12 rounded-full bg-navy-900 text-gold-300 ring-4 ring-gold-500/15"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M10 4h4M5 21V11l7-5 7 5v10M3 21h18M10 21v-5a2 2 0 0 1 4 0v5"/></svg></span>
+            <p class="mt-5 font-caps text-[11px] font-semibold tracking-[.22em] text-gold-700">Visitas e oração pessoal</p>
+            <h3 class="mt-1.5 font-serif font-semibold text-3xl text-navy-900 leading-tight">Igreja aberta</h3>
+            <ul class="lista-horarios mt-5" data-tabela-horarios="igreja" aria-label="Horário da igreja, de domingo a sábado"></ul>
+          </article>
+
+          <article class="reveal rounded-md bg-ivory-50 ring-1 ring-ivory-200 p-7 sm:p-8">
+            <span class="grid place-items-center w-12 h-12 rounded-full bg-navy-900 text-gold-300 ring-4 ring-gold-500/15"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <p class="mt-5 font-caps text-[11px] font-semibold tracking-[.22em] text-gold-700">Atendimento</p>
+            <h3 class="mt-1.5 font-serif font-semibold text-3xl text-navy-900 leading-tight">Secretaria do Santuário</h3>
+            <ul class="lista-horarios mt-5" data-tabela-horarios="secretaria" aria-label="Horário da secretaria, de domingo a sábado"></ul>
+            <div class="mt-6 rounded-sm border-l-2 border-wine-700 bg-white px-5 py-4">
+              <p class="font-caps text-[10px] font-semibold tracking-[.2em] text-wine-700">Intenções de missa</p>
+              <p class="mt-1.5 text-slate-700 leading-relaxed">São recebidas <strong class="font-semibold text-navy-900">presencialmente na secretaria</strong> do Santuário, nos horários acima.</p>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <a href="tel:+5521964322134" class="inline-flex items-center gap-2 text-navy-800 hover:text-gold-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>(21) 96432-2134</a>
+              <a href="contato.html" class="inline-flex items-center gap-2 text-navy-800 hover:text-gold-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Fale conosco</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -214,9 +275,9 @@
       <div>
         <h2 class="font-caps text-[11px] font-semibold tracking-[.24em] text-gold-400">Secretaria Paroquial</h2>
         <ul class="mt-4 space-y-2 text-sm">
-          <li>Segunda a sexta: 9h às 12h e 14h às 19h</li>
-          <li>Sábado: 9h às 12h</li>
-          <li>Domingo e Terça: fechada</li>
+          <li>Segunda, quarta, quinta e sexta: 9h às 12h e 14h às 19h</li>
+          <li>Sábado: 8h às 12h</li>
+          <li>Terça, domingo e feriados: fechada</li>
         </ul>
       </div>
 
