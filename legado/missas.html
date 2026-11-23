@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horários — Santuário Nossa Senhora de Fátima e São João de Deus</title>
+  <meta name="description" content="Horários do Santuário Nossa Senhora de Fátima e São João de Deus, em Realengo (RJ): missas de domingo a sábado, missas votivas, confissões, terços, adoração ao Santíssimo, igreja aberta e secretaria." />
+  <meta name="theme-color" content="#0f2a4f" />
+  <!-- Tamanho da letra escolhido pela pessoa (botão A+), aplicado antes de desenhar a página -->
+  <script>try{var f=+localStorage.getItem('fonte');if(f>0&&f<3)document.documentElement.classList.add('fonte-'+f)}catch(e){}</script>
+
+  <!-- Ícones (brasão do Santuário) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <!-- Fontes: Cormorant Garamond (títulos), Cinzel (rótulos), EB Garamond (textos longos), Inter (menus) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN + identidade visual -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Estilos próprios -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-white text-slate-700 antialiased">
+
+  <!-- Link de acessibilidade: pular direto para o conteúdo -->
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold-500 focus:text-navy-950 focus:px-4 focus:py-2 focus:rounded-md font-semibold">
+    Pular para o conteúdo
+  </a>
+
+  <!-- =====================================================
+       CABEÇALHO / NAVBAR FIXA (igual ao das outras páginas)
+       ===================================================== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-[16px] sm:px-[24px] lg:px-[32px] h-20 flex items-center justify-between" aria-label="Navegação principal">
+
+      <!-- Logotipo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Santuário Nossa Senhora de Fátima e São João de Deus — página inicial">
+        <img src="assets/img/logo-santuario-sm.png" alt="" width="131" height="240"
+             class="h-[56px] w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,.35)] group-hover:scale-105 transition-transform" />
+        <span class="leading-none">
+          <span class="block font-caps text-[10px] sm:text-[10.5px] font-semibold tracking-[.26em] text-gold-400">Santuário Arquidiocesano</span>
+          <span class="block font-serif text-[19px] sm:text-[22px] font-semibold text-white mt-1">Nossa Senhora de Fátima</span>
+          <span class="block font-serif italic text-[14.5px] sm:text-[15px] text-white/85 mt-0.5">e São João de Deus</span>
+        </span>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="hidden lg:flex items-center gap-[4px] text-[12.5px] xl:text-[13px] font-semibold uppercase tracking-[.12em] xl:tracking-[.15em] text-white">
+        <li><a href="index.html" class="nav-link px-[8px] xl:px-[12px] py-[8px] hover:text-gold-400 transition-colors">Início</a></li>
+        <li><a href="sobre.html" class="nav-link px-[8px] xl:px-[12px] py-[8px] hover:text-gold-400 transition-colors">Sobre</a></li>
+        <li><a href="eventos.html" class="nav-link px-[8px] xl:px-[12px] py-[8px] hover:text-gold-400 transition-colors">Eventos</a></li>
+        <li><a href="missas.html" aria-current="page" class="nav-link px-[8px] xl:px-[12px] py-[8px] text-gold-400 transition-colors">Missas</a></li>
+        <li><a href="noticias.html" class="nav-link px-[8px] xl:px-[12px] py-[8px] hover:text-gold-400 transition-colors">Notícias</a></li>
+        <li><a href="contato.html" class="nav-link px-[8px] xl:px-[12px] py-[8px] hover:text-gold-400 transition-colors">Contato</a></li>
+        <li class="ml-[8px]"><button type="button" data-letra class="btn-letra" title="Aumentar ou diminuir a letra" aria-label="Tamanho da letra">A<span>+</span></button></li>
+        <li class="ml-[8px]"><a href="doacoes.html" class="btn btn-ouro btn-sm">Doações</a></li>
+      </ul>
+
+      <!-- Botão hambúrguer (mobile) -->
+      <button id="menu-toggle" class="burger lg:hidden grid gap-[5px] p-3 -mr-2 rounded-md text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+        <span class="block w-6 h-0.5 bg-current rounded"></span>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <!-- Menu do celular (tela cheia) -->
+    <div id="mobile-menu" class="lg:hidden">
+      <div class="menu-celular-fundo" aria-hidden="true"></div>
+      <div class="relative max-w-lg mx-auto px-5 pt-4 pb-12">
+        <ul class="menu-celular-links">
+          <li><a href="index.html"><span class="num">I</span><span class="txt">Início<small>Página principal</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+          <li><a href="sobre.html"><span class="num">II</span><span class="txt">Sobre<small>Nossa história</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+          <li><a href="eventos.html"><span class="num">III</span><span class="txt">Eventos<small>Agenda e avisos</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+          <li><a href="missas.html" aria-current="page"><span class="num">IV</span><span class="txt">Missas e Horários<small>Confissões, terços e secretaria</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+          <li><a href="noticias.html"><span class="num">V</span><span class="txt">Notícias<small>Comunicados e recados</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+          <li><a href="contato.html"><span class="num">VI</span><span class="txt">Contato<small>Fale com a secretaria</small></span><svg class="seta" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></li>
+        </ul>
+        <div class="mt-7 grid grid-cols-2 gap-3">
+          <a href="tel:+5521964322134" class="btn btn-vidro"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Ligar</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=-22.892126,-43.417065" target="_blank" rel="noopener" class="btn btn-vidro"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Como chegar</a>
+        </div>
+        <a href="doacoes.html" class="btn btn-ouro w-full mt-3"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg>Faça sua Doação</a>
+
+        <!-- Tamanho da letra -->
+        <div class="mt-9 rounded-md border border-white/15 bg-white/[.04] p-4">
+          <p id="letra-titulo" class="font-caps text-[.8rem] font-semibold tracking-[.2em] text-gold-300">Tamanho da letra</p>
+          <div class="mt-3 grid grid-cols-3 gap-2" role="group" aria-labelledby="letra-titulo">
+            <button type="button" class="letra-opcao" data-letra-nivel="0" aria-pressed="true"><span class="text-[1.1rem]">A</span>Normal</button>
+            <button type="button" class="letra-opcao" data-letra-nivel="1" aria-pressed="false"><span class="text-[1.4rem]">A</span>Grande</button>
+            <button type="button" class="letra-opcao" data-letra-nivel="2" aria-pressed="false"><span class="text-[1.75rem]">A</span>Maior</button>
+          </div>
+        </div>
+
+        <p class="mt-9 text-center font-serif italic text-lg text-white/80">“Por fim, o meu Imaculado Coração triunfará.”</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- =====================================================
+         ABERTURA
+         ===================================================== -->
+    <section id="topo" class="relative min-h-[58svh] flex items-end overflow-hidden img-fallback bg-navy-950">
+      <img src="assets/img/sobre/celebracao-altar.jpg" alt="" aria-hidden="true" data-fallback
+           class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-navy-950/35"></div>
+      <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-950/80 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent"></div>
+
+      <div class="relative w-full max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-24 sm:pb-28 text-center">
+        <p class="eyebrow claro">Celebrações e atendimento</p>
+        <h1 class="font-serif font-semibold text-white text-[3.2rem] sm:text-7xl leading-none mt-5 tracking-[-0.01em]">Horários do Santuário</h1>
+        <div class="divisor mt-7" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+        <p class="mt-7 font-texto italic text-xl sm:text-2xl text-white/85 max-w-2xl mx-auto leading-relaxed">
+          Missas, confissões, orações e atendimento da secretaria, semana a semana.
+        </p>
+        <nav aria-label="Nesta página" class="mt-9 flex flex-wrap justify-center gap-2">
+          <a href="#calendario" class="btn btn-vidro btn-sm">Missas</a>
+          <a href="#confissoes" class="btn btn-vidro btn-sm">Confissões e orações</a>
+          <a href="#secretaria" class="btn btn-vidro btn-sm">Igreja e secretaria</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Hoje no Santuário: programação do dia, montada por assets/js/missas.js -->
+    <section id="hoje" class="relative z-10 bg-ivory-100" aria-label="Hoje no Santuário">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 sm:-mt-16">
+        <div class="rounded-md bg-white ring-1 ring-ivory-200 shadow-2xl shadow-navy-950/25 overflow-hidden" data-hoje-santuario></div>
+      </div>
+    </section>
+
+    <!-- Calendário semanal (horários em assets/js/missas.js) -->
+    <section id="calendario" class="scroll-mt-20 pt-16 sm:pt-20 pb-20 sm:pb-24 bg-ivory-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Calendário semanal</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Missas de domingo a sábado</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Celebrações fixas do Santuário, todas as semanas. O dia de hoje aparece em destaque.</p>
+        </header>
+        <div class="mt-12 rounded-md secao-escura text-white ring-1 ring-gold-500/20 shadow-2xl shadow-navy-950/25 p-3 sm:p-5 reveal">
+          <ol class="calendario grid gap-2.5 sm:gap-3 lg:grid-cols-7" aria-label="Missas de domingo a sábado" data-calendario-missas></ol>
+          <div class="flex flex-wrap justify-center gap-x-7 gap-y-2 px-3 pt-5 pb-1 text-sm text-white/80">
+            <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-gold-500"></span>Hoje</span>
+            <span class="inline-flex items-center gap-2"><span class="mensal !mb-0">1º</span>Uma vez por mês</span>
+            <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded-sm dia-fechado-amostra"></span>Igreja fechada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Missas de uma vez por mês: próxima data calculada sozinha -->
+    <section id="mensais" class="scroll-mt-20 py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Uma vez por mês</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Missas votivas</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Na primeira sexta-feira (às 8h e às 19h) e no primeiro sábado (às 8h) de cada mês.</p>
+        </header>
+        <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-5xl mx-auto" data-proximas-mensais></div>
+      </div>
+    </section>
+
+    <!-- Confissões, terços e adoração (horários em assets/js/missas.js) -->
+    <section id="confissoes" class="scroll-mt-20 py-20 sm:py-24 bg-ivory-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Sacramentos e devoções</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Confissões, terços e adoração</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">Momentos de reconciliação e de oração ao longo da semana.</p>
+        </header>
+        <div class="mt-12 grid gap-6 lg:grid-cols-3" data-devocoes></div>
+      </div>
+    </section>
+
+    <!-- Igreja aberta e secretaria (horários em assets/js/missas.js) -->
+    <section id="secretaria" class="scroll-mt-20 py-20 sm:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center max-w-3xl mx-auto reveal">
+          <p class="eyebrow">Funcionamento</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-4 leading-[1.05]">Igreja aberta e secretaria</h2>
+          <div class="divisor mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-6 text-lg text-slate-600">A igreja fica aberta para visitas e oração pessoal. A secretaria atende pedidos de sacramentos, documentos e intenções de missa.</p>
+        </header>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-2 max-w-5xl mx-auto items-start">
+          <article class="reveal rounded-md bg-ivory-50 ring-1 ring-ivory-200 p-7 sm:p-8">
+            <span class="grid place-items-center w-12 h-12 rounded-full bg-navy-900 text-gold-300 ring-4 ring-gold-500/15"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M10 4h4M5 21V11l7-5 7 5v10M3 21h18M10 21v-5a2 2 0 0 1 4 0v5"/></svg></span>
+            <p class="mt-5 font-caps text-[.875rem] font-semibold tracking-[.22em] text-gold-700">Visitas e oração pessoal</p>
+            <h3 class="mt-1.5 font-serif font-semibold text-3xl text-navy-900 leading-tight">Igreja aberta</h3>
+            <ul class="lista-horarios mt-5" data-tabela-horarios="igreja" aria-label="Horário da igreja, de domingo a sábado"></ul>
+          </article>
+
+          <article class="reveal rounded-md bg-ivory-50 ring-1 ring-ivory-200 p-7 sm:p-8">
+            <span class="grid place-items-center w-12 h-12 rounded-full bg-navy-900 text-gold-300 ring-4 ring-gold-500/15"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <p class="mt-5 font-caps text-[.875rem] font-semibold tracking-[.22em] text-gold-700">Atendimento</p>
+            <h3 class="mt-1.5 font-serif font-semibold text-3xl text-navy-900 leading-tight">Secretaria do Santuário</h3>
+            <ul class="lista-horarios mt-5" data-tabela-horarios="secretaria" aria-label="Horário da secretaria, de domingo a sábado"></ul>
+            <div class="mt-6 rounded-sm border-l-2 border-wine-700 bg-white px-5 py-4">
+              <p class="font-caps text-[.8rem] font-semibold tracking-[.2em] text-wine-700">Intenções de missa</p>
+              <p class="mt-1.5 text-slate-700 leading-relaxed">São recebidas <strong class="font-semibold text-navy-900">presencialmente na secretaria</strong> do Santuário, nos horários acima.</p>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-base">
+              <a href="tel:+5521964322134" class="inline-flex items-center gap-2 text-navy-800 hover:text-gold-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>(21) 96432-2134</a>
+              <a href="contato.html" class="inline-flex items-center gap-2 text-navy-800 hover:text-gold-700"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Fale conosco</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Celebrações especiais: eventos da categoria Missa (assets/js/eventos.js) -->
+    <section id="bloco-missas-especiais" class="py-20 sm:py-24 bg-ivory-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+          <div>
+            <p class="eyebrow">Agenda</p>
+            <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-navy-900 mt-3 leading-[1.05]">Celebrações especiais</h2>
+          </div>
+          <a href="eventos.html" class="group inline-flex items-center gap-2 text-[.84rem] font-semibold uppercase tracking-[.16em] text-navy-800 hover:text-gold-700">Ver todos os eventos <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div id="missas-especiais" class="mt-12 grid gap-x-7 gap-y-9 md:grid-cols-2 xl:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- Como chegar -->
+    <section id="como-chegar" class="secao-escura text-white py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+        <div class="reveal">
+          <p class="eyebrow claro">Venha nos visitar</p>
+          <h2 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.05]">Como chegar</h2>
+          <div class="divisor esquerda mt-6" aria-hidden="true"><svg viewBox="0 0 12 20"><path d="M5 0h2v4h3v2H7v2h5v2H7v10H5V10H0V8h5V6H2V4h3z"/></svg></div>
+          <p class="mt-7 font-texto text-xl leading-relaxed text-white/85">Estrada Manuel Nogueira de Sá, 1421<br />Realengo — Rio de Janeiro / RJ</p>
+          <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=-22.892126,-43.417065" target="_blank" rel="noopener" class="btn btn-ouro"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Abrir no mapa</a>
+            <a href="contato.html" class="btn btn-vidro"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Fale conosco</a>
+          </div>
+        </div>
+        <div class="reveal pr-4 sm:pr-5 pb-4">
+          <div class="moldura">
+            <div class="bg-navy-900 aspect-[4/3]">
+              <iframe src="https://maps.google.com/maps?q=-22.892126,-43.417065&amp;hl=pt-BR&amp;z=17&amp;output=embed"
+                      title="Mapa: localização do Santuário em Realengo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                      class="w-full h-full border-0"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       RODAPÉ / CONTATO (igual ao das outras páginas)
+       ===================================================== -->
+  <footer id="contato" class="bg-navy-950 text-white/85 border-t border-gold-500/25">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src="assets/img/logo-santuario-sm.png" alt="Brasão do Santuário" width="131" height="240" loading="lazy"
+             class="h-24 w-auto mb-5" />
+        <p class="font-caps text-[.8rem] font-semibold tracking-[.28em] text-gold-400">Santuário Arquidiocesano</p>
+        <p class="font-serif font-semibold text-[1.7rem] leading-tight text-white mt-1.5">Nossa Senhora de Fátima <span class="block italic font-medium text-white/85 text-xl">e São João de Deus</span></p>
+        <p class="mt-5 citacao text-lg text-white/80">"Por fim, o meu Imaculado Coração triunfará."</p>
+        <!-- Redes sociais -->
+        <div class="mt-6 flex gap-3">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener" aria-label="Canal do Santuário no YouTube" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.7 3.1z"/></svg>
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook do Santuário" class="grid place-items-center w-11 h-11 rounded-full border border-white/20 hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4c-3.3 0-4 2.4-4 4v3H7v4h3v11h4V12h3.4l.6-4z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-caps text-[.875rem] font-semibold tracking-[.24em] text-gold-400">Endereço</h2>
+        <address class="not-italic mt-4 text-base leading-relaxed">
+          Estrada Manuel Nogueira de Sá, 1421<br />
+          Realengo — Rio de Janeiro / RJ
+        </address>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=-22.892126,-43.417065" target="_blank" rel="noopener" class="inline-block mt-3 text-base text-gold-400 hover:underline">Ver no mapa →</a>
+      </div>
+
+      <div>
+        <h2 class="font-caps text-[.875rem] font-semibold tracking-[.24em] text-gold-400">Secretaria Paroquial</h2>
+        <ul class="mt-4 space-y-2 text-base">
+          <li>Segunda, quarta, quinta e sexta: 9h às 12h e 14h às 19h</li>
+          <li>Sábado: 8h às 12h</li>
+          <li>Terça, domingo e feriados: fechada</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-caps text-[.875rem] font-semibold tracking-[.24em] text-gold-400">Contato</h2>
+        <ul class="mt-4 space-y-2 text-base">
+          <li><a href="tel:+5521964322134" class="hover:text-gold-400">(21) 96432-2134</a></li>
+          <li><a href="mailto:fatimaejoaodedeus@arqrio.org.br" class="hover:text-gold-400 break-all">fatimaejoaodedeus@arqrio.org.br</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row gap-2 justify-between text-sm text-white/75">
+        <p>© <span id="ano"></span> Santuário Nossa Senhora de Fátima e São João de Deus. Todos os direitos reservados.</p>
+        <p>Desenvolvido com fé pela PASCOM.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra de atalhos do celular (some no computador) -->
+  <nav class="barra-celular" aria-label="Atalhos">
+    <a href="missas.html" aria-current="page"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Horários</span></a>
+    <a href="eventos.html"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Eventos</span></a>
+    <a href="tel:+5521964322134"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Ligar</span></a>
+    <a href="doacoes.html"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg><span>Doar</span></a>
+    <button type="button" data-letra aria-label="Tamanho da letra"><span class="letra-icone" aria-hidden="true">A<small>+</small></span><span>Letra</span></button>
+  </nav>
+
+
+  <!-- Botão voltar ao topo -->
+  <a href="#topo" id="to-top" class="fixed bottom-[88px] lg:bottom-5 right-4 lg:right-5 z-40 grid place-items-center w-12 h-12 rounded-full bg-gold-500 text-navy-950 shadow-lg opacity-0 pointer-events-none transition-opacity" aria-label="Voltar ao topo">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+  </a>
+
+  <!-- Aviso rápido (ex.: "Abra o arquivo baixado…") -->
+  <div id="toast" class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[70] px-5 py-3 rounded-full bg-navy-900 text-white text-base shadow-xl opacity-0 pointer-events-none transition-opacity" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/eventos.js"></script>
+  <script src="assets/js/missas.js"></script>
+  <script src="assets/js/comum.js"></script>
+</body>
+</html>
