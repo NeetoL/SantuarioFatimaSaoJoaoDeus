@@ -343,6 +343,39 @@ html.carregando #preloader { opacity: 1; visibility: visible; pointer-events: au
 @keyframes preloader-pulsar { 0%, 100% { opacity: .8; transform: scale(.97); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes preloader-barra { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
 
+/* ===========================================================
+   PÁGINA INICIAL
+   =========================================================== */
+
+/* ---------- Mosaico de fotos: uma grande e quatro menores ----------
+   Celular e tablet: a grande ocupa a largura toda, as outras ficam 2×2.
+   Computador: a grande à esquerda (duas linhas), as outras 2×2 à direita. */
+.mosaico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+.mosaico > li { position: relative; aspect-ratio: 1; }
+.mosaico > li:first-child { grid-column: span 2; aspect-ratio: 16 / 10; }
+.mosaico-legenda {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem .85rem; text-align: left;
+  font-family: var(--fonte-titulos), Georgia, serif; font-style: italic; font-weight: 500; font-size: 1.15rem; line-height: 1.25; color: #fff;
+  background: linear-gradient(to top, rgba(8,26,51,.85), rgba(8,26,51,0));
+  opacity: 0; transition: opacity .35s ease;
+}
+.foto-btn:hover .mosaico-legenda, .foto-btn:focus-visible .mosaico-legenda { opacity: 1; }
+@media (min-width: 640px) { .mosaico { gap: .75rem; } }
+@media (min-width: 1024px) {
+  .mosaico { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, clamp(11rem, 16vw, 15rem)); }
+  .mosaico > li, .mosaico > li:first-child { aspect-ratio: auto; }
+  .mosaico > li:first-child { grid-row: span 2; }
+}
+
+/* Divisor centralizado no celular e alinhado à esquerda no computador */
+@media (min-width: 1024px) {
+  .divisor.esquerda-lg { justify-content: flex-start; }
+  .divisor.esquerda-lg::before { display: none; }
+}
+
+/* Card aberto por um link com # (ex.: /eventos#id vindo da página inicial): moldura dourada */
+.cartao-alvo:target { outline: 3px solid #c9a227; outline-offset: 6px; }
+
 /* Textos longos (e-mail, chave PIX) e letra grande: os cartões encolhem e o texto quebra,
    em vez de alargar a página no celular */
 main .grid > * { min-width: 0; }

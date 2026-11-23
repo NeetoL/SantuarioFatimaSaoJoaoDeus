@@ -71,10 +71,10 @@ legado/                     Site estático anterior (não publicado)
 |---|---|---|---|
 | **Eventos** | Agenda e avisos. Regra: o evento sai do site 2 h depois de começar; selo "Começa em…/Acontecendo agora/Amanhã/Em N dias"; fotos automáticas sem repetir; arquivo .ics | `resumoDaPaginaInicial`, `agendaCompleta`, `missasEspeciais`, `listarProximos`, `buscar`, `arquivoDeAgenda` | `GET /api/eventos`, `GET /api/eventos/:id`, `GET /api/eventos/:id/agenda` |
 | **Horarios** | Missas da semana, missas mensais, confissões, terços, adoração, igreja aberta e secretaria; "Hoje no Santuário"; resumo da secretaria | `obterQuadro`, `resumoDaSecretaria` | `GET /api/horarios` |
-| **Comunicados** | Notícias (mais recente primeiro, links só https) e recados paroquiais | `noticiasDaPagina`, `ultimasNoticias`, `listarNoticias`, `listarRecados` | `GET /api/noticias`, `GET /api/recados` |
+| **Comunicados** | Notícias (mais recente primeiro, links só https) e recados paroquiais (os marcados `importante` vêm primeiro, com destaque) | `noticiasDaPagina`, `ultimasNoticias`, `listarNoticias`, `listarRecados` | `GET /api/noticias`, `GET /api/recados` |
 | **Galeria** | Fotos da comunidade (miniatura + foto grande) | `listar` | `GET /api/galeria` |
 | **Doacoes** | PIX, dados bancários, destino das ofertas (percentuais somam 100%), QR Code | `obter`, `qrCodeDoPix` | `GET /api/doacoes`, `GET /api/doacoes/qrcode-pix` |
-| **Institucional** | Endereço, coordenadas, telefone, e-mail, redes sociais (fonte única do rodapé, menus e contato) | `obter`, `enderecoCompleto` | `GET /api/institucional` |
+| **Institucional** | Endereço, coordenadas, telefone, e-mail, redes sociais e a apresentação "Conheça o Santuário" (fonte única do rodapé, menus, contato e página inicial) | `obter`, `enderecoCompleto` | `GET /api/institucional` |
 | **Contato** | Esquema da mensagem (Zod) e montagem do e-mail. **Não há envio pelo servidor**: o formulário abre o aplicativo de e-mail da pessoa (como no site antigo) | — (só Domain) | — |
 
 Não existem módulos de autenticação, usuários, membros ou dízimo com cadastro: o site não tem essas funções hoje.
@@ -87,11 +87,20 @@ Criar esses módulos agora seria inventar funcionalidade ou simular segurança (
 - São lidos **somente** pelos repositórios `…EmMemoria` (camada Infrastructure), que devolvem cópias (`structuredClone`).
 - São **somente leitura** e **determinísticos**: nada é gravado, nada depende de memória compartilhada entre
   requisições (na Vercel cada função pode rodar em instâncias diferentes). Não há `localStorage` usado como banco.
-  O único dado guardado no navegador é a preferência de tamanho de letra (A+), que é do aparelho da pessoa.
+  Os únicos dados guardados no navegador são preferências do aparelho da pessoa: o tamanho da letra (A+)
+  e se ela pausou o vídeo da página inicial.
 - Conteúdo: horários, endereço, telefone e e-mail são **reais e públicos**. Eventos, notícias, recados, chave PIX,
   dados bancários e percentuais são **exemplos** (os mesmos do site antigo) — a API de doações avisa isso.
 
 **Para mudar um conteúdo hoje:** edite o arquivo em `src/mocks/`, rode `npm run verificar` e publique.
+
+### A página inicial
+
+`src/app/page.tsx` busca tudo pelos casos de uso, nesta ordem: abertura com vídeo (com botão de pausa),
+"Acontece no Santuário" (eventos; o título de cada evento leva a `/eventos#id`), horários de missa,
+notícias e recados (o título da notícia leva a `/noticias#id`; recado com `importante: true` aparece primeiro),
+galeria (as 5 primeiras fotos de `mocks/galeria.ts`, que ampliam ao tocar), "Conheça o Santuário"
+(`institucional.apresentacao`) e doações. Contato e endereço ficam no rodapé, em todas as páginas.
 
 ## 5. API
 

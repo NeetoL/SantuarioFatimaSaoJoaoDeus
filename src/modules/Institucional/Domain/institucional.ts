@@ -6,6 +6,8 @@ export type DadosInstitucionais = {
   telefone: { exibicao: string; internacional: string };
   email: string;
   redesSociais: { rede: 'Instagram' | 'YouTube' | 'Facebook'; url: string; rotulo: string }[];
+  /** Bloco "Conheça o Santuário" da página inicial (textos da página Sobre). */
+  apresentacao: { titulo: string; texto: string };
 };
 
 /** "Estrada Manuel Nogueira de Sá, 1421, Realengo, Rio de Janeiro - RJ" */

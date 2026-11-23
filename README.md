@@ -27,10 +27,10 @@ npm run dev        # http://localhost:3000
 |---|---|
 | Eventos e avisos | `src/mocks/eventos.ts` |
 | Horários (missas, confissões, terços, adoração, igreja, secretaria) | `src/mocks/horarios.ts` |
-| Notícias e recados | `src/mocks/comunicados.ts` |
-| Galeria de fotos | `src/mocks/galeria.ts` |
+| Notícias e recados (`importante: true` destaca um recado) | `src/mocks/comunicados.ts` |
+| Galeria de fotos (as 5 primeiras aparecem na página inicial) | `src/mocks/galeria.ts` |
 | PIX, banco e destino das doações (**hoje são exemplos**) | `src/mocks/doacoes.ts` |
-| Endereço, telefone, e-mail e redes sociais | `src/mocks/institucional.ts` |
+| Endereço, telefone, e-mail, redes sociais e o texto "Conheça o Santuário" | `src/mocks/institucional.ts` |
 | Fotos e vídeos | `public/assets/` |
 
 ## Documentação

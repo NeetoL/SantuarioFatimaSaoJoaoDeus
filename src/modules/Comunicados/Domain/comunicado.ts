@@ -12,9 +12,20 @@ export type Noticia = {
   link?: string;
 };
 
-export type Recado = { id: string; titulo: string; texto: string };
+export type Recado = {
+  id: string;
+  titulo: string;
+  texto: string;
+  /** Aviso que precisa chamar a atenção (ex.: mudança de horário). Aparece antes dos outros, com destaque. */
+  importante?: boolean;
+};
 
 const MESES_CURTOS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'] as const;
+
+/** Os importantes primeiro; entre eles, a ordem em que foram cadastrados. */
+export function ordenarRecados(recados: readonly Recado[]): Recado[] {
+  return [...recados].sort((a, b) => Number(Boolean(b.importante)) - Number(Boolean(a.importante)));
+}
 
 /** A mais recente primeiro. */
 export function ordenarPorData(noticias: readonly Noticia[]): Noticia[] {

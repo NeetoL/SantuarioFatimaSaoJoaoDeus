@@ -2,6 +2,7 @@ import { type DadosInstitucionais } from '@/modules/Institucional/Domain/institu
 
 /**
  * DADOS INSTITUCIONAIS — reais e públicos (endereço, telefone e e-mail da secretaria).
+ * A apresentação (página inicial) usa os textos da página Sobre.
  * As redes sociais ainda apontam para as páginas iniciais (exemplo): troque pelos perfis do Santuário.
  */
 export const DADOS_INSTITUCIONAIS: DadosInstitucionais = {
@@ -21,4 +22,9 @@ export const DADOS_INSTITUCIONAIS: DadosInstitucionais = {
     { rede: 'YouTube', url: 'https://youtube.com/', rotulo: 'Canal do Santuário no YouTube' },
     { rede: 'Facebook', url: 'https://facebook.com/', rotulo: 'Facebook do Santuário' },
   ],
+  apresentacao: {
+    titulo: 'Santuário da Saúde e da Paz',
+    texto:
+      'No coração de Jardim Novo, em Realengo, este lugar nasceu da fé de uma comunidade e tornou-se casa de oração, acolhida e esperança para todos que chegam.',
+  },
 };

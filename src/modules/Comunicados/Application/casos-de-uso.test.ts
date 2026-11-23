@@ -16,6 +16,7 @@ const casos = criarCasosDeUsoDeComunicados(
   new RepositorioDeRecadosEmMemoria([
     { id: '1', titulo: 'R1', texto: 't' },
     { id: '2', titulo: 'R2', texto: 't' },
+    { id: '3', titulo: 'R3', texto: 't', importante: true },
   ]),
 );
 
@@ -38,6 +39,10 @@ describe('comunicados', () => {
     const r = await casos.listarNoticias({ categoria: 'comunidade', paginacao: { pagina: 1, porPagina: 10 } });
     expect(r.itens.map((n) => n.id)).toEqual(['b', 'c']);
     expect(await casos.listarRecados(1)).toHaveLength(1);
+  });
+
+  it('recados importantes vêm primeiro, sem mudar a ordem dos demais', async () => {
+    expect((await casos.listarRecados()).map((r) => r.id)).toEqual(['3', '1', '2']);
   });
 
   it('formata as datas', () => {
