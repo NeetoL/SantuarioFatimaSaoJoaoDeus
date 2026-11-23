@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Vídeo de fundo da página inicial (hospedado no próprio site, sem som, em loop).
@@ -17,9 +17,39 @@ const HTML_DO_VIDEO =
   '</video>';
 
 const INTERACOES = ['touchstart', 'pointerdown', 'scroll', 'keydown'] as const;
+const CHAVE = 'video-pausado';
+
+/** Quem pediu "menos movimento" no aparelho, ou pausou o vídeo antes, recebe o vídeo parado. */
+function comecaPausado() {
+  try {
+    if (localStorage.getItem(CHAVE) === '1') return true;
+  } catch {
+    /* armazenamento bloqueado: segue a preferência do aparelho */
+  }
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
 export function VideoDeFundo() {
   const envoltorio = useRef<HTMLDivElement>(null);
+  // Pausa escolhida pela pessoa (WCAG 2.2.2: vídeo que toca sozinho precisa de um botão para parar)
+  const pausadoRef = useRef(false);
+  const [pausado, setPausado] = useState(false);
+
+  function alternar() {
+    const video = envoltorio.current?.querySelector('video');
+    if (!video) return;
+    const pausar = !pausadoRef.current;
+    pausadoRef.current = pausar;
+    setPausado(pausar);
+    if (pausar) video.pause();
+    else void video.play().catch(() => {});
+    try {
+      if (pausar) localStorage.setItem(CHAVE, '1');
+      else localStorage.removeItem(CHAVE);
+    } catch {
+      /* sem armazenamento: vale só nesta visita */
+    }
+  }
 
   useEffect(() => {
     // O site abre quando o vídeo começa a tocar (a tela de carregamento some sozinha em até 10 s)
@@ -31,8 +61,18 @@ export function VideoDeFundo() {
     }
 
     const tocar = () => video.play();
-    const retomar = () => void tocar().catch(() => {});
+    const retomar = () => {
+      if (!pausadoRef.current) void tocar().catch(() => {});
+    };
     video.muted = true; // navegadores só tocam sozinhos vídeo sem som
+
+    if (comecaPausado()) {
+      pausadoRef.current = true;
+      setPausado(true); // eslint-disable-line react-hooks/set-state-in-effect -- preferência só existe no navegador
+      video.pause();
+      abrirSite();
+      return () => abrirSite();
+    }
     video.addEventListener('playing', abrirSite, { once: true });
     video.addEventListener('error', abrirSite, true); // erro no <source> não sobe: por isso a captura
 
@@ -66,5 +106,26 @@ export function VideoDeFundo() {
     };
   }, []);
 
-  return <div ref={envoltorio} className="contents" dangerouslySetInnerHTML={{ __html: HTML_DO_VIDEO }} />;
+  return (
+    <>
+      <div ref={envoltorio} className="contents" dangerouslySetInnerHTML={{ __html: HTML_DO_VIDEO }} />
+      <button
+        type="button"
+        onClick={alternar}
+        className="absolute z-10 right-3 sm:right-6 top-[5.25rem] sm:top-24 grid place-items-center w-11 h-11 rounded-full bg-navy-950/50 text-white ring-1 ring-white/35 backdrop-blur-sm hover:bg-navy-950/75 hover:ring-gold-400 transition"
+        aria-label={pausado ? 'Tocar o vídeo de fundo' : 'Pausar o vídeo de fundo'}
+        title={pausado ? 'Tocar o vídeo' : 'Pausar o vídeo'}
+      >
+        {pausado ? (
+          <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 4.5v15l13-7.5z"></path>
+          </svg>
+        ) : (
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"></path>
+          </svg>
+        )}
+      </button>
+    </>
+  );
 }

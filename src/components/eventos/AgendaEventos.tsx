@@ -89,7 +89,7 @@ export function AgendaEventos({
                 </header>
                 <div className="mt-9 grid gap-x-7 gap-y-9 md:grid-cols-2 xl:grid-cols-3">
                   {eventos.map((evento) => (
-                    <CardEvento key={evento.id} evento={evento} agoraInicial={agoraInicial} comDescricao />
+                    <CardEvento key={evento.id} evento={evento} agoraInicial={agoraInicial} comDescricao ancora />
                   ))}
                 </div>
               </section>

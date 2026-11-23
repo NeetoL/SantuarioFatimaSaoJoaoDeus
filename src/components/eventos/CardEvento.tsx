@@ -1,21 +1,33 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { type EventoComFoto } from '@/modules/Eventos/Application/casos-de-uso';
 import { AcoesDoEvento } from './AcoesDoEvento';
 import { PlacaData } from './PlacaData';
 import { SeloDeTempo } from './SeloDeTempo';
 
-/** Card de evento: foto, placa da data sobre a borda e detalhes. Usado no servidor e na agenda (navegador). */
+/**
+ * Card de evento: foto, placa da data sobre a borda e detalhes. Usado no servidor e na agenda (navegador).
+ * `ancora` dá ao card o id do evento (a agenda da página Eventos), para links como /eventos#id;
+ * `linkDosDetalhes` faz do título um link para os detalhes (página inicial).
+ */
 export function CardEvento({
   evento,
   agoraInicial,
   comDescricao = false,
+  ancora = false,
+  linkDosDetalhes,
 }: {
   evento: EventoComFoto;
   agoraInicial: number;
   comDescricao?: boolean;
+  ancora?: boolean;
+  linkDosDetalhes?: string;
 }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-md bg-white ring-1 ring-ivory-200 shadow-[0_1px_2px_rgba(8,26,51,.05)] hover:shadow-2xl hover:shadow-navy-950/20 hover:-translate-y-1 transition duration-500">
+    <article
+      id={ancora ? evento.id : undefined}
+      className="cartao-alvo scroll-mt-28 group flex flex-col overflow-hidden rounded-md bg-white ring-1 ring-ivory-200 shadow-[0_1px_2px_rgba(8,26,51,.05)] hover:shadow-2xl hover:shadow-navy-950/20 hover:-translate-y-1 transition duration-500"
+    >
       <div className="relative aspect-[16/10] img-fallback">
         <div className="absolute inset-0 overflow-hidden">
           <Image
@@ -43,7 +55,15 @@ export function CardEvento({
           </p>
           <SeloDeTempo evento={evento} agoraInicial={agoraInicial} tema="escuro" />
         </div>
-        <h3 className="mt-2 font-serif font-semibold text-[1.65rem] leading-tight text-navy-900">{evento.titulo}</h3>
+        <h3 className="mt-2 font-serif font-semibold text-[1.65rem] leading-tight text-navy-900">
+          {linkDosDetalhes ? (
+            <Link href={linkDosDetalhes} className="hover:text-gold-700 transition-colors">
+              {evento.titulo}
+            </Link>
+          ) : (
+            evento.titulo
+          )}
+        </h3>
         {comDescricao && <p className="mt-2.5 text-[1.0625rem] leading-relaxed text-slate-600">{evento.descricao}</p>}
         <div className="mt-auto pt-5">
           <AcoesDoEvento evento={evento} variante="card" />

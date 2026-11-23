@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Cruz, IconeLocal, IconeRelogio } from '@/components/ui/icones';
 import { diaEData } from '@/lib/datas';
 import { type EventoComFoto } from '@/modules/Eventos/Application/casos-de-uso';
@@ -7,7 +8,16 @@ import { PlacaData } from './PlacaData';
 import { SeloDeTempo } from './SeloDeTempo';
 
 /** Card grande: banner com foto, placa da data e contagem. */
-export function CardEventoDestaque({ evento, agoraInicial }: { evento: EventoComFoto; agoraInicial: number }) {
+export function CardEventoDestaque({
+  evento,
+  agoraInicial,
+  linkDosDetalhes,
+}: {
+  evento: EventoComFoto;
+  agoraInicial: number;
+  /** Faz do título um link para o evento na agenda (página inicial). */
+  linkDosDetalhes?: string;
+}) {
   return (
     <article className="group relative isolate overflow-hidden rounded-md ring-1 ring-gold-500/30 shadow-[0_40px_90px_-30px_rgba(0,0,0,.75)]">
       <Image
@@ -37,7 +47,13 @@ export function CardEventoDestaque({ evento, agoraInicial }: { evento: EventoCom
             <SeloDeTempo evento={evento} agoraInicial={agoraInicial} tema="claro" />
           </div>
           <h3 className="mt-4 font-serif font-semibold text-[2.15rem] sm:text-5xl lg:text-[3.6rem] leading-[1.05]">
-            {evento.titulo}
+            {linkDosDetalhes ? (
+              <Link href={linkDosDetalhes} className="hover:text-gold-200 transition-colors">
+                {evento.titulo}
+              </Link>
+            ) : (
+              evento.titulo
+            )}
           </h3>
           <div className="divisor esquerda mt-6" aria-hidden="true">
             <Cruz />

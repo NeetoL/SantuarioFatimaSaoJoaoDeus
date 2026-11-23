@@ -7,6 +7,8 @@ import { CardEvento } from '@/components/eventos/CardEvento';
 import { CardEventoDestaque } from '@/components/eventos/CardEventoDestaque';
 import { CalendarioMissas } from '@/components/horarios/CalendarioMissas';
 import { HojeNoSantuario } from '@/components/horarios/HojeNoSantuario';
+import { SecaoGaleria } from '@/components/inicio/SecaoGaleria';
+import { SecaoSantuario } from '@/components/inicio/SecaoSantuario';
 import { VideoDeFundo } from '@/components/inicio/VideoDeFundo';
 import { casosDeUso } from '@/config/container';
 import { instanteDaRequisicao } from '@/lib/requisicao';
@@ -20,11 +22,13 @@ export const metadata: Metadata = {
 
 export default async function PaginaInicial() {
   const agora = await instanteDaRequisicao(); // eventos e horários dependem da hora atual
-  const [resumo, quadro, noticias, recados] = await Promise.all([
+  const [resumo, quadro, noticias, recados, fotos, institucional] = await Promise.all([
     casosDeUso.eventos.resumoDaPaginaInicial(new Date(agora)),
     casosDeUso.horarios.obterQuadro(),
     casosDeUso.comunicados.ultimasNoticias(2),
     casosDeUso.comunicados.listarRecados(3),
+    casosDeUso.galeria.listar(),
+    casosDeUso.institucional.obter(),
   ]);
   // Sem eventos, a seta do vídeo pula direto para os horários
   const ancoraDosAvisos = resumo ? '#avisos' : '#horarios';
@@ -143,11 +147,20 @@ export default async function PaginaInicial() {
               </Link>
             </header>
             <div id="aviso-destaque" className="mt-10">
-              <CardEventoDestaque evento={resumo.destaque} agoraInicial={agora} />
+              <CardEventoDestaque
+                evento={resumo.destaque}
+                agoraInicial={agora}
+                linkDosDetalhes={`/eventos#${resumo.destaque.id}`}
+              />
             </div>
             <div id="avisos-proximos" className="mt-10 grid gap-x-7 gap-y-9 md:grid-cols-3">
               {resumo.seguintes.map((evento) => (
-                <CardEvento key={evento.id} evento={evento} agoraInicial={agora} />
+                <CardEvento
+                  key={evento.id}
+                  evento={evento}
+                  agoraInicial={agora}
+                  linkDosDetalhes={`/eventos#${evento.id}`}
+                />
               ))}
             </div>
             <div className="mt-14 text-center">
@@ -233,7 +246,9 @@ export default async function PaginaInicial() {
             {/* Últimas notícias (conteúdo em src/mocks/comunicados.ts) */}
             <div id="noticias-resumo" className="lg:col-span-2 grid sm:grid-cols-2 gap-7">
               {noticias.length ? (
-                noticias.map((noticia) => <CardNoticia key={noticia.id} noticia={noticia} />)
+                noticias.map((noticia) => (
+                  <CardNoticia key={noticia.id} noticia={noticia} href={`/noticias#${noticia.id}`} />
+                ))
               ) : (
                 <p className="sm:col-span-2 text-slate-600">Nenhuma notícia publicada no momento.</p>
               )}
@@ -285,6 +300,14 @@ export default async function PaginaInicial() {
           </div>
         </div>
       </section>
+      {/* =====================================================
+         GALERIA — cinco fotos que ampliam (src/mocks/galeria.ts)
+         ===================================================== */}
+      <SecaoGaleria fotos={fotos} />
+      {/* =====================================================
+         CONHEÇA O SANTUÁRIO — foto, uma frase e a história completa em /sobre
+         ===================================================== */}
+      <SecaoSantuario apresentacao={institucional.apresentacao} />
       {/* =====================================================
          5. DOAÇÕES — chamada (a página completa é /doacoes)
          ===================================================== */}

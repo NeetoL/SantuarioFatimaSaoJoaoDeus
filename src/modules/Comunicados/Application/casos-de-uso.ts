@@ -3,6 +3,7 @@ import {
   linkSeguro,
   type Noticia,
   ordenarPorData,
+  ordenarRecados,
   type RepositorioDeNoticias,
   type RepositorioDeRecados,
 } from '../Domain/comunicado';
@@ -32,8 +33,9 @@ export function criarCasosDeUsoDeComunicados(noticias: RepositorioDeNoticias, re
       return { destaque: destaque ?? null, demais };
     },
 
+    /** Recados com os importantes primeiro. */
     async listarRecados(limite?: number) {
-      const lista = await recados.listar();
+      const lista = ordenarRecados(await recados.listar());
       return limite ? lista.slice(0, limite) : lista;
     },
   };

@@ -6,7 +6,10 @@ import { SaibaMais } from './SaibaMais';
 /** Notícia mais recente, em destaque (página Notícias). */
 export function NoticiaDestaque({ noticia }: { noticia: Noticia }) {
   return (
-    <article className="group grid lg:grid-cols-[1.15fr_1fr] overflow-hidden rounded-md bg-white ring-1 ring-ivory-200 shadow-2xl shadow-navy-950/10">
+    <article
+      id={noticia.id}
+      className="cartao-alvo scroll-mt-28 group grid lg:grid-cols-[1.15fr_1fr] overflow-hidden rounded-md bg-white ring-1 ring-ivory-200 shadow-2xl shadow-navy-950/10"
+    >
       <div className="relative min-h-[16rem] sm:min-h-[22rem] overflow-hidden img-fallback">
         {noticia.imagem && (
           <Image

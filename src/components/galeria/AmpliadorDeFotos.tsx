@@ -7,7 +7,8 @@ type Foto = { foto: string; legenda: string };
 
 /**
  * Amplia em tela cheia qualquer botão da página com class="foto-btn", data-foto e data-legenda
- * (páginas Sobre e Notícias). Setas e teclado navegam entre todas; Esc fecha; o foco fica preso no modal.
+ * (páginas Início, Sobre e Notícias). Setas, teclado e o deslizar do dedo navegam entre todas;
+ * Esc fecha; o foco fica preso no modal.
  */
 export function AmpliadorDeFotos() {
   const [fotos, setFotos] = useState<Foto[]>([]);
@@ -15,6 +16,7 @@ export function AmpliadorDeFotos() {
   const modal = useRef<HTMLDivElement>(null);
   const fechar = useRef<HTMLButtonElement>(null);
   const ultimoFoco = useRef<HTMLElement | null>(null);
+  const inicioDoToque = useRef<{ x: number; y: number } | null>(null);
 
   const abrir = useCallback((i: number, lista: Foto[]) => {
     ultimoFoco.current = document.activeElement as HTMLElement | null;
@@ -88,6 +90,20 @@ export function AmpliadorDeFotos() {
       aria-modal="true"
       aria-labelledby="modal-caption"
       onClick={(e) => e.target === e.currentTarget && fecharModal()}
+      onTouchStart={(e) => {
+        const t = e.touches[0];
+        inicioDoToque.current = t ? { x: t.clientX, y: t.clientY } : null;
+      }}
+      onTouchEnd={(e) => {
+        // Deslizar para o lado troca de foto (celular)
+        const inicio = inicioDoToque.current;
+        const t = e.changedTouches[0];
+        inicioDoToque.current = null;
+        if (!inicio || !t) return;
+        const dx = t.clientX - inicio.x;
+        const dy = t.clientY - inicio.y;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mover(dx < 0 ? 1 : -1);
+      }}
     >
       <button
         ref={fechar}

@@ -15,7 +15,7 @@ export function AcoesDoEvento({ evento, variante }: Props) {
 
   async function compartilhar() {
     const texto = `${evento.titulo}\n${diaEData(evento.data)}, às ${evento.hora}\n${evento.local} — Santuário N. Sra. de Fátima e S. João de Deus`;
-    const url = new URL('/eventos', window.location.href).href;
+    const url = new URL(`/eventos#${evento.id}`, window.location.href).href;
     if (navigator.share) {
       try {
         await navigator.share({ title: evento.titulo, text: texto, url });
