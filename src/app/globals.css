@@ -1,0 +1,358 @@
+/* ===========================================================
+   Santuário N. Sra. de Fátima e S. João de Deus — estilos globais
+   Ordem: base do Tailwind → componentes → estilos próprios → utilitários do Tailwind
+   (os utilitários vêm por último e vencem, como no site estático).
+   Fontes: carregadas por next/font (src/app/fontes.ts) nas variáveis --fonte-*.
+   =========================================================== */
+@tailwind base;
+@tailwind components;
+
+/* ---------- Base ---------- */
+body { font-family: var(--fonte-interface), system-ui, sans-serif; color: #2f3440; font-feature-settings: "kern"; }
+/* Tamanho da letra escolhido no botão A+ (tudo o que usa rem cresce junto) */
+html.fonte-1 { font-size: 112.5%; }
+html.fonte-2 { font-size: 125%; }
+h1, h2, h3 { text-wrap: balance; font-feature-settings: "kern", "liga"; }
+p { text-wrap: pretty; }
+::selection { background: #e6cf8f; color: #081a33; }
+:focus-visible { outline: 3px solid #c9a227; outline-offset: 3px; }
+
+/* Números: nos títulos e horários, algarismos alinhados (mais fáceis de ler);
+   nos anos decorativos, algarismos em estilo antigo (classe .algarismos-antigos) */
+.font-serif { font-variant-numeric: lining-nums; }
+.font-serif.algarismos-antigos { font-variant-numeric: oldstyle-nums; }
+
+/* ---------- Rótulo em letras de inscrição (Cinzel) ---------- */
+.eyebrow {
+  font-family: var(--fonte-rotulos), Georgia, serif; font-weight: 600;
+  font-size: .84rem; letter-spacing: .24em; text-transform: uppercase;
+  color: #7a5c12;
+}
+.eyebrow.claro { color: #d9b95a; }
+
+/* Filetes dos dois lados do rótulo */
+.ornament { display: flex; align-items: center; justify-content: center; gap: .9rem; }
+.ornament::before, .ornament::after { content: ''; height: 1px; width: 2.5rem; background: currentColor; opacity: .55; }
+
+/* ---------- Divisor com a cruz do brasão ---------- */
+.divisor { display: flex; align-items: center; justify-content: center; gap: .85rem; color: #c9a227; }
+.divisor::before, .divisor::after { content: ''; height: 1px; width: min(5.5rem, 22vw); }
+.divisor::before { background: linear-gradient(90deg, transparent, currentColor); }
+.divisor::after  { background: linear-gradient(90deg, currentColor, transparent); }
+.divisor svg { width: 11px; height: 18px; fill: currentColor; flex: none; }
+.divisor.esquerda { justify-content: flex-start; }
+.divisor.esquerda::before { display: none; }
+
+/* ---------- Botões (retos, letras espaçadas: sóbrio e institucional) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 3.1rem; padding: 1rem 1.8rem; border: 1px solid transparent; border-radius: 2px;
+  font-family: var(--fonte-interface), system-ui, sans-serif; font-weight: 600; font-size: .86rem;
+  letter-spacing: .13em; text-transform: uppercase; line-height: 1;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.btn svg { width: 1.05rem; height: 1.05rem; flex: none; }
+.btn-ouro   { background: #c9a227; color: #081a33; box-shadow: 0 12px 28px -14px rgba(201,162,39,.8); }
+.btn-ouro:hover { background: #d9b95a; transform: translateY(-1px); }
+.btn-vidro  { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.btn-vidro:hover { background: #fff; color: #081a33; border-color: #fff; }
+.btn-escuro { background: #0f2a4f; color: #fff; }
+.btn-escuro:hover { background: #081a33; transform: translateY(-1px); }
+.btn-linha  { border-color: #0f2a4f; color: #0f2a4f; }
+.btn-linha:hover { background: #0f2a4f; color: #fff; }
+.btn-sm { min-height: 2.75rem; padding: .75rem 1.2rem; font-size: .8rem; }
+/* No cabeçalho, tamanhos fixos: não crescem com o botão A+ (o menu caberia mal) */
+#navbar .btn-sm { min-height: 42px; padding: 12px 18px; font-size: 12.5px; }
+
+/* ---------- Texto corrido (leitura longa) ---------- */
+.texto-corrido { font-family: var(--fonte-texto), Georgia, serif; font-size: 1.25rem; line-height: 1.75; color: #23262f; }
+.texto-corrido p + p { margin-top: 1.1em; }
+.texto-corrido.claro { color: rgba(255,255,255,.86); }
+@media (min-width: 640px) { .texto-corrido { font-size: 1.35rem; } }
+
+/* Capitular: primeira letra grande, em vinho */
+.capitular::first-letter {
+  float: left; font-family: var(--fonte-titulos), Georgia, serif; font-weight: 600;
+  font-size: 4.4em; line-height: .78; margin: .06em .1em 0 -.02em; color: #6b1f24;
+}
+
+/* Citação em itálico */
+.citacao { font-family: var(--fonte-titulos), Georgia, serif; font-style: italic; font-weight: 500; }
+
+/* Moldura: filete dourado deslocado atrás da foto */
+.moldura { position: relative; isolation: isolate; }
+.moldura::before { content: ''; position: absolute; inset: 1.1rem -1.1rem -1.1rem 1.1rem; border: 1px solid #c9a227; z-index: -1; }
+
+/* Placa da data dos eventos: fundo azul com moldura dupla dourada (como uma placa de bronze) */
+.placa-data {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  color: #fff; background: linear-gradient(160deg, #163a6b 0%, #0f2a4f 45%, #081a33 100%);
+  border: 1px solid rgba(217,185,90,.7);
+  outline: 1px solid rgba(217,185,90,.35); outline-offset: -6px;
+  font-variant-numeric: lining-nums;
+}
+
+/* ---------- Calendário semanal de missas (Dom–Sáb) ----------
+   Celular: um dia por linha (dia à esquerda, horários à direita).
+   Computador (lg): sete colunas, como um calendário. */
+.calendario .dia {
+  position: relative; display: grid; grid-template-columns: 5.9rem 1fr;
+  border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.03); border-radius: 3px;
+  transition: background-color .3s ease, border-color .3s ease, transform .3s ease;
+}
+.calendario .dia:hover { border-color: rgba(217,185,90,.35); }
+.calendario .dia-topo {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1rem .95rem; border-right: 1px solid rgba(201,162,39,.22);
+}
+.calendario .dia-corpo { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 1rem 1.15rem; }
+.calendario .horas {
+  display: flex; flex-wrap: wrap; gap: .1rem 1rem;
+  font-family: var(--fonte-titulos), Georgia, serif; font-weight: 600; font-size: 1.95rem; line-height: 1.05;
+  color: #e6cf8f; font-variant-numeric: lining-nums;
+}
+.calendario .nota { margin-top: .35rem; font-size: .95rem; line-height: 1.4; color: rgba(255,255,255,.86); }
+.calendario .mensal, .mensal {
+  display: inline-block; margin-bottom: .5rem; padding: .2rem .45rem;
+  font-family: var(--fonte-rotulos), Georgia, serif; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: #e6cf8f; border: 1px solid rgba(217,185,90,.5); border-radius: 2px;
+}
+/* Dia fechado: listras discretas */
+.calendario .dia.fechado, .dia-fechado-amostra {
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 5px, transparent 5px 11px);
+}
+.calendario .dia.fechado .dia-topo { opacity: .75; }
+.dia-fechado-amostra { border: 1px solid rgba(255,255,255,.2); }
+/* Hoje: dourado */
+.calendario .dia.hoje {
+  background: linear-gradient(180deg, rgba(201,162,39,.2), rgba(201,162,39,.06));
+  border-color: rgba(217,185,90,.75);
+  box-shadow: 0 0 0 1px rgba(217,185,90,.3), 0 20px 44px -20px rgba(201,162,39,.6);
+}
+.calendario .dia.hoje.fechado { background: repeating-linear-gradient(135deg, rgba(201,162,39,.12) 0 5px, transparent 5px 11px); }
+.calendario .selo-hoje {
+  position: absolute; top: -.6rem; right: .7rem; z-index: 1; padding: .22rem .5rem; border-radius: 2px;
+  font-family: var(--fonte-rotulos), Georgia, serif; font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  background: #c9a227; color: #081a33; box-shadow: 0 6px 14px -6px rgba(0,0,0,.5);
+}
+@media (min-width: 1024px) {
+  .calendario .dia { grid-template-columns: 1fr; grid-template-rows: auto 1fr; min-height: 17rem; }
+  .calendario .dia:hover { transform: translateY(-2px); }
+  .calendario .dia-topo { text-align: center; border-right: 0; border-bottom: 1px solid rgba(201,162,39,.22); padding: 1.15rem .75rem 1rem; }
+  .calendario .dia-corpo { align-items: center; justify-content: flex-start; text-align: center; padding: 1.25rem .85rem 1.1rem; }
+  .calendario .horas { flex-direction: column; align-items: center; gap: .3rem; font-size: 2.15rem; }
+  .calendario .nota { margin-top: auto; padding-top: 1rem; }
+  .calendario .dia.fechado .dia-corpo { justify-content: center; }
+}
+
+/* ---------- Hoje no Santuário (programação do dia) ---------- */
+.programacao .item-dia {
+  display: grid; grid-template-columns: 5.6rem 1fr auto; gap: 1rem; align-items: center;
+  padding: 1rem 0; border-bottom: 1px solid #ece3d0; transition: opacity .3s ease;
+}
+.programacao .item-dia:last-child { border-bottom: 0; }
+.programacao .hora {
+  font-family: var(--fonte-titulos), Georgia, serif; font-weight: 600; font-size: 1.9rem; line-height: 1;
+  color: #8a6a18; font-variant-numeric: lining-nums;
+}
+.programacao .hora small { display: block; margin-top: .3rem; font-family: var(--fonte-interface), system-ui, sans-serif; font-size: .85rem; font-weight: 500; color: #475569; }
+.programacao .item-dia.encerrado { opacity: .6; }
+.programacao .item-dia.agora .hora { color: #6b1f24; }
+.agora-tag {
+  display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .5rem; border-radius: 2px;
+  font-family: var(--fonte-rotulos), Georgia, serif; font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  background: #6b1f24; color: #fff;
+}
+.agora-tag::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: #e6cf8f; animation: pulsar 1.6s ease-in-out infinite; }
+@keyframes pulsar { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .agora-tag::before { animation: none; } }
+
+/* Versão curta (página inicial): fichas com hora + nome */
+.chip-dia {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem; border-radius: 2px;
+  background: #f8f3e9; border: 1px solid #ece3d0; font-size: 1rem; color: #23262f;
+}
+.chip-dia strong { font-family: var(--fonte-titulos), Georgia, serif; font-weight: 700; font-size: 1.3rem; line-height: 1; color: #8a6a18; font-variant-numeric: lining-nums; }
+.chip-dia.encerrado { opacity: .62; }
+.chip-dia.agora { border-color: #6b1f24; }
+.chip-dia .agora-tag { padding: .15rem .4rem; }
+
+/* ---------- Listas de horários com pontilhado (confissões, terços, igreja, secretaria) ---------- */
+.lista-horarios li {
+  display: flex; align-items: baseline; gap: .6rem;
+  padding: .75rem 0; border-bottom: 1px solid #ece3d0;
+}
+.lista-horarios li:last-child { border-bottom: 0; }
+.lista-horarios .rotulo { min-width: 0; font-weight: 500; color: #163a6b; }
+.lista-horarios .rotulo small { display: block; margin-top: .15rem; font-size: .92rem; font-weight: 400; color: #475569; }
+.lista-horarios .pontos { flex: 1; min-width: 1rem; border-bottom: 1px dotted rgba(138,106,24,.5); transform: translateY(-.3rem); }
+.lista-horarios .hora {
+  text-align: right; white-space: nowrap;
+  font-family: var(--fonte-titulos), Georgia, serif; font-weight: 700; font-size: 1.5rem; line-height: 1.15;
+  color: #8a6a18; font-variant-numeric: lining-nums;
+}
+.lista-horarios li.fechada .rotulo { color: #64748b; }
+.lista-horarios li.fechada .hora { font-style: italic; font-weight: 600; font-size: 1.3rem; color: #64748b; }
+.lista-horarios li.e-hoje {
+  margin: 0 -.85rem; padding-left: .85rem; padding-right: .85rem; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(201,162,39,.16), rgba(201,162,39,.04));
+}
+.tag-hoje {
+  display: inline-block; margin-left: .5rem; padding: .12rem .4rem; border-radius: 2px; vertical-align: .15em;
+  font-family: var(--fonte-rotulos), Georgia, serif; font-size: .66rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  background: #c9a227; color: #081a33;
+}
+
+/* Rolagem lateral sem barra visível (sumário da página Sobre no celular) */
+.sem-barra { scrollbar-width: none; }
+.sem-barra::-webkit-scrollbar { display: none; }
+
+/* Fundo escuro com luz suave vindo do alto */
+.secao-escura { background: radial-gradient(120% 80% at 50% 0%, #163a6b 0%, #0f2a4f 38%, #081a33 100%); }
+
+/* ---------- Navbar: transparente sobre o topo, sólida ao rolar ---------- */
+#navbar.scrolled {
+  background: rgba(8, 26, 51, .95);
+  box-shadow: 0 1px 0 rgba(201,162,39,.28), 0 10px 30px rgba(0,0,0,.22);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ''; position: absolute; left: .75rem; right: .75rem; bottom: .2rem; height: 1px;
+  background: #d9b95a; transform: scaleX(0); transition: transform .3s ease;
+}
+.nav-link:hover::after, .nav-link[aria-current]::after { transform: scaleX(1); }
+
+/* ---------- Botão A+ do cabeçalho (computador) ---------- */
+.btn-letra {
+  display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.06);
+  font-family: var(--fonte-titulos), Georgia, serif; font-weight: 700; font-size: 20px; line-height: 1; letter-spacing: 0;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.btn-letra span { font-size: 14px; vertical-align: super; }
+.btn-letra:hover { background: #fff; color: #081a33; border-color: #fff; }
+
+/* ---------- Menu do celular: tela cheia, letras grandes ---------- */
+#mobile-menu {
+  position: absolute; left: 0; right: 0; top: 100%;
+  height: calc(100vh - 5rem); height: calc(100dvh - 5rem);
+  overflow-y: auto; overscroll-behavior: contain;
+  background: #081a33; border-top: 1px solid rgba(201,162,39,.3);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+}
+#mobile-menu.open { opacity: 1; visibility: visible; transform: none; transition: opacity .3s ease, transform .3s ease; }
+html.menu-aberto, html.menu-aberto body { overflow: hidden; }
+.menu-celular-fundo { position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(110% 55% at 50% 0%, rgba(31,76,138,.55), transparent 70%); }
+.menu-celular-fundo::after { content: ''; position: absolute; right: -3.5rem; bottom: 1rem; width: 15rem; height: 27rem;
+  background: url(/assets/img/logo-santuario-sm.png) no-repeat center / contain; opacity: .05; }
+.menu-celular-links li + li { border-top: 1px solid rgba(255,255,255,.09); }
+.menu-celular-links a { position: relative; display: flex; align-items: center; gap: 1rem; min-height: 4.4rem; padding: .85rem .35rem; color: #fff; }
+.menu-celular-links .num { flex: none; width: 2.1rem; text-align: center; font-family: var(--fonte-rotulos), Georgia, serif; font-weight: 600; font-size: .8rem; letter-spacing: .08em; color: #c9a227; }
+.menu-celular-links .txt { flex: 1; min-width: 0; font-family: var(--fonte-titulos), Georgia, serif; font-weight: 600; font-size: 1.85rem; line-height: 1.05; }
+.menu-celular-links .txt small { display: block; margin-top: .3rem; font-family: var(--fonte-interface), system-ui, sans-serif; font-weight: 400; font-size: .95rem; line-height: 1.3; color: rgba(255,255,255,.78); }
+.menu-celular-links .seta { flex: none; width: 1.3rem; height: 1.3rem; color: rgba(217,185,90,.85); transition: transform .25s ease; }
+.menu-celular-links a:active .seta, .menu-celular-links a:hover .seta { transform: translateX(3px); }
+.menu-celular-links a[aria-current="page"] .txt { color: #e6cf8f; }
+.menu-celular-links a[aria-current="page"]::before { content: ''; position: absolute; left: -1.25rem; top: 22%; bottom: 22%; width: 3px; background: #c9a227; }
+#mobile-menu.open .menu-celular-links li { animation: menu-entrar .45s ease both; }
+#mobile-menu.open .menu-celular-links li:nth-child(2) { animation-delay: .04s; }
+#mobile-menu.open .menu-celular-links li:nth-child(3) { animation-delay: .08s; }
+#mobile-menu.open .menu-celular-links li:nth-child(4) { animation-delay: .12s; }
+#mobile-menu.open .menu-celular-links li:nth-child(5) { animation-delay: .16s; }
+#mobile-menu.open .menu-celular-links li:nth-child(6) { animation-delay: .2s; }
+@keyframes menu-entrar { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Escolha do tamanho da letra (dentro do menu) */
+.letra-opcao {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .2rem; min-height: 4.6rem; padding: .5rem;
+  border: 1px solid rgba(255,255,255,.22); border-radius: 3px; color: rgba(255,255,255,.88);
+  font-size: .85rem; font-weight: 500;
+}
+.letra-opcao span { font-family: var(--fonte-titulos), Georgia, serif; font-weight: 700; line-height: 1; color: #fff; }
+.letra-opcao[aria-pressed="true"] { border-color: #c9a227; background: rgba(201,162,39,.16); color: #e6cf8f; }
+.letra-opcao[aria-pressed="true"] span { color: #e6cf8f; }
+
+/* ---------- Barra de atalhos do celular (fixa embaixo) ----------
+   Tamanhos em px: a barra não cresce com o A+, para não tomar a tela. */
+.barra-celular {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+  padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+  background: rgba(8,26,51,.96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(201,162,39,.4); box-shadow: 0 -12px 30px -14px rgba(0,0,0,.5);
+}
+.barra-celular a, .barra-celular button {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  min-height: 58px; border-radius: 4px; color: #fff;
+  font-family: var(--fonte-interface), system-ui, sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: .01em; line-height: 1.1;
+  transition: background-color .2s ease;
+}
+.barra-celular a:active, .barra-celular button:active { background: rgba(255,255,255,.08); }
+.barra-celular svg { width: 25px; height: 25px; color: #d9b95a; }
+.barra-celular [aria-current="page"] { color: #e6cf8f; background: rgba(201,162,39,.14); }
+.barra-celular .letra-icone { display: block; height: 25px; font-family: var(--fonte-titulos), Georgia, serif; font-weight: 700; font-size: 25px; line-height: 25px; color: #d9b95a; }
+.barra-celular .letra-icone small { font-size: 15px; vertical-align: super; line-height: 0; }
+@media (max-width: 1023.98px) { body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); } }
+@media (min-width: 1024px) { .barra-celular { display: none; } }
+html.menu-aberto .barra-celular { display: none; }
+
+/* Ícone hambúrguer -> X */
+.burger span { transition: transform .3s ease, opacity .2s ease; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Reveal suave ao rolar a página */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Fallback elegante quando alguma imagem não carregar */
+.img-fallback { background: linear-gradient(135deg, #163a6b 0%, #0f2a4f 55%, #a8801f 140%); }
+
+/* Modal */
+.modal { transition: opacity .25s ease; }
+.modal[hidden] { display: none; }
+
+/* Acessibilidade: respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Vídeo de fundo do hero */
+#hero-video { pointer-events: none; }
+
+/* Tela de carregamento: visível só enquanto <html> tem a classe "carregando".
+   CSS puro (e não Tailwind) para já aparecer pronta no primeiro instante. */
+#preloader {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  background: radial-gradient(ellipse at center, #0f2a4f 0%, #081a33 70%);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .7s ease, visibility 0s linear .7s;
+}
+html.carregando { overflow: hidden; }
+html.carregando #preloader { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
+.preloader-logo { height: 7.5rem; width: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.45)); animation: preloader-pulsar 2.2s ease-in-out infinite; }
+.preloader-bar { width: 9rem; height: 1px; background: rgba(255,255,255,.14); overflow: hidden; }
+.preloader-bar span { display: block; width: 40%; height: 100%; background: #d9b95a; animation: preloader-barra 1.3s ease-in-out infinite; }
+@keyframes preloader-pulsar { 0%, 100% { opacity: .8; transform: scale(.97); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes preloader-barra { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+
+/* Textos longos (e-mail, chave PIX) e letra grande: os cartões encolhem e o texto quebra,
+   em vez de alargar a página no celular */
+main .grid > * { min-width: 0; }
+html .break-words { overflow-wrap: anywhere; }
+/* Enfeites que passam um pouco da borda (molduras) não criam rolagem para o lado */
+main { overflow-x: clip; }
+/* Celulares bem estreitos (ou letra no maior tamanho): botões mais compactos para caber */
+@media (max-width: 380px) {
+  .btn { padding-left: 1.1rem; padding-right: 1.1rem; letter-spacing: .07em; }
+  .copiar { padding-left: .6rem !important; padding-right: .6rem !important; letter-spacing: .06em !important; }
+}
+
+@tailwind utilities;
