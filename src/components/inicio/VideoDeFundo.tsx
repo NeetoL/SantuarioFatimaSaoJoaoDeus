@@ -31,7 +31,8 @@ function comecaPausado() {
 
 export function VideoDeFundo() {
   const envoltorio = useRef<HTMLDivElement>(null);
-  // Pausa escolhida pela pessoa (WCAG 2.2.2: vídeo que toca sozinho precisa de um botão para parar)
+  // Pausa escolhida pela pessoa (WCAG 2.2.2). O botão fica invisível e só aparece para quem navega pelo teclado;
+  // quem pediu "menos movimento" no aparelho já recebe o vídeo parado.
   const pausadoRef = useRef(false);
   const [pausado, setPausado] = useState(false);
 
@@ -118,7 +119,7 @@ export function VideoDeFundo() {
       <button
         type="button"
         onClick={alternar}
-        className="absolute z-10 right-3 sm:right-6 top-[5.25rem] sm:top-24 grid place-items-center w-11 h-11 rounded-md bg-navy-950/50 text-white ring-1 ring-white/35 backdrop-blur-sm hover:bg-navy-950/75 hover:ring-gold-400 transition"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:right-3 sm:focus:right-6 focus:top-[5.25rem] sm:focus:top-24 focus:grid focus:place-items-center focus:w-11 focus:h-11 focus:rounded-md focus:bg-navy-950/75 focus:text-white focus:ring-2 focus:ring-gold-400"
         aria-label={pausado ? 'Retomar o vídeo e as animações' : 'Pausar o vídeo e as animações'}
         title={pausado ? 'Retomar o vídeo e as animações' : 'Pausar o vídeo e as animações'}
       >

@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { type CSSProperties } from 'react';
-import { AvisoNoTopo } from '@/components/eventos/AvisoNoTopo';
-import { type Evento } from '@/modules/Eventos/Domain/evento';
 import { VideoDeFundo } from './VideoDeFundo';
 
 /** Atraso de cada palavra/bloco da entrada (variáveis lidas em globals.css: .palavra e .surge). */
@@ -12,7 +10,7 @@ const atraso = (ms: number) => ({ '--atraso': `${ms}ms` }) as CSSProperties;
  * Abertura: o vídeo do Santuário em tela cheia é o protagonista.
  * Pouco texto, embaixo, e sombras só nas bordas (menu no alto, texto embaixo) para o vídeo aparecer limpo.
  */
-export function Abertura({ eventoMaisProximo, agora }: { eventoMaisProximo: Evento | null; agora: number }) {
+export function Abertura() {
   return (
     <section id="inicio" className="relative flex min-h-[100svh] items-end overflow-hidden bg-navy-950 img-fallback">
       <VideoDeFundo />
@@ -21,12 +19,7 @@ export function Abertura({ eventoMaisProximo, agora }: { eventoMaisProximo: Even
       <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-navy-950/65 to-transparent"></div>
       <div className="absolute inset-x-0 bottom-0 h-[55%] sm:h-1/2 bg-gradient-to-t from-navy-950/90 via-navy-950/35 to-transparent"></div>
 
-      <div className="relative w-full max-w-4xl mx-auto px-5 pb-[104px] sm:pb-16 lg:pb-14 text-center">
-        {eventoMaisProximo && (
-          <div className="surge">
-            <AvisoNoTopo evento={eventoMaisProximo} agoraInicial={agora} />
-          </div>
-        )}
+      <div className="relative w-full max-w-4xl mx-auto px-5 pb-[104px] sm:pb-28 lg:pb-14 text-center">
         <h1 className="font-serif font-semibold text-white text-[2.6rem] sm:text-6xl lg:text-[4.25rem] leading-[1.02] tracking-[-0.01em] drop-shadow-[0_2px_18px_rgba(0,0,0,.55)]">
           {['Bem-vindo', 'à', 'Casa', 'da'].map((palavra, i) => (
             <span key={palavra}>
@@ -39,7 +32,7 @@ export function Abertura({ eventoMaisProximo, agora }: { eventoMaisProximo: Even
             Mãe de Deus
           </span>
         </h1>
-        <div className="surge mt-7 flex flex-col sm:flex-row gap-3 justify-center" style={atraso(700)}>
+        <div className="surge par-de-botoes mt-7 sm:justify-center" style={atraso(700)}>
           <a href="#horarios" className="btn btn-ouro">
             <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="9"></circle>

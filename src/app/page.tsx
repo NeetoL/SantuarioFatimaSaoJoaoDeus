@@ -34,7 +34,7 @@ export default async function PaginaInicial() {
 
   return (
     <>
-      <Abertura eventoMaisProximo={resumo?.maisProximo ?? null} agora={agora} />
+      <Abertura />
       {/* Sem eventos futuros, a seção some */}
       {resumo && <SecaoAcontece resumo={resumo} agora={agora} />}
       <SecaoHorarios quadro={quadro} agora={agora} />

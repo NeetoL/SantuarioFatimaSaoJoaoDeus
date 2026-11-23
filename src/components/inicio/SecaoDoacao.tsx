@@ -22,7 +22,7 @@ export function SecaoDoacao() {
             “Cada um dê conforme decidiu em seu coração, não com tristeza nem por obrigação, pois Deus ama quem dá com
             alegria.” <span className="whitespace-nowrap">(2Cor 9,7)</span>
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="par-de-botoes mt-10 sm:justify-center">
             <Link href="/doacoes" className="btn btn-ouro">
               <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"></path>

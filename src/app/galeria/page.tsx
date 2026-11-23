@@ -14,7 +14,8 @@ const contar = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um :
 
 /**
  * Galeria da comunidade: todos os álbuns de fotos, um por evento (src/mocks/galeria.ts).
- * O mais recente aparece em destaque; cada álbum tem link direto (/galeria#id-do-album) para compartilhar.
+ * O mais recente aparece em destaque; dá para buscar por nome ou data e filtrar por ano;
+ * cada álbum tem link direto (/galeria#id-do-album) para compartilhar.
  */
 export default async function PaginaGaleria() {
   const albuns = await casosDeUso.galeria.listarAlbuns();
@@ -65,7 +66,7 @@ export default async function PaginaGaleria() {
       <section id="albuns" className="scroll-mt-24 bg-ivory-100 py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           {albuns.length ? (
-            <GaleriaDeAlbuns albuns={albuns} tema="claro" destacarPrimeiro linkDireto />
+            <GaleriaDeAlbuns albuns={albuns} tema="claro" destacarPrimeiro linkDireto busca />
           ) : (
             <p className="text-center font-texto italic text-2xl text-slate-600">Nenhum álbum publicado ainda.</p>
           )}

@@ -22,7 +22,7 @@ export function VoltarAoTopo() {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
-      className={`fixed bottom-[88px] lg:bottom-5 right-4 lg:right-5 z-40 grid place-items-center w-12 h-12 rounded-full bg-gold-500 text-navy-950 shadow-lg transition-opacity${visivel ? '' : ' opacity-0 pointer-events-none'}`}
+      className={`fixed bottom-[calc(84px+env(safe-area-inset-bottom))] lg:bottom-5 right-4 lg:right-5 z-40 grid place-items-center w-12 h-12 rounded-full bg-gold-500 text-navy-950 shadow-lg transition-opacity${visivel ? '' : ' opacity-0 pointer-events-none'}`}
       aria-label="Voltar ao topo"
       tabIndex={visivel ? 0 : -1}
     >

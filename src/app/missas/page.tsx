@@ -299,7 +299,7 @@ export default async function PaginaMissas() {
                 {endereco.bairro} — {endereco.cidade} / {endereco.uf}
               </span>
             </p>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <div className="par-de-botoes mt-9 sm:justify-center lg:justify-start">
               <a href={linkDoMapa(institucional)} target="_blank" rel="noopener noreferrer" className="btn btn-ouro">
                 <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path>

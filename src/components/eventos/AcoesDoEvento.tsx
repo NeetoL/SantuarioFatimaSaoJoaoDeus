@@ -29,7 +29,7 @@ export function AcoesDoEvento({ evento, variante }: Props) {
 
   if (variante === 'destaque') {
     return (
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="par-de-botoes mt-8">
         <a href={arquivo} download className="btn btn-ouro" onClick={aoSalvar}>
           <IconeAgenda />
           Salvar na agenda
