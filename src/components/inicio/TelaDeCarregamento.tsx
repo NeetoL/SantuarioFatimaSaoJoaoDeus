@@ -1,17 +1,18 @@
 import Image from 'next/image';
+import { type Logo } from '@/modules/Institucional/Domain/institucional';
 
 /**
  * Tela de carregamento com o brasão, visível só enquanto <html> tem a classe "carregando"
  * (o script do <head> liga essa classe apenas na página inicial; o vídeo a desliga ao começar a tocar).
  */
-export function TelaDeCarregamento() {
+export function TelaDeCarregamento({ logo }: { logo: Logo }) {
   return (
     <div id="preloader" role="status">
       <Image
-        src="/assets/img/logo-santuario-sm.png"
+        src={logo.url}
         alt=""
-        width={131}
-        height={240}
+        width={logo.largura}
+        height={logo.altura}
         className="preloader-logo"
         preload
       />

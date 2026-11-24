@@ -16,7 +16,7 @@ function montarPolitica(nonce: string): string {
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${dev ? ` 'unsafe-eval'` : ''}${vercelLive}`,
     // Estilos inline são necessários para o posicionamento das imagens otimizadas (next/image)
     `style-src 'self' 'unsafe-inline'${vercelLive}`,
-    `img-src 'self' blob: data:${preview ? ' https://vercel.live https://vercel.com' : ''}`,
+    `img-src 'self' blob: data: https://*.public.blob.vercel-storage.com${preview ? ' https://vercel.live https://vercel.com' : ''}`,
     `font-src 'self'${preview ? ' https://vercel.live https://assets.vercel.com' : ''}`,
     `media-src 'self'`,
     `connect-src 'self'${preview ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,

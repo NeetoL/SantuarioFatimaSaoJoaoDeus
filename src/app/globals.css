@@ -268,6 +268,9 @@ html.menu-aberto, html.menu-aberto body { overflow: hidden; }
 /* Espaço no fim da página para a barra não cobrir o rodapé */
 @media (max-width: 1023.98px) { body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); } }
 @media (min-width: 1024px) { .barra-celular { display: none; } }
+/* No painel de controle não há barra no rodapé: sem o espaço extra, e o aviso flutuante desce */
+body:has(.painel-admin) { padding-bottom: 0; }
+body:has(.painel-admin) #toast { bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
 html.menu-aberto .barra-celular { display: none; }
 
 /* Ícone hambúrguer -> X */

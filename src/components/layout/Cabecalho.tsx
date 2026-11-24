@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { NIVEIS_DA_LETRA, useTamanhoDaLetra } from '@/components/hooks/useTamanhoDaLetra';
+import { type Logo } from '@/modules/Institucional/Domain/institucional';
 import { useAvisar } from './Avisos';
 import { hrefDaPagina, PAGINAS } from './navegacao';
 
@@ -14,7 +15,7 @@ function assinarRolagem(ouvinte: () => void) {
 }
 
 /** Cabeçalho fixo: transparente sobre a abertura, sólido ao rolar; menu do celular em tela cheia. */
-export function Cabecalho({ telefone, mapa }: { telefone: string; mapa: string }) {
+export function Cabecalho({ telefone, mapa, logo }: { telefone: string; mapa: string; logo: Logo }) {
   const caminho = usePathname();
   const [menuAberto, setMenuAberto] = useState(false);
   const rolou = useSyncExternalStore(
@@ -69,10 +70,10 @@ export function Cabecalho({ telefone, mapa }: { telefone: string; mapa: string }
           aria-label="Santuário Nossa Senhora de Fátima e São João de Deus — página inicial"
         >
           <Image
-            src="/assets/img/logo-santuario-sm.png"
+            src={logo.url}
             alt=""
-            width={131}
-            height={240}
+            width={logo.largura}
+            height={logo.altura}
             preload
             className="h-[56px] w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,.35)] group-hover:scale-105 transition-transform"
           />

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { type DadosInstitucionais, linkDoMapa } from '@/modules/Institucional/Domain/institucional';
+import { type DadosInstitucionais, linkDoMapa, logoDoSite } from '@/modules/Institucional/Domain/institucional';
 
 const ICONES_DAS_REDES = {
   Instagram: (
@@ -29,6 +29,7 @@ const titulo = 'font-caps text-[.8rem] font-semibold tracking-[.26em] text-gold-
  */
 export function Rodape({ institucional, secretaria }: { institucional: DadosInstitucionais; secretaria: string[] }) {
   const { endereco, telefone, email } = institucional;
+  const logo = logoDoSite(institucional);
   return (
     <footer id="contato" className="grao relative overflow-hidden bg-navy-950 text-white/80">
       <div className="fio-ouro"></div>
@@ -40,10 +41,10 @@ export function Rodape({ institucional, secretaria }: { institucional: DadosInst
         {/* Identidade */}
         <div className="flex flex-col items-center text-center">
           <Image
-            src="/assets/img/logo-santuario-sm.png"
+            src={logo.url}
             alt="Brasão do Santuário"
-            width={131}
-            height={240}
+            width={logo.largura}
+            height={logo.altura}
             className="h-24 w-auto drop-shadow-[0_6px_20px_rgba(201,162,39,.25)]"
           />
           <p className="mt-6 font-caps text-[.8rem] font-semibold tracking-[.3em] text-gold-300">
