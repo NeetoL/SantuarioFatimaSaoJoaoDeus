@@ -20,20 +20,23 @@ npm run dev        # http://localhost:3000
 | `npm run test` | Testes (regras, casos de uso, API) |
 | `npm run lint` / `npm run typecheck` | Qualidade e tipos |
 | `npm run verificar` | Tudo antes de publicar |
+| `npm run painel:criar-admin -- "Nome" email` | Cria um Admin master (primeiro acesso ao painel no site no ar) |
 
-## Onde mudar o conteúdo
+## Painel de controle
 
-| Conteúdo | Arquivo |
-|---|---|
-| Eventos e avisos | `src/mocks/eventos.ts` |
-| Horários (missas, confissões, terços, adoração, igreja, secretaria) | `src/mocks/horarios.ts` |
-| Notícias e recados (`importante: true` destaca um recado) | `src/mocks/comunicados.ts` |
-| Galeria: álbuns de fotos, um por evento (página /galeria; os 3 mais recentes também aparecem na página inicial) | `src/mocks/galeria.ts` |
-| PIX, banco e destino das doações (**hoje são exemplos**) | `src/mocks/doacoes.ts` |
-| Endereço, telefone, e-mail, redes sociais e o texto "Conheça o Santuário" | `src/mocks/institucional.ts` |
-| Fotos e vídeos | `public/assets/` |
+Em **`/painel-controle`** a equipe atualiza o site sem mexer no código: informações do site (endereço, telefone,
+redes, logo), horários, eventos, galeria de fotos, notícias e recados, dados de doação e a secretaria
+(dizimistas e contribuições). Perfis: **Admin master**, **Padre**, **PASCOM** e **Secretaria**.
+Tudo o que é feito fica no **registro de atividades**.
+
+- **No computador:** `npm run dev` cria um banco local na pasta `.dados/` com o conteúdo atual do site, um
+  **login padrão de Admin master** (definido em `src/mocks/painel.ts`) e quatro contas de teste, uma por perfil.
+  Tudo listado em **`.dados/acessos-locais.txt`**. O login padrão só existe no banco local — nunca no site no ar.
+- **No site no ar:** veja [docs/ARQUITETURA.md, seção 6](docs/ARQUITETURA.md#6-banco-de-dados-e-painel-de-controle).
+
+Fotos e vídeos fixos do site continuam em `public/assets/`.
 
 ## Documentação
 
-- [Arquitetura, API, segurança e banco de dados futuro](docs/ARQUITETURA.md)
+- [Arquitetura, API, banco de dados, painel e segurança](docs/ARQUITETURA.md)
 - [Inventário do site antes da migração](docs/INVENTARIO.md)

@@ -8,10 +8,11 @@ import { BarraDeAtalhos } from '@/components/layout/BarraDeAtalhos';
 import { TelaDeCarregamento } from '@/components/inicio/TelaDeCarregamento';
 import { Cabecalho } from '@/components/layout/Cabecalho';
 import { Rodape } from '@/components/layout/Rodape';
+import { SomenteNoSite } from '@/components/layout/SomenteNoSite';
 import { VoltarAoTopo } from '@/components/layout/VoltarAoTopo';
 import { urlDoSite } from '@/config/ambiente';
 import { casosDeUso } from '@/config/container';
-import { linkDoMapa } from '@/modules/Institucional/Domain/institucional';
+import { linkDoMapa, logoDoSite } from '@/modules/Institucional/Domain/institucional';
 import { classesDasFontes } from './fontes';
 
 const NOME = 'Santuário Nossa Senhora de Fátima e São João de Deus';
@@ -68,7 +69,9 @@ export default async function LayoutRaiz({ children }: { children: React.ReactNo
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: SCRIPT_INICIAL }} />
       </head>
       <body className="bg-white text-slate-700 antialiased">
-        <TelaDeCarregamento />
+        <SomenteNoSite>
+          <TelaDeCarregamento logo={logoDoSite(institucional)} />
+        </SomenteNoSite>
         <a
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-gold-500 focus:text-navy-950 focus:px-4 focus:py-2 focus:rounded-md font-semibold"
@@ -76,11 +79,15 @@ export default async function LayoutRaiz({ children }: { children: React.ReactNo
           Pular para o conteúdo
         </a>
         <Avisos>
-          <Cabecalho telefone={telefone} mapa={linkDoMapa(institucional)} />
+          <SomenteNoSite>
+            <Cabecalho telefone={telefone} mapa={linkDoMapa(institucional)} logo={logoDoSite(institucional)} />
+          </SomenteNoSite>
           <main id="conteudo">{children}</main>
-          <Rodape institucional={institucional} secretaria={secretaria} />
-          <BarraDeAtalhos telefone={telefone} />
-          <VoltarAoTopo />
+          <SomenteNoSite>
+            <Rodape institucional={institucional} secretaria={secretaria} />
+            <BarraDeAtalhos telefone={telefone} />
+            <VoltarAoTopo />
+          </SomenteNoSite>
           <AnimacaoAoRolar />
         </Avisos>
       </body>

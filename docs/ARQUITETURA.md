@@ -92,7 +92,8 @@ Criar esses módulos agora seria inventar funcionalidade ou simular segurança (
 - Conteúdo: horários, endereço, telefone e e-mail são **reais e públicos**. Eventos, notícias, recados, chave PIX,
   dados bancários e percentuais são **exemplos** (os mesmos do site antigo) — a API de doações avisa isso.
 
-**Para mudar um conteúdo hoje:** edite o arquivo em `src/mocks/`, rode `npm run verificar` e publique.
+**Para mudar um conteúdo:** use o painel de controle (`/painel-controle`, seção 6). Os arquivos de `src/mocks/`
+só valem quando o site roda sem banco — e servem de conteúdo inicial na primeira vez que o banco é criado.
 
 ### A página inicial
 
@@ -161,22 +162,64 @@ Depois: registre em `src/config/container.ts`, crie as rotas em `src/app/api/` e
 Implemente a interface do Domain (por exemplo `RepositorioDeEventos`) numa classe nova na pasta `Infrastructure/`
 e troque **uma linha** no container. Casos de uso, páginas, API e testes de regra continuam iguais.
 
-## 6. Banco de dados no futuro (PostgreSQL)
+## 6. Banco de dados e painel de controle
 
-Nada de banco foi instalado agora. O caminho previsto:
+### Onde os dados ficam
 
-1. **Escolher o ORM**: Prisma (esquema declarativo e migrations prontas) ou Drizzle (SQL tipado, mais leve).
-   Ambos usam consultas parametrizadas, o que previne SQL Injection.
-2. **Variável de ambiente** `DATABASE_URL` (só no servidor; validar em `src/config/ambiente.ts`; nunca `NEXT_PUBLIC_`).
-   Na Vercel, use um Postgres com *pooling* (ex.: Neon ou Supabase) por causa das funções serverless.
-3. **Tabelas iniciais** (espelham os tipos do Domain): `eventos`, `noticias`, `recados`, `albuns` e `fotos_album`,
-   `horarios` (ou tabelas por tipo: `missas_semana`, `confissoes`, `tercos`…), `dados_institucionais`, `dados_doacao`.
-   Relacionamentos futuros: `eventos.categoria_id → categorias`, `noticias.autor_id → usuarios`.
-4. **Migrations** versionadas no repositório (`prisma migrate` / `drizzle-kit`), aplicadas no deploy.
-5. **Repositórios novos** em `Infrastructure/` (ex.: `RepositorioDeEventosPostgres implements RepositorioDeEventos`)
-   e troca no container. Os mocks podem virar *seed* do banco de desenvolvimento.
-6. **Transações** para operações com mais de uma tabela (ex.: publicar notícia + registrar auditoria).
-7. **Auditoria**: tabela `auditoria (quem, quando, ação, entidade, id, antes, depois)` gravada pelos casos de uso de escrita.
+`modoDoBanco()` (`src/config/ambiente.ts`) decide, sem mudar código:
+
+| Modo | Quando | O que acontece |
+|---|---|---|
+| `postgres` | `DATABASE_URL` definida (site no ar) | Site e painel leem e gravam no PostgreSQL (ex.: Neon, com *pooling*) |
+| `local` | `npm run dev` (ou `BANCO_LOCAL=1`) | Banco PostgreSQL embutido (PGlite) na pasta `.dados/` — nada a instalar |
+| `nenhum` | testes, ou site no ar ainda sem `DATABASE_URL` | O site usa `src/mocks` (como antes) e o painel fica desligado |
+
+- **ORM**: Drizzle (`src/shared/Infrastructure/banco/esquema.ts`), sempre com consultas parametrizadas.
+- **Migrações** em código (`migracoes.ts`), aplicadas sozinhas na primeira conexão (com trava para não rodarem duas vezes).
+- **Semente**: num banco vazio, o conteúdo atual de `src/mocks` é copiado uma única vez — o site continua igual.
+  No modo `local` também são criadas 4 contas de teste (uma por perfil), com senhas aleatórias, e o login padrão
+  de Admin master de `src/mocks/painel.ts` — todos listados em `.dados/acessos-locais.txt` (fora do Git).
+  No banco do site no ar **nenhuma conta é criada** pela semente. Para recomeçar do zero: apague a pasta `.dados`.
+- **Fotos enviadas** pelo painel: conferidas pelo conteúdo (JPEG/PNG/WebP, até 15 MB), giradas, reduzidas e
+  convertidas em WebP — os metadados (inclusive o GPS do celular) são descartados. Ficam no **Vercel Blob**
+  (com `BLOB_READ_WRITE_TOKEN`) ou em `.dados/arquivos` (servidas por `/arquivos/...`). Foto trocada ou excluída
+  é apagada do armazenamento.
+
+### Painel (`/painel-controle`)
+
+| Perfil | Pode |
+|---|---|
+| **Admin master** | Tudo, inclusive **Usuários** e **Registro de atividades** |
+| **Padre** | Informações do site (endereço, telefone, redes, apresentação, logo), horários, eventos, galeria, notícias e recados, dados de doação (PIX) e secretaria |
+| **PASCOM** | Eventos e galeria de fotos |
+| **Secretaria** | Dizimistas e contribuições |
+
+- A tabela de permissões é uma só: `PERMISSOES_DO_PAPEL` em `src/modules/Acesso/Domain/acesso.ts`.
+- **Toda página** do painel chama `exigirPermissao(...)` e **toda ação** passa por `acaoDoPainel(...)`
+  (`src/modules/Acesso/Presentation/`), que confere a sessão e o perfil **no servidor** antes de executar.
+  Esconder o menu é só conforto: quem digitar o endereço de outra área volta ao início com um aviso.
+- Telas: `src/app/painel-controle/**` · componentes: `src/components/painel/` · regras: `modules/*/Application/gestao.ts`.
+
+### Registro de atividades (log)
+
+- Tabela `registro_atividades`: quem, o quê, área, alvo, detalhe (o que mudou: "antes → depois"), IP e quando.
+- Registra entradas, saídas, tentativas recusadas, bloqueios, criação/edição/exclusão em todas as áreas, envio de fotos,
+  troca e redefinição de senha.
+- **Não pode ser alterado nem apagado** — nem pelo Admin master: um *trigger* no banco recusa `UPDATE` e `DELETE`.
+- **LGPD**: na Secretaria, o registro guarda **quais campos** mudaram e um código curto do cadastro, nunca nome,
+  telefone, e-mail ou endereço.
+- O Admin master vê tudo em **Registro de atividades** (filtros por área, pessoa e período); cada pessoa vê as suas
+  últimas ações na página inicial do painel.
+
+### Primeiro acesso no site no ar
+
+1. Crie um banco PostgreSQL (ex.: **Neon**, pela integração da Vercel) e um **Blob Store** na Vercel.
+2. Na Vercel, defina `DATABASE_URL` e `BLOB_READ_WRITE_TOKEN` (só no servidor; as integrações já criam as duas).
+3. Publique. Na primeira visita o banco é criado e recebe o conteúdo atual do site.
+4. No seu computador, com a mesma `DATABASE_URL` em `.env.local`:
+   `npm run painel:criar-admin -- "Seu Nome" seu@email.com` → mostra uma senha temporária (uma vez só).
+5. Entre em `/painel-controle`, crie a sua senha e cadastre as outras pessoas em **Usuários**
+   (cada uma recebe uma senha temporária e cria a própria no primeiro acesso).
 
 ## 7. Segurança (o que está implementado)
 
@@ -195,20 +238,22 @@ Nada de banco foi instalado agora. O caminho previsto:
   externo precisar, libere só a origem dele.
 - **LGPD**: o formulário de contato não envia nem guarda nada (abre o e-mail da própria pessoa); os mocks não têm
   dados pessoais; não há cookies de rastreamento; as fontes são servidas pelo próprio site (sem Google Fonts no navegador).
-- **Segredos**: nenhum hoje. Quando houver, só em variáveis de ambiente do servidor.
+- **Segredos**: `DATABASE_URL` e `BLOB_READ_WRITE_TOKEN`, só em variáveis de ambiente do servidor (nunca `NEXT_PUBLIC_`).
 - **Dependências**: `npm audit` sem vulnerabilidades conhecidas na data da migração.
 
-## 8. Autenticação (futuro)
+## 8. Autenticação do painel (o que está implementado)
 
-O site **não tem** área restrita hoje, então nenhuma autenticação foi criada (uma autenticação "de mentira" daria falsa
-sensação de segurança). Quando houver painel para a secretaria/PASCOM publicar conteúdo:
-
-- Use uma biblioteca madura (ex.: Auth.js) ou provedor gerenciado; sessão em **cookie HttpOnly, Secure, SameSite=Lax/Strict**.
-- Senhas, se houver, com hash forte (Argon2id ou bcrypt); prefira login por e-mail (link mágico) para a equipe.
-- Proteja as rotas de escrita **no servidor** (em cada Route Handler/Server Action), com papéis (ex.: `admin`, `editor`)
-  verificados no caso de uso — o `proxy.ts` sozinho não basta.
-- Proteção contra CSRF nas mutações (Server Actions do Next já verificam a origem; em Route Handlers, verifique `Origin`).
-- Rate limiting mais rígido no login.
+- **Senhas** com hash `scrypt` (sal aleatório, custo alto) e comparação em tempo constante; mínimo de 10 caracteres.
+- **Sessão**: código aleatório num cookie `HttpOnly`, `SameSite=Strict` e `Secure` (no ar, com prefixo `__Host-`);
+  o banco guarda só o resumo (SHA-256) do código. Vale 12 horas. Sair apaga a sessão no banco.
+- **Tentativas erradas**: depois de 5 seguidas a conta fica bloqueada por 15 minutos; a mensagem de erro é sempre a mesma
+  (não revela se o e-mail existe) e o tempo de resposta também.
+- **Senha temporária**: gerada pelo Admin master (mostrada uma vez); no primeiro acesso a pessoa é obrigada a criar a sua.
+  Trocar a senha encerra as sessões nos outros aparelhos; desativar uma conta ou mudar o perfil vale na hora.
+- Sempre existe pelo menos um Admin master ativo; ninguém muda o próprio perfil nem desativa a própria conta.
+- **CSRF**: as ações são Server Actions (o Next.js confere a origem) e o cookie é `SameSite=Strict`.
+- O painel não aparece em buscadores (`robots.txt`, `X-Robots-Tag: noindex`) e não fica em cache (`Cache-Control: no-store`).
+- Limitação conhecida: o bloqueio é por conta, não por IP. Para limitar tentativas por IP, use o Firewall da Vercel.
 
 ## 9. Testes e qualidade
 
@@ -237,7 +282,8 @@ Para testar como em produção (com a CSP completa): `npm run build && npm run s
 
 - O `vercel.json` define o framework como **Next.js**, então o projeto existente passa a compilar o Next.js
   automaticamente (comando `next build`, saída padrão).
-- Variáveis: `SITE_URL` (opcional; sem ela, usa o domínio de produção do projeto na Vercel).
+- Variáveis: `SITE_URL` (opcional; sem ela, usa o domínio de produção do projeto na Vercel); para o painel,
+  `DATABASE_URL` e `BLOB_READ_WRITE_TOKEN` (seção 6). Sem elas o site continua no ar como antes, com o painel desligado.
 - Fluxo recomendado: abrir um *pull request* do ramo → a Vercel gera uma **pré-visualização** → conferir → juntar ao `main`
   (que publica em produção).
 - Os endereços antigos (`/sobre.html`, `/index.html`…) redirecionam para os novos (`/sobre`, `/`).

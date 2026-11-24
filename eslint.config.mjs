@@ -25,7 +25,7 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ['src/modules/*/Infrastructure/**', 'src/mocks/**', '**/*.test.ts'],
+    files: ['src/modules/*/Infrastructure/**', 'src/shared/Infrastructure/banco/semente.ts', 'src/mocks/**', '**/*.test.ts'],
     rules: { 'no-restricted-imports': 'off' },
   },
   globalIgnores(['.next/**', 'out/**', 'build/**', 'coverage/**', 'next-env.d.ts', 'legado/**']),

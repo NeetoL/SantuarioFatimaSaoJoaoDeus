@@ -22,3 +22,6 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 npm-debug.log*
+
+# Banco local e fotos enviadas pelo painel (desenvolvimento)
+/.dados/
